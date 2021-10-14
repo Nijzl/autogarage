@@ -41,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cars/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
                 .antMatchers("/part/**").hasAnyRole("MECHANIC", "BACKOFFICE")
                 .antMatchers("/parts/**").hasAnyRole("MECHANIC", "BACKOFFICE")
+                .antMatchers("/action/**").hasAnyRole("MECHANIC", "BACKOFFICE")
+                .antMatchers("/actions/**").hasAnyRole("MECHANIC", "BACKOFFICE")
                 .antMatchers("/appointments/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
 
                 .antMatchers("/").permitAll()
