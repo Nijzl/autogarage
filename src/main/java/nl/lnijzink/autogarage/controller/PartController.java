@@ -1,13 +1,17 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.PartDto;
 import nl.lnijzink.autogarage.service.PartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.List;
 
 @Controller
@@ -36,4 +40,15 @@ public class PartController {
         model.addAttribute("Part", new PartDto());
         return "PartForm";
         }
+
+    @PostMapping("/create")
+    public String createPart(@Valid @ModelAttribute("Part") PartDto odto,
+                            BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "PartForm";
+        }
+        service.createPart(odto);
+        return "PartDisplay";
+    }
+
 }

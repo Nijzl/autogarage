@@ -34,17 +34,11 @@
 <div align="center">
     <h1>Customer registration</h1>
     <form action="#" th:action="@{/customer/create}" method="post" th:object="${Customer}">
-        <label>First name:</label>
-        <input type="text" th:field="*{firstName}" />
+        <label>Full name:</label>
+        <input type="text" th:field="*{fullName}" />
         <br/>
-        <p  class="hasErrors"  th:if="${#fields.hasErrors('firstName')}" >
-            First Name Error</p>
-        <br>
-        <label>Last name:</label>
-        <input type="text" th:field="*{lastName}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('lastName')}" >
-            Last Name Error</p>
+        <p  class="hasErrors"  th:if="${#fields.hasErrors('fullName')}" >
+            Full Name Error</p>
         <br>
         <label>Address:</label>
         <input type="text" th:field="*{address}" />
@@ -60,6 +54,8 @@
         <br>
 
         <button type="submit">Register</button>
+        <br>
+        <button type="reset">Empty form</button>
     </form>
 </div>
 </body>

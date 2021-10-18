@@ -34,6 +34,8 @@
 <div align="center">
     <h1>Part registration</h1>
     <form action="#" th:action="@{/part/create}" method="post" th:object="${Part}">
+
+        <label>Or register a new part:</label>
         <label>Name:</label>
         <input type="text" th:field="*{name}" />
         <br>
@@ -54,6 +56,8 @@
         <br>
 
         <button type="submit">Register</button>
+        <br>
+        <button type="reset">Empty form</button>
     </form>
 </div>
 </body>

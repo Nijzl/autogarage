@@ -17,7 +17,10 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public long createCustomer(CustomerDto cdto){
-        Customer c = new Customer(cdto.getFirstName(), cdto.getLastName(), cdto.getAddress(), cdto.getEmail());
+        Customer c = new Customer();
+        c.setFullName(cdto.getFullName());
+        c.setAddress(cdto.getAddress());
+        c.setEmail(cdto.getEmail());
         repos.save(c);
         return c.getId();
     }
@@ -25,14 +28,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomer(long id){
         Customer p = repos.findById(id).get();
-        return new CustomerDto(p.getId(), p.getFirstName(), p.getLastName(), p.getAddress(), p.getEmail());
+        return new CustomerDto(p.getId(), p.getFullName(), p.getAddress(), p.getEmail());
     }
 
     @Override
     public List<CustomerDto> getCustomers(){
         ArrayList<CustomerDto> pList = new ArrayList<>();
-        repos.findAll().forEach((p) -> pList.add(new CustomerDto(p.getId(), p.getFirstName(),
-                p.getLastName(), p.getAddress(), p.getEmail()
+        repos.findAll().forEach((p) -> pList.add(new CustomerDto(p.getId(), p.getFullName(),
+                p.getAddress(), p.getEmail()
                )));
         return pList;
     }

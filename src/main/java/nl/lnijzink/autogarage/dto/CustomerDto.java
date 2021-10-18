@@ -1,19 +1,18 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import nl.lnijzink.autogarage.model.Car;
+
 import javax.validation.constraints.*;
+import java.util.Collection;
 
 public class CustomerDto {
     @NotNull
     private long id;
 
     @NotNull
-    @Size(min = 3, max = 100)
-    private String firstName;
-
-    @NotNull
-    @Size(min = 3, max = 100)
-    private String lastName;
+    @Size(min = 3, max = 250)
+    private String fullName;
 
     @NotNull
     @Size(min = 3, max = 100)
@@ -23,12 +22,12 @@ public class CustomerDto {
     @Email
     private String email;
 
+
     public CustomerDto(){}
 
-    public CustomerDto(long id, String firstName, String lastName, String address, String email){
+    public CustomerDto(long id, String fullName, String address, String email){
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.address = address;
         this.email = email;
     }
@@ -38,13 +37,9 @@ public class CustomerDto {
 
     public void setId(long id){this.id = id;}
 
-    public String getFirstName(){return firstName;}
+    public String getFullName(){return fullName;}
 
-    public void setFirstName(String firstName){this.firstName = firstName;}
-
-    public String getLastName(){return lastName;}
-
-    public void setLastName(String lastName){this.lastName = lastName;}
+    public void setFullName(String fullName){this.fullName = fullName;}
 
     public String getAddress(){return address;}
 

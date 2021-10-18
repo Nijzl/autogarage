@@ -13,8 +13,7 @@ public class HomeController {
     public @ResponseBody String loginMessage(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth.getPrincipal() instanceof UserDetails){
-            String userName = ((UserDetails)(auth.getPrincipal())).getUsername();
-            return "Hello " + userName;
+            return "";
         }
         else{
             return "You are not logged in. Please try again.";
@@ -23,8 +22,8 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public @ResponseBody String showOverview(){
-        return "this page will display an overview of options";
+    public String showOverview(){
+        return "Index";
     }
 
 /*    @GetMapping("/customers")

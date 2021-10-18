@@ -34,7 +34,7 @@
 <div align="center">
     <h1>Action registration</h1>
     <form action="#" th:action="@{/action/add}" method="post" th:object="${Action}">
-        <label>Select an action:</label>
+        <label>Select an existing action:</label>
         <select th:field="*{action}">
             <option th:each="p : ${listAction}" th:value="${p}" th:text="${p}" />
         </select>
@@ -59,6 +59,8 @@
         <br>
 
         <button type="submit">Register</button>
+        <br>
+        <button type="reset">Empty form</button>
     </form>
 </div>
 </body>
