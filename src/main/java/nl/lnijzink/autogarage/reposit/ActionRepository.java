@@ -1,4 +1,7 @@
 package nl.lnijzink.autogarage.reposit;
 
-public class ActionRepository {
+import nl.lnijzink.autogarage.model.Action;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ActionRepository extends JpaRepository<Action, Long> {
 }

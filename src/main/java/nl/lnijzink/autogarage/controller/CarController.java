@@ -1,10 +1,12 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.PartDto;
 import nl.lnijzink.autogarage.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,14 +18,16 @@ public class CarController {
 
     protected CarController(CarService service){this.service = service;}
 
-    @GetMapping("/car/id")
+    @GetMapping("/id")
     public CarDto getCar(@PathVariable long id){
         return service.getCar(id);
     }
 
-    @PostMapping("/car/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public long createCar(@RequestBody CarDto adto){return service.createCar(adto);}
+    @GetMapping("/create")
+    public String createPart(Model model){
+        model.addAttribute("Car", new CarDto());
+        return "CarForm";
+    }
 
     @GetMapping(path = "/cars", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CarDto> getCars(){
