@@ -4,8 +4,6 @@ import com.sun.istack.NotNull;
 import javax.validation.constraints.*;
 
 public class CarDto {
-    @NotNull
-    private long id;
 
     @NotNull
     @Size(min = 3, max = 100)
@@ -20,16 +18,11 @@ public class CarDto {
 
     public CarDto(){}
 
-    public CarDto(long id, String name, String model, int year){
-        this.id = id;
+    public CarDto(String licencePlate, String model, int year){
         this.licencePlate = licencePlate;
         this.model = model;
         this.year = year;
     }
-
-    public long getId(){return id;}
-
-    public void setId(long id){this.id = id;}
 
     public String getLicencePlate(){return licencePlate;}
 

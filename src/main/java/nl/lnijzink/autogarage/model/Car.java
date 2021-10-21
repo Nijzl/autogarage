@@ -1,13 +1,14 @@
 package nl.lnijzink.autogarage.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Car {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    Long id;
+    @NotNull
     String licencePlate;
+
     String model;
     int year;
 
@@ -22,9 +23,9 @@ public class Car {
         this.year = year;
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
     public String getLicencePlate() {
         return licencePlate;
@@ -46,9 +47,9 @@ public class Car {
 
     public void setYear(int year) {this.year = year;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public Customer getOwner() {
         return owner;

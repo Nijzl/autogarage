@@ -22,8 +22,8 @@ public class CarController {
     protected CarController(CarService service){this.carService = service;}
 
     @GetMapping("/{id}")
-    public CarDto getCar(@PathVariable long id){
-        return carService.getCar(id);
+    public CarDto getCar(@PathVariable String licencePlate){
+        return carService.getCar(licencePlate);
     }
 
     @GetMapping("/create")

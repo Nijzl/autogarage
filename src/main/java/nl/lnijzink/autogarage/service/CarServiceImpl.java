@@ -17,25 +17,25 @@ public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
 
-    public CarServiceImpl(CarRepository repos, CustomerRepository customerRepository){this.carRepository = repos; this.customerRepository = customerRepository;}
+    public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){this.carRepository = carRepository; this.customerRepository = customerRepository;}
 
     @Override
-    public long createCar(CarDto adto){
+    public String createCar(CarDto adto){
         Car a = new Car(adto.getLicencePlate(), adto.getModel(), adto.getYear());
         carRepository.save(a);
-        return a.getId();
+        return a.getLicencePlate();
     }
 
     @Override
-    public CarDto getCar(long id){
-        Car p = carRepository.findById(id).get();
-        return new CarDto(p.getId(), p.getLicencePlate(), p.getModel(), p.getYear());
+    public CarDto getCar(String licencePlate){
+        Car p = carRepository.findById(licencePlate).get();
+        return new CarDto(p.getLicencePlate(), p.getModel(), p.getYear());
     }
 
     @Override
     public List<CarDto> getCars(){
         ArrayList<CarDto> pList = new ArrayList<>();
-        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getId(), p.getLicencePlate(), p.getModel(), p.getYear()
+        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getModel(), p.getYear()
         )));
         return pList;
     }

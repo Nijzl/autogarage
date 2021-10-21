@@ -11,7 +11,7 @@ public interface CustomerService {
     public long createCustomer(CustomerDto cdto);
     public CustomerDto getCustomer(long id);
     public List<CustomerDto> getCustomers();
-    public ResponseEntity assignCarToCustomer(Long carId, Long customerId);
+    public ResponseEntity assignCarToCustomer(String email, String licencePlate);
     public List<Car> getListCarsByCustomerId(Long customerId);
-    public Customer getCustomerByCar(Long carId);
+    public Customer getCustomerByCar(String licencePlate);
 }

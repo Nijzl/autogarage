@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/upload")
+//@RequestMapping("/upload")
 public class FileUploadController {
 
     private final StorageService storageService;
@@ -27,16 +27,16 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-//    @GetMapping("/")
-//    public String listUploadedFiles(Model model) throws IOException {
-//
-//        model.addAttribute("files", storageService.loadAll().map(
-//                        path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-//                                "serveFile", path.getFileName().toString()).build().toUri().toString())
-//                .collect(Collectors.toList()));
-//
-//        return "uploadForm";
-//    }
+    @GetMapping("/files")
+    public String listUploadedFiles(Model model) throws IOException {
+
+        model.addAttribute("files", storageService.loadAll().map(
+                        path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
+                                "serveFile", path.getFileName().toString()).build().toUri().toString())
+                .collect(Collectors.toList()));
+
+        return "uploadForm";
+    }
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
@@ -47,7 +47,7 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/")
+    @PostMapping("/files")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
@@ -55,7 +55,7 @@ public class FileUploadController {
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return "redirect:/";
+        return "redirect:/files";
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

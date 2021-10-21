@@ -54,16 +54,24 @@ public class CustomerController {
         return "CarsByCustomerId";
     }
 
-    @GetMapping("/car/{id}/customer")
-    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
-        var customer = customerService.getCustomerByCar(id);
+    @GetMapping("/car/{licencePlate}/customer")
+    public String getCustomerByCar(@PathVariable("licencePlate") String lincencePlate, Model model){
+        var customer = customerService.getCustomerByCar(lincencePlate);
         model.addAttribute("customer", customer);
         return "CustomerByCarId";
     }
 
-    @PostMapping("/{id}/car")
-    public ResponseEntity<String> assignCarToCustomer(@PathVariable("id") Long carId,@RequestBody Long customerId){
-        customerService.assignCarToCustomer(customerId, carId);
+    @GetMapping("/car")
+    public String assignCarToCustomer(Model model){
+        model.addAttribute("Customer", new CustomerDto());
+        model.addAttribute("Car", new CarDto());
+        return "LinkCustomerAndCar";
+    }
+
+    @PostMapping("/car")
+    public ResponseEntity<String> assignCarToCustomer(@RequestBody String email,
+                                                      @RequestBody String licencePlate){
+        customerService.assignCarToCustomer(email, licencePlate);
         return ResponseEntity.ok("Auto toegeschreven aan klant");
     }
 }

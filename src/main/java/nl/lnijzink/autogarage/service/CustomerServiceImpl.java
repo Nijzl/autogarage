@@ -49,8 +49,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerByCar(Long carId) {
-        var optionalCar = carRepository.findById(carId);
+    public Customer getCustomerByCar(String licencePlate) {
+        var optionalCar = carRepository.findById(licencePlate);
 
         if(optionalCar.isPresent() && optionalCar.get().getOwner() != null) {
             return optionalCar.get().getOwner();
@@ -66,15 +66,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public ResponseEntity assignCarToCustomer(Long carId, Long customerId) {
-       var optionalCustomer = customerRepository.findById(customerId);
-       var optionalCar = carRepository.findById(carId);
+    public ResponseEntity assignCarToCustomer(String email, String licencePlate) {
+       var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
+       var optionalCar = carRepository.findById(licencePlate);
 
        if ( optionalCustomer.isPresent() && optionalCar.isPresent()) {
            var customer = optionalCustomer.get();
            var car = optionalCar.get();
            List<Car> cars = new ArrayList<>();
-           cars.addAll(getListCarsByCustomerId(customerId));
+           cars.addAll(customer.getCars());
            cars.add(car);
            customer.setCars(cars);
            customerRepository.save(customer);
