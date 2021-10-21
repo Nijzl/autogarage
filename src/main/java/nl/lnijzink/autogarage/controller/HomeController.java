@@ -26,17 +26,8 @@ public class HomeController {
         return "Index";
     }
 
-/*    @GetMapping("/customers")
-    public @ResponseBody String showCustomers(){
-        return "this page will display customer information";
-    }
 
-    @GetMapping("/cars")
-    public @ResponseBody String showCars(){
-        return "this page will display car information";
-    }*/
-
-    @GetMapping("/appointments")
+    @GetMapping("/appointment")
     public @ResponseBody String showAgenda(){
         return "here go the appointments";
     }

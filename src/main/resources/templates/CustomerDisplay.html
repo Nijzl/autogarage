@@ -39,27 +39,7 @@
     <th>E-mail:</th><th th:text="${Customer.email}"></th><br/>
     <br>
     <br>
-    <a href="/home">Back to home page</a>
-
-
-    <h1>Customer</h1>
-    <form action="#" th:action="@{/customer/{id}}" method="get">
-<!--          th:object="${customer}"-->
-
-<!--        <label>Info</label>-->
-<!--        <p>{fullName}</p>-->
-<!--        <p>{address}</p>-->
-<!--        <p>{email}</p>-->
-        <thead>
-        <tr>
-            <th>Fullname</th>
-            <th>Address</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="customer : ${customer}"></tr>
-        </tbody>
+    <a href="/car/create">Add a car to this customer</a>
 
     </form>
 </div>

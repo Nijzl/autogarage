@@ -1,8 +1,12 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CustomerService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,14 +18,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-    private final CustomerService service;
+    private final CustomerService customerService;
 
-    protected CustomerController(CustomerService service){this.service = service;}
+    protected CustomerController(CustomerService service){this.customerService = service;}
 
     @GetMapping("/{id}")
     public CustomerDto getCustomer(@PathVariable long id){
-        return service.getCustomer(id);
-
+        return customerService.getCustomer(id);
     }
 
     @GetMapping("/create")
@@ -36,12 +39,31 @@ public class CustomerController {
         if (bindingResult.hasErrors()) {
             return "CustomerForm";
         }
-        service.createCustomer(cdto);
+        customerService.createCustomer(cdto);
         return "CustomerDisplay";
     }
 
-    @PostMapping(path = "/customers", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CustomerDto> getCustomers(){
-        return service.getCustomers();
+    @GetMapping("/list")
+    public List<CustomerDto> getCustomers() {
+        var customers = customerService.getCustomers();
+        return customers; //form maken
+    }
+    @GetMapping("/{id}/cars")
+    public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
+        customerService.getListCarsByCustomerId(customerId);
+        return "CarsByCustomerId";
+    }
+
+    @GetMapping("/car/{id}/customer")
+    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
+        var customer = customerService.getCustomerByCar(id);
+        model.addAttribute("customer", customer);
+        return "CustomerByCarId";
+    }
+
+    @PostMapping("/{id}/car")
+    public ResponseEntity<String> assignCarToCustomer(@PathVariable("id") Long carId,@RequestBody Long customerId){
+        customerService.assignCarToCustomer(customerId, carId);
+        return ResponseEntity.ok("Auto toegeschreven aan klant");
     }
 }

@@ -1,9 +1,6 @@
 package nl.lnijzink.autogarage.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Car {
@@ -13,6 +10,9 @@ public class Car {
     String licencePlate;
     String model;
     int year;
+
+    @ManyToOne
+    private Customer owner;
 
     public Car(){}
 
@@ -45,6 +45,18 @@ public class Car {
     public int getYear() {return year;}
 
     public void setYear(int year) {this.year = year;}
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Customer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Customer owner) {
+        this.owner = owner;
+    }
 }
 
 

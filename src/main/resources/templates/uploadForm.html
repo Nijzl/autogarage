@@ -1,0 +1,56 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>uploadForm</title>
+	<style type="text/css">
+		label {
+			display: inline-block;
+			width: 200px;
+			margin: 5px;
+			text-align: left;
+		}
+		input[type=text], input[type=password], select {
+			display: inline-block;
+			width: 200px;
+		}
+		input[type=radio] {
+			margin-left: 45px;
+		}
+		input[type=checkbox] {
+			margin-right: 190px;
+		}
+		button {
+			padding: 5px;
+			margin: 10px;
+		}
+		.hasErrors{
+			color: red;
+			font-weight : bold;
+		}
+	</style>
+</head>
+<body>
+
+<!--	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>-->
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>
