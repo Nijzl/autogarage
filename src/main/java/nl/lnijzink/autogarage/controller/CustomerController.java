@@ -34,8 +34,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto,
-                                 BindingResult bindingResult){
+    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "CustomerForm";
         }
