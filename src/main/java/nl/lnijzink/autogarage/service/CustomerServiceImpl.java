@@ -6,8 +6,6 @@ import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.reposit.CustomerRepository;
 import nl.lnijzink.autogarage.storage.StorageException;
-import nl.lnijzink.autogarage.storage.StorageFileNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CarRepository carRepository;
 
-    public CustomerServiceImpl(CustomerRepository repos, CarRepository carRepository){this.customerRepository = repos; this.carRepository = carRepository;
+    public CustomerServiceImpl(CustomerRepository customerRepository, CarRepository carRepository){this.customerRepository = customerRepository; this.carRepository = carRepository;
 
     }
 
@@ -61,27 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Car> getListCarsByCustomerId(Long customerId) {
-        return null;
+        return null; //?
 
     }
-
-    @Override
-    public ResponseEntity assignCarToCustomer(String email, String licencePlate) {
-       var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
-       var optionalCar = carRepository.findById(licencePlate);
-
-       if ( optionalCustomer.isPresent() && optionalCar.isPresent()) {
-           var customer = optionalCustomer.get();
-           var car = optionalCar.get();
-           List<Car> cars = new ArrayList<>();
-           cars.addAll(customer.getCars());
-           cars.add(car);
-           customer.setCars(cars);
-           customerRepository.save(customer);
-       }
-       //exception op later moment toevoegen
-       return ResponseEntity.ok("Auto toegeschreven aan klant");
-    }
-
-
 }

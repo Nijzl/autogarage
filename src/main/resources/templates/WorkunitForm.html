@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CarDisplay</title>
+    <title>WorkunitForm</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,14 +32,24 @@
 </head>
 <body>
 <div align="center">
+    <form action="#" th:action="@{/workunit/create}" method="post" th:object="${Workunit}">
 
-    <h2>Registration succeeded</h2>
-    <th>Lincence plate:</th><th th:text="${Car.licencePlate}"></th><br/>
-    <th>Model:</th><th th:text="${Car.model}"></th><br/>
-    <th>Year:</th><th th:text="${Car.year}"></th><br/>
-    <br>
-    <br>
-    <a href="/car/customer">Link car and customer</a>
+        <div th:object="${Car}">
+            <th>Checkup on:</th><th th:text="${Car.licencePlate}"></th><br/>
+        </div>
+    <h2>Check-up</h2>
+    <h2>Flaws found:</h2>
+    <p>option to add up to 5 registered parts</p>
+    <p>option to add up to 5 unregistered parts</p>
+    <p>option to add 5 registered actions</p>
+    <p>option to add 5 unregistered actions</p>
+
+    <h2>present this to the customer. Do they request changes?</h2>
+    <input type="text" value="Type remarks here" />
+
+    <h2>Does customer agree?</h2>
+    <a href="/workunit/repair">Yes (start repair)</a>
+    <a href="/workunit/checkup-not-agreed">No (generate receipt)</a>
 
 </div>
 </body>

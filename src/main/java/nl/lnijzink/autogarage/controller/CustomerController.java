@@ -1,12 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
-import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CustomerService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,17 +55,4 @@ public class CustomerController {
         return "CustomerByCarId";
     }
 
-    @GetMapping("/car")
-    public String assignCarToCustomer(Model model){
-        model.addAttribute("Customer", new CustomerDto());
-        model.addAttribute("Car", new CarDto());
-        return "LinkCustomerAndCar";
-    }
-
-    @PostMapping("/car")
-    public ResponseEntity<String> assignCarToCustomer(@RequestBody String email,
-                                                      @RequestBody String licencePlate){
-        customerService.assignCarToCustomer(email, licencePlate);
-        return ResponseEntity.ok("Auto toegeschreven aan klant");
-    }
 }

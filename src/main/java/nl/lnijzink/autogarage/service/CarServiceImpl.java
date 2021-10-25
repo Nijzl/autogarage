@@ -2,10 +2,9 @@ package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.model.Car;
-import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.reposit.CustomerRepository;
-import nl.lnijzink.autogarage.storage.StorageFileNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,6 +37,22 @@ public class CarServiceImpl implements CarService {
         carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getModel(), p.getYear()
         )));
         return pList;
+    }
+
+    @Override
+    public ResponseEntity assignCarToCustomer(String email, String licencePlate) {
+        var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
+        var optionalCar = carRepository.findById(licencePlate);
+
+        if ( optionalCustomer.isPresent() && optionalCar.isPresent()) {
+            var customer = optionalCustomer.get();
+            var car = optionalCar.get();
+            car.setOwner(customer);
+            carRepository.save(car);
+
+        }
+        //exception op later moment toevoegen
+        return ResponseEntity.ok("Auto toegeschreven aan klant");
     }
 
 

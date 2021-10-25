@@ -1,7 +1,9 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CarService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +21,13 @@ public class CarController {
         this.carService = service;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{licencePlate}")
     public CarDto getCar(@PathVariable String licencePlate) {
         return carService.getCar(licencePlate);
     }
 
     @GetMapping("/create")
-    public String createPart(Model model) {
+    public String createCar(Model model) {
         model.addAttribute("Car", new CarDto());
         return "CarForm";
     }
@@ -57,4 +59,19 @@ public class CarController {
 //        model.addAttribute("customer", customer);
 //        return "CustomerByCarId";
 //    }
+
+    @GetMapping("/customer")
+    public String assignCarToCustomer(Model model){
+        model.addAttribute("Customer", new CustomerDto());
+        model.addAttribute("Car", new CarDto());
+        return "LinkCustomerAndCar";
+    }
+
+    @PostMapping("/customer")
+    public ResponseEntity<String> assignCarToCustomer(@RequestParam String email,
+                                                      @RequestParam String licencePlate){
+        carService.assignCarToCustomer(email, licencePlate);
+        return ResponseEntity.ok("Auto toegeschreven aan klant");
+    }
+
 }

@@ -10,14 +10,14 @@ public class Workunit
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     long id;
-    String Type;
+    String type;
 
     @ManyToOne
-    @JoinColumn(name = "car_id", referencedColumnName = "id")
+    @JoinColumn(name = "car_licencePlate", referencedColumnName = "licencePlate")
     private Car car;
 
     @ManyToOne
-    @JoinColumn(name = "mechanic_id", referencedColumnName = "ïd")
+    @JoinColumn(name = "mechanic_id", referencedColumnName = "id")
     private Employee mechanic;
 
     @ManyToOne
@@ -41,7 +41,7 @@ public class Workunit
     }
 
     public Workunit(String type, Car car, Employee mechanic) {
-        Type = type;
+        this.type = type;
         this.car = car;
         this.mechanic = mechanic;
     }
@@ -51,11 +51,11 @@ public class Workunit
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        type = type;
     }
 
     public Car getCar() {

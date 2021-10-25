@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CarDisplay</title>
+    <title>CheckupNotAgreed</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,15 +32,14 @@
 </head>
 <body>
 <div align="center">
-
-    <h2>Registration succeeded</h2>
-    <th>Lincence plate:</th><th th:text="${Car.licencePlate}"></th><br/>
-    <th>Model:</th><th th:text="${Car.model}"></th><br/>
-    <th>Year:</th><th th:text="${Car.year}"></th><br/>
+    <h2>The customer did not agree to the suggested repairs.</h2>
     <br>
+    <p>The repairs will not be performed.</p>
+    <p>The customer can pick up their car at earliest convenience.</p>
+    <p>Standard fees of 45,00 euro will be charged.</p>
     <br>
-    <a href="/car/customer">Link car and customer</a>
-
+    <a href="/home">Return to home page</a>
 </div>
+
 </body>
 </html>

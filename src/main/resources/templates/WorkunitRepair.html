@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CarDisplay</title>
+    <title>CheckupAgreed</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -31,16 +31,12 @@
     </style>
 </head>
 <body>
-<div align="center">
+    <h2>Repairs on (insert licenceplate)</h2>
+    <p>Import actions and parts listed in WorkunitForm</p>
+    <p>Import remarks from customer listed in WorkunitForm</p>
+    <p>Option to add more parts</p>
+    <p>Option to add more actions</p>
 
-    <h2>Registration succeeded</h2>
-    <th>Lincence plate:</th><th th:text="${Car.licencePlate}"></th><br/>
-    <th>Model:</th><th th:text="${Car.model}"></th><br/>
-    <th>Year:</th><th th:text="${Car.year}"></th><br/>
-    <br>
-    <br>
-    <a href="/car/customer">Link car and customer</a>
-
-</div>
+    <a href="/workunit/quintance">Generate receipt</a>
 </body>
 </html>

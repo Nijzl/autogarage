@@ -13,6 +13,7 @@ public class Car {
     int year;
 
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer owner;
 
     public Car(){}
