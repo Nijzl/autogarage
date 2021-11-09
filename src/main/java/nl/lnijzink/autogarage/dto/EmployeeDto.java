@@ -1,8 +1,13 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.*;
 
+@Getter
+@Setter
 public class EmployeeDto {
     @NotNull
     private long id;
@@ -22,18 +27,5 @@ public class EmployeeDto {
         this.name = name;
         this.role = role;
     }
-
-    public long getId(){return id;}
-
-    public void setId(long id){this.id = id;}
-
-    public String getName(){return name;}
-
-    public void setName(String name){this.name = name;}
-
-    public String getRole(){return role;}
-
-    public void setRole(String role){this.role = role;}
-
 
 }

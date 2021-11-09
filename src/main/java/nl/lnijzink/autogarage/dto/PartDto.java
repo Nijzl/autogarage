@@ -1,8 +1,13 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.*;
 
+@Getter
+@Setter
 public class PartDto {
     @NotNull
     private long id;
@@ -29,21 +34,4 @@ public class PartDto {
         this.price = price;
         this.quantity = quantity;
     }
-
-    public long getId(){return id;}
-
-    public void setId(long id){this.id = id;}
-
-    public String getName(){return name;}
-
-    public void setName(String name){this.name = name;}
-
-    public float getPrice(){return price;}
-
-    public void setPrice(float price){this.price = price;}
-
-    public long getQuantity() {return quantity;}
-
-    public void setQuantity(long quantity) {this.quantity = quantity;}
-
 }

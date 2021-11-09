@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -29,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto, BindingResult bindingResult){
+    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto, @org.jetbrains.annotations.NotNull BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "CustomerForm";
         }

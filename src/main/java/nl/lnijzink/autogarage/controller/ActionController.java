@@ -1,6 +1,8 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
+import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.service.ActionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/action")
+@RequestMapping("/actions")
 public class ActionController {
-    private final ActionService service;
+    private final ActionService actionService;
 
-    protected ActionController(ActionService service){this.service = service;}
+    protected ActionController(ActionService actionService){this.actionService = actionService;}
+
+    @GetMapping("/list")
+    public List<ActionDto> getActions(Model model) {
+        var actions = actionService.getActions();
+        model.addAttribute("actions", actions);
+        return actions; //form maken
+    }
+
+/*
+    @GetMapping(path = "/")
+    public List<Action> getActions(){return actionService.getActions();}
+*/
 
 /*    @GetMapping("/part/{id}")
     public PartDto getPart(@PathVariable long id){

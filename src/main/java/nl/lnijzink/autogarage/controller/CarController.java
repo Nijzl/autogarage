@@ -3,6 +3,7 @@ package nl.lnijzink.autogarage.controller;
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CarService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +14,19 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/car")
+@RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
 
-    protected CarController(CarService service) {
-        this.carService = service;
+    protected CarController(CarService carService) {
+        this.carService = carService;
+    }
+
+    @GetMapping("/list")
+    public List<CarDto> getCars(Model model) {
+        var cars = carService.getCars();
+        model.addAttribute("cars", cars);
+        return cars; //form maken
     }
 
     @GetMapping("/{licencePlate}")
@@ -42,17 +50,11 @@ public class CarController {
         return "CarDisplay";
     }
 
-//    @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
-//    public List<CarDto> getCars(){
-//        return service.getCars();
-//    }
+/*    @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CarDto> getCars(){
+        return carService.getCars();
+    }*/
 
-    @GetMapping("/list")
-    public List<CarDto> getCars(Model model) {
-        var cars = carService.getCars();
-        model.addAttribute("cars", cars);
-        return cars; //form maken
-    }
 //    @GetMapping("/{id}/customer")
 //    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
 //        var customer = carService.getCustomerByCar(id);

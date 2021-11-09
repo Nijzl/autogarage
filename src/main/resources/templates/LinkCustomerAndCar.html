@@ -33,7 +33,7 @@
 <body>
 <div align="center">
     <h1>Car registration to Customer</h1>
-    <form action="#" th:action="@{/customer/car}" method="post" th:object="${Car}">
+    <form action="#" th:action="@{/cars/customer}" method="post" th:object="${Car}">
 
             <label>Licence plate:</label>
             <input type="text" th:field="*{licencePlate}" />

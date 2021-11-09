@@ -13,7 +13,7 @@ public class EmployeeController {
     @Autowired
     EmployeeRepository employeerepo;
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public String hello(){
         return "this is the employee page";
     }

@@ -33,7 +33,7 @@
 <body>
 <div align="center">
     <h1>Customer registration</h1>
-    <form action="#" th:action="@{/customer/create}" method="post" th:object="${Customer}">
+    <form action="#" th:action="@{/customers/create}" method="post" th:object="${Customer}">
         <label>Full name:</label>
         <input type="text" th:field="*{fullName}" />
         <br/>

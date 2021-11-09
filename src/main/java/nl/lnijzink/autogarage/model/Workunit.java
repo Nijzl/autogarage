@@ -1,16 +1,25 @@
 package nl.lnijzink.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Workunit
 {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     long id;
-    String type;
+    Type type;
 
     @ManyToOne
     @JoinColumn(name = "car_licencePlate", referencedColumnName = "licencePlate")
@@ -26,11 +35,11 @@ public class Workunit
     @JoinColumn(name = "id")
     Action action;
 
-    @ManyToOne
-    @Nullable
-    @MapsId("id")
-    @JoinColumn(name = "id")
-    Part part;
+    @OneToMany(mappedBy = "workunit")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
+    Collection<WorkUnitPart> workUnitParts;
+
 
     @OneToOne
     @Nullable
@@ -40,61 +49,10 @@ public class Workunit
     public Workunit() {
     }
 
-    public Workunit(String type, Car car, Employee mechanic) {
+    public Workunit(Type type, Car car, Employee mechanic) {
         this.type = type;
         this.car = car;
         this.mechanic = mechanic;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        type = type;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
-
-    public Employee getMechanic() {
-        return mechanic;
-    }
-
-    public void setMechanic(Employee mechanic) {
-        this.mechanic = mechanic;
-    }
-
-    public Action getAction() {
-        return action;
-    }
-
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
-    public Part getPart() {
-        return part;
-    }
-
-    public void setPart(Part part) {
-        this.part = part;
-    }
-
-    public Workunit getWorkunit() {
-        return workunit;
-    }
-
-    public void setWorkunit(Workunit workunit) {
-        this.workunit = workunit;
-    }
 }

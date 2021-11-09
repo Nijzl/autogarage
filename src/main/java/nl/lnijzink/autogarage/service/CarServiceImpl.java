@@ -20,7 +20,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public String createCar(CarDto adto){
-        Car a = new Car(adto.getLicencePlate(), adto.getModel(), adto.getYear());
+        Car a = new Car(adto.getLicencePlate(), adto.getBrand(), adto.getModel(), adto.getYear());
         carRepository.save(a);
         return a.getLicencePlate();
     }
@@ -28,13 +28,14 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto getCar(String licencePlate){
         Car p = carRepository.findById(licencePlate).get();
-        return new CarDto(p.getLicencePlate(), p.getModel(), p.getYear());
+        return new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(), p.getYear());
     }
 
     @Override
     public List<CarDto> getCars(){
         ArrayList<CarDto> pList = new ArrayList<>();
-        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getModel(), p.getYear()
+        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(),
+                p.getYear()
         )));
         return pList;
     }
@@ -52,7 +53,7 @@ public class CarServiceImpl implements CarService {
 
         }
         //exception op later moment toevoegen
-        return ResponseEntity.ok("Auto toegeschreven aan klant");
+        return ResponseEntity.ok("Car added to customer.");
     }
 
 

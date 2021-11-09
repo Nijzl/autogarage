@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/part")
+@RequestMapping("/parts")
 public class PartController {
     private final PartService service;
 
@@ -39,7 +39,7 @@ public class PartController {
         return "PartDisplay";
     }
 
-    @PostMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/parts", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PartDto> getParts(){
         return service.getParts();
     }
