@@ -1,8 +1,8 @@
 package nl.lnijzink.autogarage.controller;
 
-import nl.lnijzink.autogarage.dto.WorkunitDto;
-import nl.lnijzink.autogarage.reposit.WorkunitRepository;
-import nl.lnijzink.autogarage.service.WorkunitService;
+import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
+import nl.lnijzink.autogarage.service.WorkUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,26 +16,25 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/workunit")
-public class WorkunitController {
+public class WorkUnitController {
 
     @Autowired
-    WorkunitRepository workunitRepository;
-    WorkunitService workunitService;
+    WorkUnitRepository workunitRepository;
+    WorkUnitService workunitService;
 
-    protected WorkunitController(WorkunitService service){this.workunitService = service;}
+    protected WorkUnitController(WorkUnitService service){this.workunitService = service;}
 
     @GetMapping("/create")
     public String createWorkunit(Model model){
-        model.addAttribute("Workunit", new WorkunitDto());
+        model.addAttribute("Workunit", new WorkUnitDto());
         return "WorkunitForm";
     }
 
     @PostMapping("/create")
-    public String createWorkunit(@Valid @ModelAttribute("Workunit") WorkunitDto wdto, BindingResult bindingResult){
+    public String createWorkunit(@Valid @ModelAttribute("Workunit") WorkUnitDto wdto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "WorkunitForm";
-        }
-        workunitService.createWorkunit(wdto);
+            return "WorkunitForm";}
+        workunitService.createWorkUnit(wdto);
         return "WorkunitForm";
     }
 
@@ -53,6 +52,5 @@ public class WorkunitController {
     public String quintance(){
         return "WorkunitQuintance";
     }
-
 
 }

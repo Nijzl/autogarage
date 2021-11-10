@@ -9,8 +9,16 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class AppointmentDto {
     @NotNull
-    private Integer id;
+    private Long id;
 
     @NotNull
     private String date;
+
+    public AppointmentDto(){}
+
+    public AppointmentDto(Long id, String date){
+        this.id = id;
+        this.date = date;
+    }
+
 }

@@ -5,6 +5,7 @@ import nl.lnijzink.autogarage.dto.AppointmentDto;
 import java.util.List;
 
 public class AppointmentServiceImpl implements AppointmentService{
+
     @Override
     public String createAppointment(AppointmentDto appointmentDto) {
         return null;
@@ -19,4 +20,5 @@ public class AppointmentServiceImpl implements AppointmentService{
     public List<AppointmentDto> getAppointments() {
         return null;
     }
+
 }

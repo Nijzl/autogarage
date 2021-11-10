@@ -9,8 +9,9 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 public class ActionDto {
+
     @NotNull
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 3, max = 100)
@@ -23,16 +24,15 @@ public class ActionDto {
     @NotNull
     @DecimalMin("0.0")
     @DecimalMax("1.0e6")
-    private float price;
+    private Float price;
 
     public ActionDto(){}
 
-    public ActionDto(long id, String name, String description, float price){
+    public ActionDto(Long id, String name, String description, Float price){
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
     }
-
 
 }

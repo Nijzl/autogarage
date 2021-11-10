@@ -11,27 +11,28 @@ import java.util.List;
 @Service
 public class PartServiceImpl implements PartService {
 
-    private final PartRepository repos;
+    private final PartRepository partRepository;
 
-    public PartServiceImpl(PartRepository repos){this.repos = repos;}
+    public PartServiceImpl(PartRepository partRepository){this.partRepository = partRepository;}
 
     @Override
     public long createPart(PartDto odto){
         Part o = new Part(odto.getName(), odto.getPrice(), odto.getQuantity());
-        repos.save(o);
+        partRepository.save(o);
         return o.getId();
     }
 
     @Override
-    public PartDto getPart(long id){
-        Part p = repos.findById(id).get();
+    public PartDto getPart(Long id){
+        Part p = partRepository.findById(id).get();
         return new PartDto(p.getId(), p.getName(), p.getPrice(), p.getQuantity());
     }
 
     @Override
     public List<PartDto> getParts(){
         ArrayList<PartDto> pList = new ArrayList<>();
-        repos.findAll().forEach((p) -> pList.add(new PartDto(p.getId(), p.getName(), p.getPrice(), p.getQuantity())));
+        partRepository.findAll().forEach((p) -> pList.add(new PartDto(p.getId(), p.getName(), p.getPrice(), p.getQuantity())));
         return pList;
     }
+
 }

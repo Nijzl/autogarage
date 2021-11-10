@@ -40,6 +40,12 @@
         <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
             Licence Plate Error</p>
         <br>
+        <label>Brand:</label>
+        <input type="text" th:field="*{brand}" />
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
+            Brand Error</p>
+        <br>
         <label>Model:</label>
         <input type="text" th:field="*{model}" />
         <br/>

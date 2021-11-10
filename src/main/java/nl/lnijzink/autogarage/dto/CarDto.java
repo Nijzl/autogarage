@@ -23,11 +23,11 @@ public class CarDto {
     private String model;
 
     @NotNull
-    private int year;
+    private Integer year;
 
     public CarDto(){}
 
-    public CarDto(String licencePlate, String brand, String model, int year){
+    public CarDto(String licencePlate, String brand, String model, Integer year){
         this.licencePlate = licencePlate;
         this.brand = brand;
         this.model = model;

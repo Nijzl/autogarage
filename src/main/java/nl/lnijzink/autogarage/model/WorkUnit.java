@@ -9,13 +9,12 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Workunit
-{
+public class WorkUnit {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     long id;
@@ -35,21 +34,19 @@ public class Workunit
     @JoinColumn(name = "id")
     Action action;
 
-    @OneToMany(mappedBy = "workunit")
+    @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
-
     @OneToOne
     @Nullable
-    @JoinColumn(name = "workunit_id", referencedColumnName = "id")
-    private Workunit workunit;
+    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
+    private WorkUnit workUnit;
 
-    public Workunit() {
-    }
+    public WorkUnit(){}
 
-    public Workunit(Type type, Car car, Employee mechanic) {
+    public WorkUnit(Type type, Car car, Employee mechanic) {
         this.type = type;
         this.car = car;
         this.mechanic = mechanic;

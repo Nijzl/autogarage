@@ -11,6 +11,7 @@ import java.util.Collection;
 @Getter
 @Setter
 public class CustomerDto {
+
     @NotNull
     private Long id;
 
@@ -26,14 +27,18 @@ public class CustomerDto {
     @Email
     private String email;
 
+    @NotNull
+    @Size(min = 10, max = 10)
+    private String phoneNumber;
 
-    public CustomerDto() {
-    }
+    public CustomerDto() {}
 
-    public CustomerDto(long id, String fullName, String address, String email) {
+    public CustomerDto(Long id, String fullName, String address, String email, String phoneNumber) {
         this.id = id;
         this.fullName = fullName;
         this.address = address;
         this.email = email;
+        this.phoneNumber = phoneNumber;
     }
+
 }

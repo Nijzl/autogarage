@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/cars")
 public class CarController {
+
     private final CarService carService;
 
     protected CarController(CarService carService) {
@@ -73,7 +74,7 @@ public class CarController {
     public ResponseEntity<String> assignCarToCustomer(@RequestParam String email,
                                                       @RequestParam String licencePlate){
         carService.assignCarToCustomer(email, licencePlate);
-        return ResponseEntity.ok("Auto toegeschreven aan klant");
+        return ResponseEntity.ok("Car added to customer");
     }
 
 }

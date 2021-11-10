@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/actions")
 public class ActionController {
+
     private final ActionService actionService;
 
     protected ActionController(ActionService actionService){this.actionService = actionService;}
@@ -48,4 +49,5 @@ public class ActionController {
         model.addAttribute("Action", new ActionDto());
         return "ActionForm";
     }
+
 }

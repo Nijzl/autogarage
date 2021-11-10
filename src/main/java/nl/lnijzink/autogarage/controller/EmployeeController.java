@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class EmployeeController {
+
     @Autowired
     EmployeeRepository employeerepo;
 
@@ -22,6 +23,6 @@ public class EmployeeController {
         Employee emp1 = new Employee();
         emp1.setName(name);
         employeerepo.save(emp1);
-
     }
+
 }

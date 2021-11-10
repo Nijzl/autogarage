@@ -13,6 +13,7 @@ import java.util.Collection;
 @Getter
 @Setter
 public class Part {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
@@ -25,9 +26,12 @@ public class Part {
     @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
-    public Part() {}
+    public Part(){}
 
     public Part(String name, Float price, Long quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
     }
 
 }

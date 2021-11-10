@@ -13,6 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
+
     private final CustomerService customerService;
 
     protected CustomerController(CustomerService service){this.customerService = service;}
@@ -42,6 +43,7 @@ public class CustomerController {
         var customers = customerService.getCustomers();
         return customers; //form maken
     }
+
     @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
         customerService.getListCarsByCustomerId(customerId);

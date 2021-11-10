@@ -9,8 +9,9 @@ import javax.validation.constraints.*;
 @Getter
 @Setter
 public class EmployeeDto {
+
     @NotNull
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 3, max = 100)
@@ -22,7 +23,7 @@ public class EmployeeDto {
 
     public EmployeeDto(){}
 
-    public EmployeeDto(long id, String name, String role){
+    public EmployeeDto(Long id, String name, String role){
         this.id = id;
         this.name = name;
         this.role = role;

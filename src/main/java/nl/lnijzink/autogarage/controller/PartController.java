@@ -14,6 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/parts")
 public class PartController {
+
     private final PartService service;
 
     protected PartController(PartService service){this.service = service;}
@@ -33,8 +34,7 @@ public class PartController {
     public String createPart(@Valid @ModelAttribute("Part") PartDto odto,
                             BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "PartForm";
-        }
+            return "PartForm";}
         service.createPart(odto);
         return "PartDisplay";
     }

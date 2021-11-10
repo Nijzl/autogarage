@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
+
     @GetMapping("/")
     public @ResponseBody String loginMessage(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth.getPrincipal() instanceof UserDetails){
-            return "";
-        }
+            return "";}
         else{
-            return "You are not logged in. Please try again.";
-        }
-
+            return "You are not logged in. Please try again.";}
     }
 
     @GetMapping("/home")
@@ -31,7 +29,5 @@ public class HomeController {
     public @ResponseBody String showAgenda(){
         return "here go the appointments";
     }
-
-
 
 }

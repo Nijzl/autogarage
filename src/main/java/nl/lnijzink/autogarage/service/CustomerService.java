@@ -7,9 +7,11 @@ import nl.lnijzink.autogarage.model.Customer;
 import java.util.List;
 
 public interface CustomerService {
+
     public long createCustomer(CustomerDto cdto);
-    public CustomerDto getCustomer(long id);
+    public CustomerDto getCustomer(Long id);
     public List<CustomerDto> getCustomers();
     public List<Car> getListCarsByCustomerId(Long customerId);
     public Customer getCustomerByCar(String licencePlate);
+
 }

@@ -11,28 +11,29 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeRepository repos;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository repos){this.repos = repos;}
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository){this.employeeRepository = employeeRepository;}
 
     @Override
     public long createEmployee(EmployeeDto edto){
         Employee e = new Employee(edto.getName(), edto.getRole());
-        repos.save(e);
+        employeeRepository.save(e);
         return e.getId();
     }
 
     @Override
-    public EmployeeDto getEmployee(long id){
-        Employee p = repos.findById(id).get();
+    public EmployeeDto getEmployee(Long id){
+        Employee p = employeeRepository.findById(id).get();
         return new EmployeeDto(p.getId(), p.getName(), p.getRole());
     }
 
     @Override
     public List<EmployeeDto> getEmployees(){
         ArrayList<EmployeeDto> pList = new ArrayList<>();
-        repos.findAll().forEach((p) -> pList.add(new EmployeeDto(p.getId(), p.getName(), p.getRole()
+        employeeRepository.findAll().forEach((p) -> pList.add(new EmployeeDto(p.getId(), p.getName(), p.getRole()
         )));
         return pList;
     }
+
 }

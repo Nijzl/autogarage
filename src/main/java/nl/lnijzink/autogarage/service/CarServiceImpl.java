@@ -50,11 +50,9 @@ public class CarServiceImpl implements CarService {
             var car = optionalCar.get();
             car.setOwner(customer);
             carRepository.save(car);
-
         }
         //exception op later moment toevoegen
         return ResponseEntity.ok("Car added to customer.");
     }
-
 
 }

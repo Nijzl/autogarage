@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Action {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
@@ -24,4 +25,5 @@ public class Action {
         this.description = description;
         this.price = price;
     }
+
 }

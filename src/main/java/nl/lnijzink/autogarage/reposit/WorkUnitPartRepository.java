@@ -8,5 +8,5 @@ import java.util.Collection;
 
 public interface WorkUnitPartRepository extends JpaRepository<WorkUnitPart, WorkUnitPartKey> {
     Collection<WorkUnitPart> findAllByPartId(Long partId);
-    Collection<WorkUnitPart> findAllByWorkunitId(Long workunitId);
+    Collection<WorkUnitPart> findAllByWorkUnitId(Long workUnitId);
 }

@@ -7,24 +7,25 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 @Entity
 @Getter
 @Setter
 public class Customer {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
     String fullName;
     String address;
     String email;
+    String phoneNumber;
 
     // relatie tussen 1 customer en 1 car
     @OneToMany(mappedBy= "owner")
     private Collection<Car> cars = new ArrayList<Car>();
 
 
-    //getters en setters
+    //getters and setters
     public Collection<Car> getCars() {
         return cars;
     }
@@ -34,9 +35,13 @@ public class Customer {
     }
 
     // constructors
-    public Customer() {}
+    public Customer(){}
 
-    public Customer(String fullName, String address, String email) {
+    public Customer(String fullName, String address, String email, String phoneNumber){
+        this.fullName = fullName;
+        this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
 }

@@ -10,9 +10,10 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class WorkunitDto {
+public class WorkUnitDto {
+
     @NotNull
-    private long id;
+    private Long id;
 
     private Type type;
 
@@ -20,9 +21,9 @@ public class WorkunitDto {
 
     private Employee mechanic;
 
-    public WorkunitDto(){}
+    public WorkUnitDto(){}
 
-    public WorkunitDto(Type type){
+    public WorkUnitDto(Type type){
         this.type = type;
     }
 

@@ -20,6 +20,7 @@ public class WorkUnitPartKey implements Serializable {
     private Long partId;
     
     public WorkUnitPartKey(){};
+
     public WorkUnitPartKey(Long workUnitId, Long partId) {
         this.workUnitId = workUnitId;
         this.partId = partId;
@@ -30,9 +31,10 @@ public class WorkUnitPartKey implements Serializable {
         if(this == o) return true;
         if(o == null || getClass() != o.getClass()) return false;
         WorkUnitPartKey that = (WorkUnitPartKey) o;
-        return workUnitId.equals(that.workUnitId)&& partId.equals(that.partId);
+        return workUnitId.equals(that.workUnitId) && partId.equals(that.partId);
     }
     
     @Override
     public int hashCode() {return Objects.hash(workUnitId, partId);}
+
 }

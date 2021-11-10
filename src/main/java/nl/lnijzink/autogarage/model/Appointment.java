@@ -13,8 +13,16 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class Appointment {
+
     @Id
     @NotNull
-    Integer id;
+    Long id;
     String date;
+
+    public Appointment(){}
+
+    public Appointment(String date){
+        this.date = date;
+    }
+
 }

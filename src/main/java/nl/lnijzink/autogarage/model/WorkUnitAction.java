@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class WorkUnitPart {
+public class WorkUnitAction {
 
     @EmbeddedId
-    private WorkUnitPartKey id;
+    private WorkUnitActionKey id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("workUnitId")
@@ -19,8 +19,8 @@ public class WorkUnitPart {
     private WorkUnit workUnit;
 
     @ManyToOne
-    @MapsId("partId")
+    @MapsId("actionId")
     @JoinColumn(name = "part_id")
-    private Part part;
+    private Action action;
 
 }
