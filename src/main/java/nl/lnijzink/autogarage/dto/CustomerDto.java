@@ -28,7 +28,7 @@ public class CustomerDto {
     private String email;
 
     @NotNull
-    @Size(min = 10, max = 10)
+    @Size(min = 10, max = 11)
     private String phoneNumber;
 
     public CustomerDto() {}

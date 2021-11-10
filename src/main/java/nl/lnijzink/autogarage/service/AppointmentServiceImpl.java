@@ -12,7 +12,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public AppointmentDto getAppointment(Integer id) {
+    public AppointmentDto getAppointment(Long id) {
         return null;
     }
 
