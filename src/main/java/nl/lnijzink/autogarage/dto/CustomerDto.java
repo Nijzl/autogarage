@@ -24,21 +24,21 @@ public class CustomerDto {
     private String address;
 
     @NotNull
-    @Email
-    private String email;
-
-    @NotNull
     @Size(min = 10, max = 11)
     private String phoneNumber;
 
+    @NotNull
+    @Email
+    private String email;
+
     public CustomerDto() {}
 
-    public CustomerDto(Long id, String fullName, String address, String email, String phoneNumber) {
+    public CustomerDto(Long id, String fullName, String address, String phoneNumber, String email) {
         this.id = id;
         this.fullName = fullName;
         this.address = address;
-        this.email = email;
         this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
 }

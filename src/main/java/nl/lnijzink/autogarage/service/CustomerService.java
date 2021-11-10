@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface CustomerService {
 
-    public long createCustomer(CustomerDto cdto);
+    public Long createCustomer(CustomerDto cdto);
     public CustomerDto getCustomer(Long id);
+    public void deleteCustomer(Long id);
     public List<CustomerDto> getCustomers();
     public List<Car> getListCarsByCustomerId(Long customerId);
     public Customer getCustomerByCar(String licencePlate);

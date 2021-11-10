@@ -17,7 +17,7 @@ public class WorkUnit {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    long id;
+    Long id;
     Type type;
 
     @ManyToOne
@@ -27,6 +27,9 @@ public class WorkUnit {
     @ManyToOne
     @JoinColumn(name = "mechanic_id", referencedColumnName = "id")
     private Employee mechanic;
+
+/*    @OneToOne
+    private Appointment appointment;*/
 
     @ManyToOne
     @Nullable

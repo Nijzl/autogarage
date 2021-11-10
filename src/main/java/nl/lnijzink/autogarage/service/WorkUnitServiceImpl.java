@@ -9,12 +9,13 @@ import java.util.Optional;
 
 @Service
 public class WorkUnitServiceImpl implements WorkUnitService {
+
     private final WorkUnitRepository workUnitRepository;
 
     public WorkUnitServiceImpl(WorkUnitRepository workUnitRepository){this.workUnitRepository = workUnitRepository;}
 
     @Override
-    public long createWorkUnit(WorkUnitDto dto){
+    public Long createWorkUnit(WorkUnitDto dto){
         WorkUnit workUnit = new WorkUnit(dto.getType(), dto.getCar(), dto.getMechanic());
         workUnitRepository.save(workUnit);
         return workUnit.getId();

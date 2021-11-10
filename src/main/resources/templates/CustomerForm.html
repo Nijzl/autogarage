@@ -46,6 +46,12 @@
         <p class="hasErrors" th:if="${#fields.hasErrors('address')}" >
             Address Error</p>
         <br>
+        <label>Phone number:</label>
+        <input type="text" th:field="*{phoneNumber}" />
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('phoneNumber')}" >
+            Phone Number Error</p>
+        <br>
         <label>E-mail:</label>
         <input type="email" th:field="*{email}" />
         <br/>
@@ -53,12 +59,7 @@
             E-mail Error</p>
         <br>
         <br>
-        <label>Phone number:</label>
-        <input type="email" th:field="*{phoneNumber}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('phoneNumber')}" >
-            Phone Number Error</p>
-        <br>
+
 
         <button type="submit">Register</button>
         <br>

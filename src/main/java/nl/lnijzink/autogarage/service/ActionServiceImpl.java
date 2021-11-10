@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
+import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.reposit.ActionRepository;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,14 @@ public class ActionServiceImpl implements ActionService {
     public ActionServiceImpl(ActionRepository actionRepository){this.actionRepository = actionRepository;}
 
     @Override
-    public long addAction(ActionDto gdto){
+    public Long createAction(ActionDto gdto){
         Action a = new Action(gdto.getName(), gdto.getDescription(), gdto.getPrice());
         actionRepository.save(a);
         return a.getId();
     }
 
     @Override
-    public ActionDto getAction(long id){
+    public ActionDto getAction(Long id){
         Action b = actionRepository.findById(id).get();
         return new ActionDto(b.getId(), b.getName(), b.getDescription(), b.getPrice());
     }

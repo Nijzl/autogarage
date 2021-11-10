@@ -17,8 +17,8 @@ public class Customer {
     Long id;
     String fullName;
     String address;
-    String email;
     String phoneNumber;
+    String email;
 
     // relatie tussen 1 customer en 1 car
     @OneToMany(mappedBy= "owner")
@@ -37,11 +37,11 @@ public class Customer {
     // constructors
     public Customer(){}
 
-    public Customer(String fullName, String address, String email, String phoneNumber){
+    public Customer(String fullName, String address, String phoneNumber, String email){
         this.fullName = fullName;
         this.address = address;
-        this.email = email;
         this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
 }

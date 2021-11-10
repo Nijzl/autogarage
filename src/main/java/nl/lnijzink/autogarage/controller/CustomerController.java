@@ -18,8 +18,14 @@ public class CustomerController {
 
     protected CustomerController(CustomerService service){this.customerService = service;}
 
+    @GetMapping("/")
+    public List<CustomerDto> getCustomers() {
+        var customers = customerService.getCustomers();
+        return customers; //form maken
+    }
+
     @GetMapping("/{id}")
-    public CustomerDto getCustomer(@PathVariable long id){
+    public CustomerDto getCustomer(@PathVariable Long id){
         return customerService.getCustomer(id);
     }
 
@@ -30,7 +36,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto, @org.jetbrains.annotations.NotNull BindingResult bindingResult){
+    public String createCustomer(@Valid @ModelAttribute("Customer") CustomerDto cdto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "CustomerForm";
         }
@@ -38,11 +44,17 @@ public class CustomerController {
         return "CustomerDisplay";
     }
 
-    @GetMapping("/list")
-    public List<CustomerDto> getCustomers() {
-        var customers = customerService.getCustomers();
-        return customers; //form maken
+/*    @GetMapping("/delete")
+    public String deleteCustomer(){
+        return "CustomerDeleteDisplay";
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable("customerId") Long id){
+        customerService.deleteCustomer(id);
+        return "CustomerDeleteDisplay";
+    }*/
+
 
     @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){

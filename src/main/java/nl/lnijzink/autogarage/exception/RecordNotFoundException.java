@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.exception;
 
 public class RecordNotFoundException extends RuntimeException{
+
     private static final long serialVersionUID = 1L;
 
     public RecordNotFoundException() {
@@ -10,4 +11,5 @@ public class RecordNotFoundException extends RuntimeException{
     public RecordNotFoundException(String message) {
         super(message);
     }
+
 }

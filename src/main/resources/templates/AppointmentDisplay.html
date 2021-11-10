@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>CustomerDisplay</title>
+    <meta charset="UTF-8">
+    <title>AppointmentDisplay</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,17 +32,12 @@
 </head>
 <body>
 <div align="center">
+    <h2>Appointment planned </h2>
+    <th>Date:</th><th th:text="${Appointment.date}"></th><br/>
 
-    <h2>Registration succeeded</h2>
-    <th>Full name:</th><th th:text="${Customer.fullName}"></th><br/>
-    <th>Address:</th><th th:text="${Customer.address}"></th><br/>
-    <th>Phone number:</th><th th:text="${Customer.phoneNumber}"></th><br/>
-    <th>E-mail:</th><th th:text="${Customer.email}"></th><br/>
-
-    <br>
-    <br>
-    <a href="/cars/create">Add a car to this customer</a>
+    <a href="/home">Back to the home page.</a>
 
 </div>
+
 </body>
 </html>

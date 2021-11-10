@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ActionService {
 
-        public long addAction(ActionDto gdto);
-        public ActionDto getAction(long id);
+        public Long createAction(ActionDto gdto);
+        public ActionDto getAction(Long id);
         public List<ActionDto> getActions();
 
     }
