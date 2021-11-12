@@ -51,11 +51,6 @@ public class CarController {
         return "CarDisplay";
     }
 
-/*    @GetMapping(path = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CarDto> getCars(){
-        return carService.getCars();
-    }*/
-
 //    @GetMapping("/{id}/customer")
 //    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
 //        var customer = carService.getCustomerByCar(id);
@@ -71,10 +66,11 @@ public class CarController {
     }
 
     @PostMapping("/customer")
-    public ResponseEntity<String> assignCarToCustomer(@RequestParam String email,
+    public String assignCarToCustomer(@RequestParam String email,
                                                       @RequestParam String licencePlate){
         carService.assignCarToCustomer(email, licencePlate);
-        return ResponseEntity.ok("Car added to customer");
+        return "LinkCustomerAndCarSuccessful";
     }
+
 
 }

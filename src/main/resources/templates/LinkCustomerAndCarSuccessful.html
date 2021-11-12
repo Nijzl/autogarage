@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>AppointmentForm</title>
+    <meta charset="ISO-8859-1">
+    <title>LinkCustomerAndCarSuccessful</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,21 +32,12 @@
 </head>
 <body>
 <div align="center">
-    <h1>Plan an appointment</h1>
-    <form action="#" th:action="@{/appointments/create}" method="post" th:object="${Appointment}">
-        <label>Date:</label>
-    <!--    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker"
-               th:field="*{date}" id="date" placeholder="Date"/>
-        <br/>
-        <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
-            Date error</p>
-        <br>-->
+    <h1>Car successfully added to Customer</h1>
 
-        <button type="submit">Register</button>
-        <br>
-        <button type="reset">Empty form</button>
+    <br>
+    <br>
+    <a href="/home">Return to home page</a>
 
-    </form>
 </div>
 </body>
 </html>

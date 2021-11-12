@@ -19,6 +19,13 @@ public class AppointmentController {
     protected AppointmentController(AppointmentService appointmentService){this.appointmentService =
             appointmentService;}
 
+    @GetMapping("/")
+    public String getAppointments(Model model) {
+        var appointments = appointmentService.getAppointments();
+        model.addAttribute("listofAppointments", appointments);
+        return "AppointmentsList";
+    }
+
     @GetMapping("/{id}")
     public AppointmentDto getAppointment(@PathVariable Long id){
         return appointmentService.getAppointment(id);

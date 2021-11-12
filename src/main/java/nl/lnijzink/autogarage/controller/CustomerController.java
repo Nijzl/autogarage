@@ -19,19 +19,6 @@ public class CustomerController {
 
     protected CustomerController(CustomerService service){this.customerService = service;}
 
-/*    @GetMapping("/")
-    public List<CustomerDto> getCustomers() {
-        var customers = customerService.getCustomers();
-        return customers; //form maken
-    }*/
-
-
-/*    @GetMapping("/")
-    public String getCustomers() {
-        var customers = customerService.getCustomers();
-        return "CustomersList";
-    }*/
-
     @GetMapping("/")
     public String getCustomers(Model model) {
         var customers = customerService.getCustomers();

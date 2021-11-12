@@ -38,11 +38,11 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     public List<AppointmentDto> getAppointments() {
-            ArrayList<AppointmentDto> aList = new ArrayList<>();
-            appointmentRepository.findAll().forEach((appointment) -> aList.add(new AppointmentDto(appointment.getId(),
+            ArrayList<AppointmentDto> appointmentList = new ArrayList<>();
+            appointmentRepository.findAll().forEach((appointment) -> appointmentList.add(new AppointmentDto(appointment.getId(),
                     appointment.getDate()
             )));
-            return aList;
+            return appointmentList;
     }
 
 }

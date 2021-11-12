@@ -24,28 +24,41 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
+        th {
+            padding-right: 10px;
+        }
+        td {
+            padding-right: 20px;
         }
     </style>
 </head>
 <body>
-<div align="center">
 
     <h2>Customers List</h2>
 
-    <tr th:each="customer : ${listOfCustomers}">
-        <td><span th:text="${customer.id}"> Customer id </span></td>
-        <td><span th:text="${customer.fullName}"> Full name </span></td>
-        <td><span th:text="${customer.address}"> Address </span></td>
-        <td><span th:text="${customer.phoneNumber}"> Phone Number </span></td>
-        <td><span th:text="${customer.email}"> Email Address </span></td>
-    </tr>
+    <table>
+        <thead>
+        <tr>
+            <th> Id </th>
+            <th> Full name </th>
+            <th> Address </th>
+            <th> Phone number </th>
+            <th> Email address</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${listOfCustomers}">
+                <td><span th:text="${customer.id}"> Customer id </span></td>
+                <td><span th:text="${customer.fullName}"> Full name </span></td>
+                <td><span th:text="${customer.address}"> Address </span></td>
+                <td><span th:text="${customer.phoneNumber}"> Phone Number </span></td>
+                <td><span th:text="${customer.email}"> Email Address </span></td>
+            </tr>
+        </tbody>
+    </table>
 
     <br>
     <a href="/home">Back to home page</a>
 
-</div>
 </body>
 </html>

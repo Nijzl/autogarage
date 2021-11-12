@@ -24,27 +24,39 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
+        th {
+            padding-right: 20px;
+        }
+        td {
+            padding-right: 20px;
         }
     </style>
 </head>
 <body>
-<div align="center">
 
     <h2>Cars List</h2>
 
-    <tr th:each="car : ${listOfCars}">
-        <td><span th:text="${car.licencePlate}"> Licence Plate </span></td>
-        <td><span th:text="${car.brand}"> Brand </span></td>
-        <td><span th:text="${car.model}"> Model </span></td>
-        <td><span th:text="${car.year}"> Year </span></td>
-    </tr>
+    <table>
+        <thead>
+        <tr>
+            <th> Licence Plate </th>
+            <th> Brand </th>
+            <th> Model </th>
+            <th> Build Year </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${listOfCars}">
+            <td><span th:text="${car.licencePlate}"> Licence Plate </span></td>
+            <td><span th:text="${car.brand}"> Brand </span></td>
+            <td><span th:text="${car.model}"> Model </span></td>
+            <td><span th:text="${car.year}"> Year </span></td>
+        </tr>
+        </tbody>
+    </table>
 
     <br>
     <a href="/home">Back to home page</a>
 
-</div>
 </body>
 </html>
