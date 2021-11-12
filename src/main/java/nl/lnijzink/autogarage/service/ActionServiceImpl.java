@@ -1,7 +1,6 @@
 package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
-import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.reposit.ActionRepository;
 import org.springframework.stereotype.Service;

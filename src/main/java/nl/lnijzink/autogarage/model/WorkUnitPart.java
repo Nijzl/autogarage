@@ -1,5 +1,6 @@
 package nl.lnijzink.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,8 @@ public class WorkUnitPart {
     @EmbeddedId
     private WorkUnitPartKey id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JsonIgnore
     @MapsId("workUnitId")
     @JoinColumn(name = "work_unit_id")
     private WorkUnit workUnit;
@@ -23,4 +25,5 @@ public class WorkUnitPart {
     @JoinColumn(name = "part_id")
     private Part part;
 
+    private Long amount;
 }

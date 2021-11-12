@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>CarListAllCars</title>
+    <meta charset="UTF-8">
+    <title>PartsList</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,14 +32,20 @@
 </head>
 <body>
 <div align="center">
-    <form action="#" th:action="@{/list}" method="post" th:object="${cars}">
-        <h2>Information retrieved: </h2>
 
+    <h2>Parts List</h2>
 
-        <br>
-        <br>
-        <a href="/home">Back to home page</a>
-    </form>
+<!--    <tr th:each="part : ${listOfParts}">
+        <td><span th:number="${part.id}"> Part Id </span></td>
+        <td><span th:text="${part.name}"> Part Name </span></td>
+        <td><span th:text="${part.price}"> Price </span></td>
+        <td><span th:number="${part.quantity}"> Quantity </span></td>
+    </tr>-->
+
+    <br>
+    <a href="/home">Back to home page</a>
+
 </div>
+
 </body>
 </html>

@@ -32,24 +32,26 @@
 </head>
 <body>
 <div align="center">
-    <form action="#" th:action="@{/workunit/create}" method="post" th:object="${Workunit}">
+    <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${workUnit}">
 
-        <div th:object="${Car}">
-            <th>Checkup on:</th><th th:text="${Car.licencePlate}"></th><br/>
-        </div>
-    <h2>Check-up</h2>
-    <h2>Flaws found:</h2>
-    <p>option to add up to 5 registered parts</p>
-    <p>option to add up to 5 unregistered parts</p>
-    <p>option to add 5 registered actions</p>
-    <p>option to add 5 unregistered actions</p>
+        <select th:field="*{type}">
+            <option th:value="0" th:text="Check"></option>
+            <option th:value="1" th:text="Repair"></option>
+        </select>
 
-    <h2>present this to the customer. Do they request changes?</h2>
-    <input type="text" value="Type remarks here" />
+        <select th:field="*{car}">
+            <option th:value="0">Select a car</option>
+            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+        </select>
+
+        <select th:field="*{mechanic}">
+            <option th:value="0">Select an employee</option>
+            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
+        </select>
 
     <h2>Does customer agree?</h2>
-    <a href="/workunit/repair">Yes (start repair)</a>
-    <a href="/workunit/checkup-not-agreed">No (generate receipt)</a>
+    <a href="/workUnit/repair">Yes (start repair)</a>
+    <a href="/workUnit/check-not-agreed">No (generate receipt)</a>
     </form>
 </div>
 </body>

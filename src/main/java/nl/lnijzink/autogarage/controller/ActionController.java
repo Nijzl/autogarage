@@ -18,11 +18,11 @@ public class ActionController {
 
     protected ActionController(ActionService actionService){this.actionService = actionService;}
 
-    @GetMapping("/list")
-    public List<ActionDto> getActions(Model model) {
+    @GetMapping("/")
+    public String getActions(Model model) {
         var actions = actionService.getActions();
-        model.addAttribute("actions", actions);
-        return actions; //form maken
+        model.addAttribute("listOfActions", actions);
+        return "ActionsList";
     }
 
 /*

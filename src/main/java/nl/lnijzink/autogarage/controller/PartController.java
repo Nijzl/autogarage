@@ -15,13 +15,20 @@ import java.util.List;
 @RequestMapping("/parts")
 public class PartController {
 
-    private final PartService service;
+    private final PartService partService;
 
-    protected PartController(PartService service){this.service = service;}
+    protected PartController(PartService partService){this.partService = partService;}
+
+    @GetMapping("/")
+    public String getParts(Model model) {
+        var parts = partService.getParts();
+        model.addAttribute("listOfParts", parts);
+        return "PartsList";
+    }
 
     @GetMapping("/{id}")
     public PartDto getPart(@PathVariable long id){
-        return service.getPart(id);
+        return partService.getPart(id);
     }
 
     @GetMapping("/create")
@@ -35,13 +42,8 @@ public class PartController {
                             BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "PartForm";}
-        service.createPart(odto);
+        partService.createPart(odto);
         return "PartDisplay";
-    }
-
-    @PostMapping(path = "/parts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PartDto> getParts(){
-        return service.getParts();
     }
 
 }

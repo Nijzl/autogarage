@@ -9,8 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .inMemoryAuthentication()
                 .withUser("mechanic1").password("{noop}peer").roles("MECHANIC", "EMPLOYEE")
@@ -22,32 +23,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("cashier1").password("{noop}peer").roles("CASHIER", "EMPLOYEE")
                 .and()
                 .withUser("administrator1").password("{noop}peer").roles("ADMINISTRATOR", "EMPLOYEE")
-
         ;
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception{
         http
 
                 .formLogin()
                 .defaultSuccessUrl("/home")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/home").hasRole("EMPLOYEE")
-                .antMatchers("/employees/**").hasRole("EMPLOYEE")
-                .antMatchers("/customers/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
-                .antMatchers("/cars/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
-                .antMatchers("/parts/**").hasAnyRole("MECHANIC", "BACKOFFICE")
-                .antMatchers("/actions/**").hasAnyRole("MECHANIC", "BACKOFFICE")
-                .antMatchers("/appointments/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
-
+//                .antMatchers("/home").hasRole("EMPLOYEE")
+//                .antMatchers("/employees/**").hasRole("EMPLOYEE")
+//                .antMatchers("/customers/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
+//                .antMatchers("/cars/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
+//                .antMatchers("/parts/**").hasAnyRole("MECHANIC", "BACKOFFICE")
+//                .antMatchers("/actions/**").hasAnyRole("MECHANIC", "BACKOFFICE")
+//                .antMatchers("/appointments/**").hasAnyRole("MECHANIC", "ADMINISTRATOR")
                 .antMatchers("/").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .csrf().disable();
-
         ;
     }
 

@@ -23,11 +23,11 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping("/list")
-    public List<CarDto> getCars(Model model) {
+    @GetMapping("/")
+    public String getCars(Model model) {
         var cars = carService.getCars();
-        model.addAttribute("cars", cars);
-        return cars; //form maken
+        model.addAttribute("listOfCars", cars);
+        return "CarsList";
     }
 
     @GetMapping("/{licencePlate}")

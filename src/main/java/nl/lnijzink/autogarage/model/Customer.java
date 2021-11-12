@@ -1,5 +1,6 @@
 package nl.lnijzink.autogarage.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,7 @@ public class Customer {
 
     // relatie tussen 1 customer en 1 car
     @OneToMany(mappedBy= "owner")
+    @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();
 
 

@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.model.WorkUnit;
 
 public interface WorkUnitService {
 

@@ -41,7 +41,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public ResponseEntity assignCarToCustomer(String email, String licencePlate) {
+    public ResponseEntity<Object> assignCarToCustomer(String email, String licencePlate) {
         var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
         var optionalCar = carRepository.findById(licencePlate);
 

@@ -1,56 +1,86 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.model.WorkUnit;
+import nl.lnijzink.autogarage.model.WorkUnitAction;
+import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
-import nl.lnijzink.autogarage.service.WorkUnitService;
+import nl.lnijzink.autogarage.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Controller
-@RequestMapping("/workunit")
+@RestController
+@RequestMapping("/workUnit")
 public class WorkUnitController {
 
     @Autowired
-    WorkUnitRepository workunitRepository;
     WorkUnitService workunitService;
+    CarService carService;
+    EmployeeService employeeService;
+    PartService partService;
+    WorkUnitPartService workUnitPartService;
+    WorkUnitActionService workUnitActionService;
 
-    protected WorkUnitController(WorkUnitService service){this.workunitService = service;}
+    protected WorkUnitController(WorkUnitService service, CarService carService, EmployeeService employeeService,
+                                 PartService partService, WorkUnitActionService workUnitActionService,
+                                 WorkUnitPartService workUnitPartService){this.workunitService =
+            service; this.carService = carService; this.employeeService = employeeService; this.partService =
+            partService; this.workUnitPartService = workUnitPartService; this.workUnitActionService =
+            workUnitActionService;}
 
     @GetMapping("/create")
-    public String createWorkunit(Model model){
-        model.addAttribute("Workunit", new WorkUnitDto());
-        return "WorkunitForm";
+    public String createWorkUnit(Model model){
+        model.addAttribute("workUnit", new WorkUnitDto());
+        model.addAttribute("listOfCars", carService.getCars());
+        model.addAttribute("listOfEmployees", employeeService.getEmployees());
+        model.addAttribute("listOfParts", partService.getParts());
+        return "WorkUnitForm";
     }
 
     @PostMapping("/create")
-    public String createWorkunit(@Valid @ModelAttribute("Workunit") WorkUnitDto wdto, BindingResult bindingResult){
+    public String createWorkUnit(@Valid @ModelAttribute("WorkUnit") WorkUnitDto wdto, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "WorkunitForm";}
+            return "WorkUnitForm";}
+
         workunitService.createWorkUnit(wdto);
-        return "WorkunitForm";
+        var wu = workunitService.createWorkUnit(wdto);
+
+        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
+            workUnitPartService.addWorkUnitPart(wu, wup.getId().getPartId());
+        }
+
+        for (WorkUnitAction wua : wdto.getWorkUnitActions()) {
+            workUnitActionService.addWorkUnitAction(wu, wua.getId().getActionId());
+        }
+
+        return "WorkUnitForm";
     }
 
-    @GetMapping("/checkup-not-agreed")
-    public String checkupNotAgreed(){
-        return "WorkunitCheckupNotAgreed";
+    @GetMapping("/check-not-agreed")
+    public String checkNotAgreed(){
+        return "WorkUnitQuintanceCheck";
     }
 
     @GetMapping("/repair")
     public String repair(){
-        return "WorkunitRepair";
+        return "WorkUnitRepair";
     }
 
-    @GetMapping("/quintance")
-    public String quintance(){
-        return "WorkunitQuintance";
+    @GetMapping("/quintance/check")
+    public String quintanceCheck(){
+        return "WorkUnitQuintanceCheck";
     }
+
+    @GetMapping("/quintance/repair")
+    public String quintanceRepair(){
+        return "WorkUnitQuintanceRepair";
+    }
+
+
 
 }

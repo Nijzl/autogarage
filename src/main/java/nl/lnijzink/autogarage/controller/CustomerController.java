@@ -1,5 +1,6 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,25 @@ public class CustomerController {
 
     protected CustomerController(CustomerService service){this.customerService = service;}
 
-    @GetMapping("/")
+/*    @GetMapping("/")
     public List<CustomerDto> getCustomers() {
         var customers = customerService.getCustomers();
         return customers; //form maken
-    }
+    }*/
+
+
+/*    @GetMapping("/")
+    public String getCustomers() {
+        var customers = customerService.getCustomers();
+        return "CustomersList";
+    }*/
+
+    @GetMapping("/")
+    public String getCustomers(Model model) {
+        var customers = customerService.getCustomers();
+        model.addAttribute("listOfCustomers", customers);
+        return "CustomersList";
+}
 
     @GetMapping("/{id}")
     public CustomerDto getCustomer(@PathVariable Long id){

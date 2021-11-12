@@ -12,7 +12,7 @@ public class DataLoaderCustomers implements CommandLineRunner {
     public DataLoaderCustomers(CarRepository carRepository){this.carRepository = carRepository;}
 
     @Override
-    public void run(String...args) throws Exception{
+    public void run(String...args) {
         Car car1 = new Car("49-STJ-4", "Audi", "A2", 2020);
         Car car2 = new Car("DP-FL-21", "BMW", "X3", 2020);
         Car car3 = new Car("15-HK-GG", "Mercedes", "Benz GLC", 2020);

@@ -23,6 +23,11 @@ public class EmployeeDto {
 
     public EmployeeDto(){}
 
+    public EmployeeDto(String name, String role){
+        this.name = name;
+        this.role = role;
+    }
+
     public EmployeeDto(Long id, String name, String role){
         this.id = id;
         this.name = name;

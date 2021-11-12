@@ -23,7 +23,7 @@ public class DataLoaderWorkUnit implements CommandLineRunner {
     }
 
     @Override
-    public void run(String...args) throws Exception{
+    public void run(String...args) {
 
         Action changeTyre = new Action("Change tyre", "Replacing a tyre with another tyre", 49.99F);
         Action changeOil = new Action("Change oil", "Refresh the motor oil", 9.99F);

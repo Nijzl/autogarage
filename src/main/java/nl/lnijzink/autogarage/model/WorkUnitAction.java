@@ -23,4 +23,6 @@ public class WorkUnitAction {
     @JoinColumn(name = "part_id")
     private Action action;
 
+    private Long amount;
+
 }

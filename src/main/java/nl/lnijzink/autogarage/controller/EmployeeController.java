@@ -1,28 +1,48 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Employee;
 import nl.lnijzink.autogarage.reposit.EmployeeRepository;
+import nl.lnijzink.autogarage.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository employeerepo;
+    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    @GetMapping("/employees")
-    public String hello(){
-        return "this is the employee page";
+    protected EmployeeController(EmployeeRepository employeeRepository, EmployeeService employeeService){
+        this.employeeRepository = employeeRepository; this.employeeService = employeeService;
     }
-    @PostMapping("/employee/create")
+
+    @GetMapping("/{licencePlate}")
+    public EmployeeDto getEmployee(@PathVariable Long id) {
+        return employeeService.getEmployee(id);
+    }
+
+    @GetMapping("/list")
+    public List<EmployeeDto> getEmployees(Model model) {
+        var employees = employeeService.getEmployees();
+        model.addAttribute("employees", employees);
+        return employees; //form maken
+    }
+
+    @PostMapping("/create")
     public void addEmployee(@RequestParam String name){
         Employee emp1 = new Employee();
         emp1.setName(name);
-        employeerepo.save(emp1);
+        employeeRepository.save(emp1);
     }
+
+
 
 }

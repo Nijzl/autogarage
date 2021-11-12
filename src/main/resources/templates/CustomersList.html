@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>CustomersList</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+
+    <h2>Customers List</h2>
+
+    <tr th:each="customer : ${listOfCustomers}">
+        <td><span th:text="${customer.id}"> Customer id </span></td>
+        <td><span th:text="${customer.fullName}"> Full name </span></td>
+        <td><span th:text="${customer.address}"> Address </span></td>
+        <td><span th:text="${customer.phoneNumber}"> Phone Number </span></td>
+        <td><span th:text="${customer.email}"> Email Address </span></td>
+    </tr>
+
+    <br>
+    <a href="/home">Back to home page</a>
+
+</div>
+</body>
+</html>

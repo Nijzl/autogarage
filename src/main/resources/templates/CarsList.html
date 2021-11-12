@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>CarsList</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+
+    <h2>Cars List</h2>
+
+    <tr th:each="car : ${listOfCars}">
+        <td><span th:text="${car.licencePlate}"> Licence Plate </span></td>
+        <td><span th:text="${car.brand}"> Brand </span></td>
+        <td><span th:text="${car.model}"> Model </span></td>
+        <td><span th:text="${car.year}"> Year </span></td>
+    </tr>
+
+    <br>
+    <a href="/home">Back to home page</a>
+
+</div>
+</body>
+</html>

@@ -13,7 +13,7 @@ public class DataLoaderEmployees implements CommandLineRunner {
     public DataLoaderEmployees(EmployeeRepository employeeRepository){this.employeeRepository = employeeRepository;}
 
     @Override
-    public void run(String...args) throws Exception{
+    public void run(String...args) {
 
         Employee mechanic1 = new Employee("Tip Top", "mechanic");
         Employee administrator1 = new Employee("Bear Grills", "administrator");

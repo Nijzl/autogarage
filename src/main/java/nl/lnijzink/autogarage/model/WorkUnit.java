@@ -31,21 +31,20 @@ public class WorkUnit {
 /*    @OneToOne
     private Appointment appointment;*/
 
-    @ManyToOne
-    @Nullable
-    @MapsId("id")
-    @JoinColumn(name = "id")
-    Action action;
-
     @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
+    Collection<WorkUnitAction> workUnitAction;
+
+    @OneToMany(mappedBy = "workUnit")
+    @LazyCollection(LazyCollectionOption.FALSE)
+//    @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
-    @OneToOne
-    @Nullable
-    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
-    private WorkUnit workUnit;
+//    @OneToOne
+//    @Nullable
+//    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
+//    private WorkUnit workUnit;
 
     public WorkUnit(){}
 
