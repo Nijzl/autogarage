@@ -48,7 +48,7 @@ public class CustomerController {
 
 /*    @GetMapping("/delete")
     public String deleteCustomer(){
-        return "CustomerDeleteDisplay";
+        return "CustomerDeleteForm";
     }
 
     @DeleteMapping("/delete/{id}")
@@ -57,7 +57,6 @@ public class CustomerController {
         return "CustomerDeleteDisplay";
     }*/
 
-
     @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
         customerService.getListCarsByCustomerId(customerId);
@@ -65,8 +64,8 @@ public class CustomerController {
     }
 
     @GetMapping("/car/{licencePlate}/customer")
-    public String getCustomerByCar(@PathVariable("licencePlate") String lincencePlate, Model model){
-        var customer = customerService.getCustomerByCar(lincencePlate);
+    public String getCustomerByCar(@PathVariable("licencePlate") String licencePlate, Model model){
+        var customer = customerService.getCustomerByCar(licencePlate);
         model.addAttribute("customer", customer);
         return "CustomerByCarId";
     }

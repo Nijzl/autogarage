@@ -11,5 +11,6 @@ public interface CarService {
     public CarDto getCar(String licencePlate);
     public List<CarDto> getCars();
     public ResponseEntity assignCarToCustomer(String email, String licencePlate);
+    public void deleteCar(String licencePlate);
 
 }

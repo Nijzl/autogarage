@@ -1,11 +1,15 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class ActionDto {
@@ -25,14 +29,5 @@ public class ActionDto {
     @DecimalMin("0.0")
     @DecimalMax("1.0e6")
     private Float price;
-
-    public ActionDto(){}
-
-    public ActionDto(Long id, String name, String description, Float price){
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
 
 }

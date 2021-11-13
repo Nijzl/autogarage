@@ -1,11 +1,15 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class EmployeeDto {
@@ -21,15 +25,8 @@ public class EmployeeDto {
     @Size(min = 3, max = 100)
     private String role;
 
-    public EmployeeDto(){}
 
     public EmployeeDto(String name, String role){
-        this.name = name;
-        this.role = role;
-    }
-
-    public EmployeeDto(Long id, String name, String role){
-        this.id = id;
         this.name = name;
         this.role = role;
     }

@@ -34,7 +34,7 @@ public class WorkUnit {
     @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
-    Collection<WorkUnitAction> workUnitAction;
+    Collection<WorkUnitAction> workUnitActions;
 
     @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)

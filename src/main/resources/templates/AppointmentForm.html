@@ -35,13 +35,15 @@
     <h1>Plan an appointment</h1>
     <form action="#" th:action="@{/appointments/create}" method="post" th:object="${Appointment}">
         <label>Date:</label>
-    <!--    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker"
+        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker"
                th:field="*{date}" id="date" placeholder="Date"/>
         <br/>
         <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
             Date error</p>
-        <br>-->
+        <br>
 
+        <br>
+        <br>
         <button type="submit">Register</button>
         <br>
         <button type="reset">Empty form</button>

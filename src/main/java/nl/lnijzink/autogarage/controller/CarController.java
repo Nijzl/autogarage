@@ -51,6 +51,12 @@ public class CarController {
         return "CarDisplay";
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteCar(@PathVariable("carId") String licencePlate){
+        carService.deleteCar(licencePlate);
+        return "CarDeleteDisplay";
+    }
+
 //    @GetMapping("/{id}/customer")
 //    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
 //        var customer = carService.getCustomerByCar(id);

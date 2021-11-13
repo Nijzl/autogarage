@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>WorkUnitsList</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        th {
+            padding-right: 20px;
+        }
+        td {
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Work Units List</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th> Id </th>
+            <th> Type </th>
+            <th> Car </th>
+            <th> Mechanic </th>
+            <th> Parts </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="workUnit : ${listOfWorkUnits}">
+            <td><span th:text="${workUnit.id}"></span></td>
+            <td><span th:text="${workUnit.type}"></span></td>
+            <td><span th:text="${workUnit.car}"></span></td>
+            <td><span th:text="${workUnit.mechanic}"></span></td>
+            <td><span th:text="${workUnit.workUnitParts}"></span></td>
+            <td><span th:text="${workUnit.workUnitActions}"></span></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/home">Back to home page</a>
+
+</body>
+</html>

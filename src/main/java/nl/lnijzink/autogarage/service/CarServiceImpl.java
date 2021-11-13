@@ -19,10 +19,12 @@ public class CarServiceImpl implements CarService {
     public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){this.carRepository = carRepository; this.customerRepository = customerRepository;}
 
     @Override
-    public String createCar(CarDto adto){
-        Car a = new Car(adto.getLicencePlate(), adto.getBrand(), adto.getModel(), adto.getYear());
-        carRepository.save(a);
-        return a.getLicencePlate();
+    public List<CarDto> getCars(){
+        ArrayList<CarDto> pList = new ArrayList<>();
+        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(),
+                p.getYear()
+        )));
+        return pList;
     }
 
     @Override
@@ -32,12 +34,18 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<CarDto> getCars(){
-        ArrayList<CarDto> pList = new ArrayList<>();
-        carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(),
-                p.getYear()
-        )));
-        return pList;
+    public String createCar(CarDto adto){
+        Car a = new Car(adto.getLicencePlate(), adto.getBrand(), adto.getModel(), adto.getYear());
+        carRepository.save(a);
+        return a.getLicencePlate();
+    }
+
+    @Override
+    public void deleteCar(String licencePlate){
+        boolean exists = carRepository.existsById(licencePlate);
+        if(exists){
+            carRepository.deleteById(licencePlate);
+        }
     }
 
     @Override
@@ -54,5 +62,7 @@ public class CarServiceImpl implements CarService {
         //exception op later moment toevoegen
         return ResponseEntity.ok("Car added to customer.");
     }
+
+
 
 }

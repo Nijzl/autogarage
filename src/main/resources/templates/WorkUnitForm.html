@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>WorkunitForm</title>
+    <title>WorkUnitForm</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -32,7 +32,7 @@
 </head>
 <body>
 <div align="center">
-    <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${WorkUnit}">
+    <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${workUnit}">
 
         <select th:field="*{type}">
             <option th:value="0" th:text="Check"></option>

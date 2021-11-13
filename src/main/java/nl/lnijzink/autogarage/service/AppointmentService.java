@@ -10,5 +10,6 @@ public interface AppointmentService {
     public Long createAppointment(AppointmentDto appointmentDto);
     public AppointmentDto getAppointment(Long id);
     public List<AppointmentDto> getAppointments();
+    public void deleteAppointment(Long id);
 
 }

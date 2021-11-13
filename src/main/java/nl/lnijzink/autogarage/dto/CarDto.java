@@ -1,11 +1,15 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class CarDto {
@@ -24,14 +28,5 @@ public class CarDto {
 
     @NotNull
     private Integer year;
-
-    public CarDto(){}
-
-    public CarDto(String licencePlate, String brand, String model, Integer year){
-        this.licencePlate = licencePlate;
-        this.brand = brand;
-        this.model = model;
-        this.year = year;
-    }
 
 }

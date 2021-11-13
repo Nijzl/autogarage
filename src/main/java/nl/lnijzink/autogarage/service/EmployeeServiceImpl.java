@@ -16,10 +16,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeServiceImpl(EmployeeRepository employeeRepository){this.employeeRepository = employeeRepository;}
 
     @Override
-    public long createEmployee(EmployeeDto edto){
-        Employee e = new Employee(edto.getName(), edto.getRole());
-        employeeRepository.save(e);
-        return e.getId();
+    public List<EmployeeDto> getEmployees(){
+        ArrayList<EmployeeDto> pList = new ArrayList<>();
+        employeeRepository.findAll().forEach((p) -> pList.add(new EmployeeDto(p.getId(), p.getName(), p.getRole()
+        )));
+        return pList;
     }
 
     @Override
@@ -29,11 +30,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> getEmployees(){
-        ArrayList<EmployeeDto> pList = new ArrayList<>();
-        employeeRepository.findAll().forEach((p) -> pList.add(new EmployeeDto(p.getId(), p.getName(), p.getRole()
-        )));
-        return pList;
+    public Long createEmployee(EmployeeDto edto){
+        Employee e = new Employee(edto.getName(), edto.getRole());
+        employeeRepository.save(e);
+        return e.getId();
+    }
+
+    @Override
+    public void deleteEmployee(Long id){
+        boolean exists = employeeRepository.existsById(id);
+        if(exists){
+            employeeRepository.deleteById(id);
+        }
     }
 
 }

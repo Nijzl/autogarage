@@ -47,5 +47,11 @@ public class AppointmentController {
         return "AppointmentDisplay";
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteAppointment(@PathVariable("appointmentId") Long id){
+        appointmentService.deleteAppointment(id);
+        return "AppointmentDeleteDisplay";
+    }
+
  }
 

@@ -33,6 +33,13 @@ public class WorkUnitController {
             partService; this.workUnitPartService = workUnitPartService; this.workUnitActionService =
             workUnitActionService;}
 
+    @GetMapping("/")
+    public String getWorkUnits(Model model) {
+        var workUnits = workunitService.getWorkUnits();
+        model.addAttribute("listOfWorkUnits", workUnits);
+        return "WorkUnitsList";
+    }
+
     @GetMapping("/create")
     public String createWorkUnit(Model model){
         model.addAttribute("workUnit", new WorkUnitDto());

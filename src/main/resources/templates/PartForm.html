@@ -36,7 +36,7 @@
     <form action="#" th:action="@{/part/create}" method="post" th:object="${Part}">
         <label>Select an existing part:</label>
         <select th:field="*{part}">
-            <option th:each="p : ${listPart}" th:value="${p}" th:text="${p}" />
+            <option th:each="p : ${listOfParts}" th:value="${p}" th:text="${p}" />
         </select>
         <br>
         <button type="submit">Add</button>

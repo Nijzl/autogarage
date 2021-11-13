@@ -1,12 +1,16 @@
 package nl.lnijzink.autogarage.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import nl.lnijzink.autogarage.model.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class WorkUnitDto {
@@ -23,8 +27,6 @@ public class WorkUnitDto {
     private Collection<WorkUnitPart> workUnitParts;
 
     private Collection<WorkUnitAction> workUnitActions;
-
-    public WorkUnitDto(){}
 
     public WorkUnitDto(Type type){
         this.type = type;

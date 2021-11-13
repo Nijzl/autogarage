@@ -9,6 +9,7 @@ public interface ActionService {
         public Long createAction(ActionDto gdto);
         public ActionDto getAction(Long id);
         public List<ActionDto> getActions();
+        public void deleteAction(Long id);
 
     }
 

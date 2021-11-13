@@ -1,11 +1,15 @@
 package nl.lnijzink.autogarage.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class PartDto {
@@ -26,14 +30,5 @@ public class PartDto {
     @Min(1)
     @Max((long) 1.0e6)
     private Long quantity;
-
-    public PartDto(){}
-
-    public PartDto(Long id, String name, Float price, Long quantity){
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-    }
 
 }

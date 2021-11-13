@@ -20,10 +20,12 @@ public class AppointmentServiceImpl implements AppointmentService{
             appointmentRepository;}
 
     @Override
-    public Long createAppointment(AppointmentDto appointmentDto) {
-        Appointment appointment = new Appointment(appointmentDto.getDate());
-        appointmentRepository.save(appointment);
-        return appointment.getId();
+    public List<AppointmentDto> getAppointments() {
+        ArrayList<AppointmentDto> appointmentList = new ArrayList<>();
+        appointmentRepository.findAll().forEach((appointment) -> appointmentList.add(new AppointmentDto(appointment.getId(),
+                appointment.getDate()
+        )));
+        return appointmentList;
     }
 
     @Override
@@ -37,12 +39,18 @@ public class AppointmentServiceImpl implements AppointmentService{
     }
 
     @Override
-    public List<AppointmentDto> getAppointments() {
-            ArrayList<AppointmentDto> appointmentList = new ArrayList<>();
-            appointmentRepository.findAll().forEach((appointment) -> appointmentList.add(new AppointmentDto(appointment.getId(),
-                    appointment.getDate()
-            )));
-            return appointmentList;
+    public Long createAppointment(AppointmentDto appointmentDto) {
+        Appointment appointment = new Appointment(appointmentDto.getDate());
+        appointmentRepository.save(appointment);
+        return appointment.getId();
+    }
+
+    @Override
+    public void deleteAppointment(Long id){
+        boolean exists = appointmentRepository.existsById(id);
+        if(exists){
+            appointmentRepository.deleteById(id);
+        }
     }
 
 }

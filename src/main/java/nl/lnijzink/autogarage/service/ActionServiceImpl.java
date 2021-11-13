@@ -17,10 +17,11 @@ public class ActionServiceImpl implements ActionService {
     public ActionServiceImpl(ActionRepository actionRepository){this.actionRepository = actionRepository;}
 
     @Override
-    public Long createAction(ActionDto gdto){
-        Action a = new Action(gdto.getName(), gdto.getDescription(), gdto.getPrice());
-        actionRepository.save(a);
-        return a.getId();
+    public List<ActionDto> getActions(){
+        ArrayList<ActionDto> pList = new ArrayList<>();
+        actionRepository.findAll().forEach((p) -> pList.add(new ActionDto(p.getId(), p.getName(), p.getDescription(), p.getPrice()
+        )));
+        return pList;
     }
 
     @Override
@@ -30,11 +31,18 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public List<ActionDto> getActions(){
-        ArrayList<ActionDto> pList = new ArrayList<>();
-        actionRepository.findAll().forEach((p) -> pList.add(new ActionDto(p.getId(), p.getName(), p.getDescription(), p.getPrice()
-        )));
-        return pList;
+    public Long createAction(ActionDto gdto){
+        Action a = new Action(gdto.getName(), gdto.getDescription(), gdto.getPrice());
+        actionRepository.save(a);
+        return a.getId();
+    }
+
+    @Override
+    public void deleteAction(Long id){
+        boolean exists = actionRepository.existsById(id);
+        if(exists){
+            actionRepository.deleteById(id);
+        }
     }
 
 }
