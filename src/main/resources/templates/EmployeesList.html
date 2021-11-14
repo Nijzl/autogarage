@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>PartsList</title>
+    <meta charset="ISO-8859-1">
+    <title>EmployeesList</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,40 +24,37 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
+        th {
+            padding-right: 10px;
+        }
+        td {
+            padding-right: 20px;
         }
     </style>
 </head>
 <body>
-<div align="center">
 
-    <h2>Parts List</h2>
+    <h2>Employees List</h2>
 
     <table>
         <thead>
         <tr>
             <th> Id </th>
             <th> Name </th>
-            <th> Price </th>
-            <th> Quantity </th>
+            <th> Role </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="part : ${listOfParts}">
-            <td><span th:text="${part.id}"> Part id </span></td>
-            <td><span th:text="${part.name}"> Name </span></td>
-            <td><span th:text="${part.price}"> Price </span></td>
-            <td><span th:text="${part.quantity}"> Quantity </span></td>
-        </tr>
+            <tr th:each="employee : ${listOfEmployees}">
+                <td><span th:text="${employee.id}"> Employee id </span></td>
+                <td><span th:text="${employee.name}"> Name </span></td>
+                <td><span th:text="${employee.role}"> Role </span></td>
+            </tr>
         </tbody>
     </table>
 
     <br>
     <a href="/home">Back to home page</a>
-
-</div>
 
 </body>
 </html>

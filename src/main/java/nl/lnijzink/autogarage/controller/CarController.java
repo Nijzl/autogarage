@@ -51,7 +51,7 @@ public class CarController {
         return "CarDisplay";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{licencePlate}")
     public String deleteCar(@PathVariable("carId") String licencePlate){
         carService.deleteCar(licencePlate);
         return "CarDeleteDisplay";
