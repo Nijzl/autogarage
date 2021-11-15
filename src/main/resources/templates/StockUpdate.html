@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StockUpdate</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/stock/update/{id}(id=${part.id})}"
+      th:object="${stock}"
+      method="post">
+    <label for="name"> Name: </label>
+    <input type="text" th:field="*{name}" id="name" placeholder="${name}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
+        Name Error</p>
+    <br>
+
+<!--    <label for="price"> Price: </label>
+    <input type="number" th:field="*{price}" id="price" placeholder="${price}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
+        Address Error</p>
+    <br>-->
+
+    <label for="quantity"> Quantity: </label>
+    <input type="text" th:field="*{quantity}" id="quantity" placeholder="${quantity}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('quantity')}" >
+        Quantity Error</p>
+    <br>
+
+    <input type="submit" value="Update">
+
+</form>
+</body>
+</html>

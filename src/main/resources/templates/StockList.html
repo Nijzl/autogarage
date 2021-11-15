@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>EmployeesList</title>
+    <meta charset="UTF-8">
+    <title>PartsList</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,41 +24,39 @@
             padding: 5px;
             margin: 10px;
         }
-        th {
-            padding-right: 10px;
-        }
-        td {
-            padding-right: 20px;
+        .hasErrors{
+            color: red;
+            font-weight : bold;
         }
     </style>
 </head>
 <body>
 
-    <h2>Employees List</h2>
-
+    <h2>Stock List: </h2>
+    <br>
     <table>
         <thead>
         <tr>
-            <th> Id </th>
-            <th> Name </th>
-            <th> Role </th>
+            <th> Part Id </th>
+            <th> Part Name </th>
+            <th> Part Price </th>
+            <th> Quantity </th>
             <th> Update </th>
             <th> Delete </th>
         </tr>
         </thead>
         <tbody>
-            <tr th:each="employee : ${listOfEmployees}">
-                <td><span th:text="${employee.id}"> Employee id </span></td>
-                <td><span th:text="${employee.name}"> Name </span></td>
-                <td><span th:text="${employee.role}"> Role </span></td>
-                <td><a th:href="@{/employees/update/{id}(id=${employee.id})}"> Update </a></td>
-                <td><a th:href="@{/employees/delete/{id}(id=${employee.id})}"> Delete </a></td>
-            </tr>
+        <tr th:each="part : ${listOfParts}">
+            <td><span th:text="${part.id}"> Part id </span></td>
+            <td><span th:text="${part.name}"> Name </span></td>
+            <td><span th:text="${part.price}"> Price </span></td>
+            <td><span th:text="${part.quantity}"> Quantity </span></td>
+            <td><a th:href="@{/parts/update/{id}(id=${part.id})}">Update</a></td>
+            <td><a th:href="@{/parts/delete/{id}(id=${part.id})}">Delete (all)</a></td>
+        </tr>
         </tbody>
     </table>
     <br>
-    <br>
-    <a href="/employees/create">Add employee</a>
     <br>
     <br>
     <a href="/home">Back to home page</a>

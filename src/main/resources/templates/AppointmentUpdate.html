@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AppointmentUpdate</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/appointments/update/{id}(id=${appointment.id})}"
+      th:object="${appointment}"
+      method="post">
+    <label for="date"> Date: </label>
+    <input type="text" th:field="*{date}" id="date" placeholder="${date}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('date')}" >
+        Date Error</p>
+    <br>
+
+    <label>Time:</label>
+    <select th:field="*{time}" id="time" placeholder="${time}">
+        <option th:value="'09:00 - 10:00'" th:text="'09:00-10:00'"></option>
+        <option th:value="'10:00 - 11:00'" th:text="'10:00 - 11:00'"></option>
+        <option th:value="'11:00 - 12:00'" th:text="'11:00 - 12:00'"></option>
+        <option th:value="'13:00 - 14:00'" th:text="'13:00 - 14:00'"></option>
+        <option th:value="'14:00 - 15:00'" th:text="'14:00 - 15:00'"></option>
+        <option th:value="'15:00 - 16:00'" th:text="'15:00 - 16:00'"></option>
+        <option th:value="'16:00 - 17:00'" th:text="'16:00 - 17:00'"></option>
+    </select>
+    <br>
+    <br>
+
+    <label>Select a type: </label>
+    <select th:field="*{type}" id="type" placeholder="${type}">
+        <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
+        <option th:value="REPAIR" th:text="Repair"></option>
+    </select>
+
+    <br>
+    <br>
+    <input type="submit" value="Update">
+
+</form>
+</body>
+</html>

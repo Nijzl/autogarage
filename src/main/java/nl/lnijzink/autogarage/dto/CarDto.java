@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nl.lnijzink.autogarage.model.Appointment;
 import nl.lnijzink.autogarage.model.Customer;
 
 import javax.validation.constraints.*;
@@ -32,5 +33,7 @@ public class CarDto {
 
     @NotNull
     private Customer owner;
+
+/*    private Appointment appointment;*/
 
 }

@@ -2,6 +2,7 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.EmployeeDto;
+import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.model.Employee;
 import nl.lnijzink.autogarage.reposit.EmployeeRepository;
 import nl.lnijzink.autogarage.service.EmployeeService;
@@ -33,11 +34,6 @@ public class EmployeeController {
         return "EmployeesList";
     }
 
-    @GetMapping("/{id}")
-    public EmployeeDto getEmployee(@PathVariable Long id) {
-        return employeeService.getEmployee(id);
-    }
-
     @GetMapping("/create")
     public String createEmployee(Model model) {
         model.addAttribute("Employee", new EmployeeDto());
@@ -54,10 +50,31 @@ public class EmployeeController {
         return "EmployeeDisplay";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteEmployee(@PathVariable("employeeId") Long id){
-        employeeService.deleteEmployee(id);
-        return "EmployeeDeleteDisplay";
+    @GetMapping("/update/{id}")
+    public String updateEmployee(@PathVariable("id") Long id, Model model) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid employee Id:" + id));
+        model.addAttribute("employee", employee);
+        return "EmployeeUpdate";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateEmployee(@PathVariable("id") Long id, @Valid Employee employee,
+                                 BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            employee.setId(id);
+            return "EmployeeUpdate";
+        }
+        employeeRepository.save(employee);
+        return "redirect:/employees/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") Long id, Model model) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid employee Id:" + id));
+        employeeRepository.delete(employee);
+        return "redirect:/employees/";
     }
 
 }

@@ -171,16 +171,17 @@
 <!--        </select>-->
 <!--        <br>-->
 
-
+        <br>
         <label>IF CHECK: Select a customer status: </label>
+        <label>IF REPAIR: Select a repair status: </label>
+        <br>
+        <br>
+
         <select id="checkAgree" name="checkAgree">
             <option th:value="false" th:selected="false">Don't agree</option>
             <option th:value="true">Agree</option>
         </select>
-        <br>
-        <br>
 
-        <label>IF REPAIR: Select a repair status: </label>
         <select id="repairPerformed" name="repairPerformed">
             <option th:value="false" th:selected="false">Not performed yet</option>
             <option th:value="true">Performed</option>
@@ -188,9 +189,11 @@
         <br>
         <br>
 
-        <button type="submit">OK</button>
+        <button type="submit">Register</button>
         <br>
         <button type="reset">Empty form</button>
+        <br>
+        <a href="/home">Back to the home page.</a>
 
     </form>
 </div>

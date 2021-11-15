@@ -4,6 +4,8 @@ import nl.lnijzink.autogarage.dto.ActionDto;
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Action;
+import nl.lnijzink.autogarage.model.Customer;
+import nl.lnijzink.autogarage.reposit.ActionRepository;
 import nl.lnijzink.autogarage.service.ActionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +20,17 @@ import java.util.List;
 public class ActionController {
 
     private final ActionService actionService;
+    private final ActionRepository actionRepository;
 
-    protected ActionController(ActionService actionService){this.actionService = actionService;}
+    protected ActionController(ActionService actionService, ActionRepository actionRepository){
+        this.actionService = actionService;
+        this.actionRepository = actionRepository;}
 
     @GetMapping("/")
     public String getActions(Model model) {
         var actions = actionService.getActions();
         model.addAttribute("listOfActions", actions);
         return "ActionsList";
-    }
-
-    @GetMapping("/{id}")
-    public ActionDto getAction(@PathVariable Long id) {
-        return actionService.getAction(id);
     }
 
     @GetMapping("/create")
@@ -49,10 +49,30 @@ public class ActionController {
         return "ActionDisplay";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteAction(@PathVariable("actionId") Long id){
-        actionService.deleteAction(id);
-        return "ActionDeleteDisplay";
+    @GetMapping("/update/{id}")
+    public String updateAction(@PathVariable("id") Long id, Model model) {
+        Action action = actionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid action Id:" + id));
+        model.addAttribute("action", action);
+        return "ActionUpdate";
     }
 
+    @PostMapping("/update/{id}")
+    public String updateAction(@PathVariable("id") Long id, @Valid Action action,
+                                 BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            action.setId(id);
+            return "ActionUpdate";
+        }
+        actionRepository.save(action);
+        return "redirect:/actions/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAction(@PathVariable("id") Long id, Model model) {
+        Action action = actionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid action Id:" + id));
+        actionRepository.delete(action);
+        return "redirect:/actions/";
+    }
 }

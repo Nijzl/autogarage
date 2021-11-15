@@ -1,6 +1,8 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CustomerDto;
+import nl.lnijzink.autogarage.model.Customer;
+import nl.lnijzink.autogarage.reposit.CustomerRepository;
 import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +16,11 @@ import javax.validation.Valid;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
 
-    protected CustomerController(CustomerService service){this.customerService = service;}
+    protected CustomerController(CustomerService customerService, CustomerRepository customerRepository){
+        this.customerService = customerService;
+        this.customerRepository = customerRepository;}
 
     @GetMapping("/")
     public String getCustomers(Model model) {
@@ -23,11 +28,6 @@ public class CustomerController {
         model.addAttribute("listOfCustomers", customers);
         return "CustomersList";
 }
-
-    @GetMapping("/{id}")
-    public CustomerDto getCustomer(@PathVariable Long id){
-        return customerService.getCustomer(id);
-    }
 
     @GetMapping("/create")
     public String createCustomer(Model model){
@@ -44,16 +44,32 @@ public class CustomerController {
         return "CustomerDisplay";
     }
 
-/*    @GetMapping("/delete")
-    public String deleteCustomer(){
-        return "CustomerDeleteForm";
+    @GetMapping("/update/{id}")
+    public String updateCustomer(@PathVariable("id") Long id, Model model) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("customer", customer);
+        return "CustomerUpdate";
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable("customerId") Long id){
-        customerService.deleteCustomer(id);
-        return "CustomerDeleteDisplay";
-    }*/
+    @PostMapping("/update/{id}")
+    public String updateCustomer(@PathVariable("id") Long id, @Valid Customer customer,
+                             BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            customer.setId(id);
+            return "CustomerUpdate";
+        }
+        customerRepository.save(customer);
+        return "redirect:/customers/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable("id") Long id, Model model) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        customerRepository.delete(customer);
+        return "redirect:/customers";
+    }
 
     @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){

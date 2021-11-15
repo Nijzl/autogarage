@@ -1,7 +1,9 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Collection;
 
 @Entity(name = "Car")
 @Table(name = "cars")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Car {
@@ -33,8 +37,6 @@ public class Car {
 
 /*    @OneToOne(mappedBy = "id")
     private Appointment appointment;*/
-
-    public Car(){}
 
     public Car(String licencePlate, String brand, String model, Integer year){
         this.licencePlate = licencePlate;

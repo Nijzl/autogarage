@@ -40,24 +40,44 @@
         <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
             Date error</p>
         <br>
-        <br>
-<!--        <label>Time:</label>
+
+        <label>Time:</label>
             <select th:field="*{time}">
-                <option th:value="0" th:text="Select time block"></option>
-                <option th:value="1" th:text="AM Nine to ten">09:00 to 10:00</option>
-                <option th:value="2" th:text="AM Ten to eleven">10:00 to 11:00</option>
-                <option th:value="3" th:text="AM Eleven to twelve">11:00 to 12:00</option>
-                <option th:value="4" th:text="PM One to two">13:00 to 14:00</option>
-                <option th:value="5" th:text="PM Two to three">14:00 to 15:00</option>
-                <option th:value="6" th:text="PM Three to four">15:00 to 16:00</option>
-                <option th:value="7" th:text="PM Four to five">16:00 to 17:00</option>
-            </select>-->
+                <option th:value="'09:00 - 10:00'" th:text="'09:00-10:00'"></option>
+                <option th:value="'10:00 - 11:00'" th:text="'10:00 - 11:00'"></option>
+                <option th:value="'11:00 - 12:00'" th:text="'11:00 - 12:00'"></option>
+                <option th:value="'13:00 - 14:00'" th:text="'13:00 - 14:00'"></option>
+                <option th:value="'14:00 - 15:00'" th:text="'14:00 - 15:00'"></option>
+                <option th:value="'15:00 - 16:00'" th:text="'15:00 - 16:00'"></option>
+                <option th:value="'16:00 - 17:00'" th:text="'16:00 - 17:00'"></option>
+            </select>
+        <br>
+        <br>
+
+        <label>Select a type: </label>
+        <select th:field="*{type}">
+            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
+            <option th:value="REPAIR" th:text="Repair"></option>
+        </select>
+        <br>
+        <br>
+
+<!--        <label>Select a car: </label>
+        <select id="car" name="car">
+            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+        </select>
+        <br>
+        <br>-->
 
         <br>
         <br>
         <button type="submit">Register</button>
         <br>
         <button type="reset">Empty form</button>
+        <br>
+        <a href="/appointments/">Back to appointment list</a>
+        <br>
+        <a href="/home">Back to home page</a>
 
     </form>
 </div>

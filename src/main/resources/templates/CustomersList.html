@@ -43,20 +43,28 @@
             <th> Full name </th>
             <th> Address </th>
             <th> Phone number </th>
-            <th> Email address</th>
+            <th> Email address </th>
+            <th> Update </th>
+            <th> Delete </th>
+
         </tr>
         </thead>
         <tbody>
             <tr th:each="customer : ${listOfCustomers}">
-                <td><span th:text="${customer.id}"> Customer id </span></td>
-                <td><span th:text="${customer.fullName}"> Full name </span></td>
+                <td><span th:text="${customer.id}"> Customer ID </span></td>
+                <td><span th:text="${customer.fullName}"> Full Name </span></td>
                 <td><span th:text="${customer.address}"> Address </span></td>
                 <td><span th:text="${customer.phoneNumber}"> Phone Number </span></td>
                 <td><span th:text="${customer.email}"> Email Address </span></td>
+                <td><a th:href="@{/customers/update/{id}(id=${customer.id})}"> Update </a></td>
+                <td><a th:href="@{/customers/delete/{id}(id=${customer.id})}"> Delete </a></td>
             </tr>
         </tbody>
     </table>
-
+    <br>
+    <br>
+    <a href="/customers/create">Register a new customer</a>
+    <br>
     <br>
     <a href="/home">Back to home page</a>
 

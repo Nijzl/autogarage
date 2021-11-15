@@ -26,7 +26,6 @@ public class Customer {
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();
 
-
     //getters and setters
     public Collection<Car> getCars() {
         return cars;

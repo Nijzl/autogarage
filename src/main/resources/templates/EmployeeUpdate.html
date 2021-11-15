@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EmployeeUpdate</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/employees/update/{id}(id=${employee.id})}"
+      th:object="${employee}"
+      method="post">
+    <label for="name"> Name: </label>
+    <input type="text" th:field="*{name}" id="name" placeholder="${name}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
+        Name Error</p>
+    <br>
+
+    <label>Role:</label>
+    <select th:field="*{role}" id="role" placeholder="${role}">
+        <option th:value="'mechanic'" th:text="Mechanic"></option>
+        <option th:value="'administrator'" th:text="Administrator"></option>
+        <option th:value="'backoffice'" th:text="BackOffice"></option>
+    </select>
+
+    <input type="submit" value="Update">
+
+</form>
+</body>
+</html>

@@ -2,6 +2,9 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
+import nl.lnijzink.autogarage.model.Car;
+import nl.lnijzink.autogarage.model.Customer;
+import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.service.CarService;
 import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.http.MediaType;
@@ -20,21 +23,18 @@ public class CarController {
 
     private final CarService carService;
     private final CustomerService customerService;
+    private final CarRepository carRepository;
 
-    protected CarController(CarService carService, CustomerService customerService) {
-        this.carService = carService; this.customerService = customerService;
-    }
+    protected CarController(CarService carService, CustomerService customerService, CarRepository carRepository) {
+        this.carService = carService;
+        this.customerService = customerService;
+        this.carRepository = carRepository;}
 
     @GetMapping("/")
     public String getCars(Model model) {
         var cars = carService.getCars();
         model.addAttribute("listOfCars", cars);
         return "CarsList";
-    }
-
-    @GetMapping("/{licencePlate}")
-    public CarDto getCar(@PathVariable String licencePlate) {
-        return carService.getCar(licencePlate);
     }
 
     @GetMapping("/create")
@@ -53,10 +53,31 @@ public class CarController {
         return "CarDisplay";
     }
 
-    @DeleteMapping("/delete/{licencePlate}")
-    public String deleteCar(@PathVariable("carId") String licencePlate){
-        carService.deleteCar(licencePlate);
-        return "CarDeleteDisplay";
+    @GetMapping("/update/{licencePlate}")
+    public String updateCar(@PathVariable("licencePlate") String licencePlate, Model model) {
+        Car car = carRepository.findById(licencePlate)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid licence plate:" + licencePlate));
+        model.addAttribute("car", car);
+        return "CarUpdate";
+    }
+
+    @PostMapping("/update/{licencePlate}")
+    public String updateCar(@PathVariable("licencePlate") String licencePlate, @Valid Car car,
+                                 BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            car.setLicencePlate(licencePlate);
+            return "CarUpdate";
+        }
+        carRepository.save(car);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/delete/{licencePlate}")
+    public String deleteCar(@PathVariable("licencePlate") String licencePlate, Model model) {
+        Car car = carRepository.findById(licencePlate)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid licence plate:" + licencePlate));
+        carRepository.delete(car);
+        return "redirect:/home";
     }
 
 //    @GetMapping("/{id}/customer")

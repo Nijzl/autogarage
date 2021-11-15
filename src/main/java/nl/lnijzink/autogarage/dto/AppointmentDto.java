@@ -24,7 +24,8 @@ public class AppointmentDto {
     @NotNull
     private String time;
 
-/*    @NotNull
-    private Car car;*/
+    private String type;
+
+/*    private Car car;*/
 
 }
