@@ -10,6 +10,7 @@
       th:action="@{/appointments/update/{id}(id=${appointment.id})}"
       th:object="${appointment}"
       method="post">
+
     <label for="date"> Date: </label>
     <input type="text" th:field="*{date}" id="date" placeholder="${date}">
     <br/>
@@ -34,6 +35,13 @@
     <select th:field="*{type}" id="type" placeholder="${type}">
         <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
         <option th:value="REPAIR" th:text="Repair"></option>
+    </select>
+    <br>
+    <br>
+
+    <label>Select a car: </label>
+    <select th:field="*{car}" id="car" placeholder="${car}">
+        <option th:each="car : ${listOfCars}" th:value="${car.licencePlate}" th:text="${car.licencePlate}"></option>
     </select>
 
     <br>

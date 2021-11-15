@@ -22,9 +22,9 @@ public class Appointment {
     String time;
     String type;
 
-/*    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "licence_plate", referencedColumnName = "licencePlate")
-    private Car car;*/
+    private Car car;
 
     public Appointment(String date, String time, String type){
         this.date = date;

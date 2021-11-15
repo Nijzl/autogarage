@@ -9,6 +9,7 @@ import nl.lnijzink.autogarage.model.Appointment;
 import nl.lnijzink.autogarage.model.Customer;
 
 import javax.validation.constraints.*;
+import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +35,6 @@ public class CarDto {
     @NotNull
     private Customer owner;
 
-/*    private Appointment appointment;*/
+    private Collection<Appointment> appointment;
 
 }

@@ -6,12 +6,15 @@ import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Appointment;
 import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.AppointmentRepository;
+import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.service.AppointmentService;
+import nl.lnijzink.autogarage.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Context;
 import javax.validation.Valid;
 
 @Controller
@@ -20,10 +23,16 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
     private final AppointmentRepository appointmentRepository;
+    private final CarService carService;
+    private final CarRepository carRepository;
 
-    protected AppointmentController(AppointmentService appointmentService, AppointmentRepository appointmentRepository){
+    protected AppointmentController(AppointmentService appointmentService,
+                                    AppointmentRepository appointmentRepository, CarService carService,
+                                    CarRepository carRepository){
         this.appointmentService = appointmentService;
-        this.appointmentRepository = appointmentRepository;}
+        this.appointmentRepository = appointmentRepository;
+        this.carService = carService;
+        this.carRepository = carRepository;}
 
     @GetMapping("/")
     public String getAppointments(Model model) {
@@ -42,7 +51,7 @@ public class AppointmentController {
     public String createAppointment(@Valid @ModelAttribute("Appointment") AppointmentDto appointmentDto,
                     BindingResult bindingResult){
         appointmentService.createAppointment(appointmentDto);
-        return "AppointmentDisplay";
+        return "LinkCarAndAppointment";
     }
 
     @GetMapping("/update/{id}")
@@ -70,6 +79,30 @@ public class AppointmentController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid appointment Id:" + id));
         appointmentRepository.delete(appointment);
         return "redirect:/appointments/";
+    }
+
+    @GetMapping("/car")
+    public String assignAppointmentToCar(Model model) {
+/*        model.addAttribute("Car", new CarDto());
+        model.addAttribute("Appointment", new AppointmentDto());
+        var cars = carService.getCars();
+        model.addAttribute("listOfCars", cars);
+        var appointments = appointmentService.getAppointments();
+        model.addAttribute("listOfAppointments", appointments);
+        return "LinkCarAndAppointment";
+    }*/
+        model.addAttribute("Car", new CarDto());
+        model.addAttribute("Appointment", new AppointmentDto());
+        model.addAttribute("listOfCars", carRepository.findAll());
+        model.addAttribute("listOfAppointments", appointmentRepository.findAll());
+        return "LinkCarAndAppointment";
+    }
+
+    @PostMapping("/car")
+    public String assignAppointmentToCar(@RequestParam String licencePlate,
+                                      @RequestParam Long id) {
+        appointmentService.assignAppointmentToCar(licencePlate, id);
+        return "LinkCarAndAppointmentSuccessful";
     }
 
 

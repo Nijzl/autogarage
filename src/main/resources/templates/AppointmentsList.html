@@ -43,7 +43,7 @@
             <th> Date </th>
             <th> Time </th>
             <th> Type </th>
-<!--            <th> Car </th>-->
+            <th> Car </th>
             <th> Update </th>
             <tH> Delete </tH>
 
@@ -55,7 +55,7 @@
                 <td><span th:text="${appointment.date}"> Date </span></td>
                 <td><span th:text="${appointment.time}"> Time </span></td>
                 <td><span th:text="${appointment.type}"> Type </span></td>
-<!--                <td><span th:text="${appointment.car}"> Car </span></td>-->
+                <td><span th:text="${appointment.car}"> Car </span></td>
                 <td><a th:href="@{/appointments/update/{id}(id=${appointment.id})}">Update Appointment</a></td>
                 <td><a th:href="@{/appointments/delete/{id}(id=${appointment.id})}">Delete Appointment</a></td>
             </tr>

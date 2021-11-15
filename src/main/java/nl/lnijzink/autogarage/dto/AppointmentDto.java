@@ -26,6 +26,6 @@ public class AppointmentDto {
 
     private String type;
 
-/*    private Car car;*/
+    private Car car;
 
 }

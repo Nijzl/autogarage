@@ -35,8 +35,8 @@ public class Car {
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();
 
-/*    @OneToOne(mappedBy = "id")
-    private Appointment appointment;*/
+    @OneToMany(mappedBy = "id")
+    private Collection<Appointment> appointment = new ArrayList<Appointment>();
 
     public Car(String licencePlate, String brand, String model, Integer year){
         this.licencePlate = licencePlate;

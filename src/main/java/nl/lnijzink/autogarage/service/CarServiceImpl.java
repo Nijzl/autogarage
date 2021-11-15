@@ -22,7 +22,7 @@ public class CarServiceImpl implements CarService {
     public List<CarDto> getCars(){
         ArrayList<CarDto> pList = new ArrayList<>();
         carRepository.findAll().forEach((p) -> pList.add(new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(),
-                p.getYear(), p.getOwner()
+                p.getYear(), p.getOwner(), p.getAppointment()
         )));
         return pList;
     }
@@ -30,7 +30,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto getCar(String licencePlate){
         Car p = carRepository.findById(licencePlate).get();
-        return new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(), p.getYear(), p.getOwner());
+        return new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(), p.getYear(), p.getOwner(), p.getAppointment());
     }
 
     @Override
