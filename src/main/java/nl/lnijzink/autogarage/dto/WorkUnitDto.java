@@ -27,10 +27,6 @@ public class WorkUnitDto {
 
     private Boolean repairPerformed;
 
-//    private Collection<WorkUnitPart> workUnitParts;
-//
-//    private Collection<WorkUnitAction> workUnitActions;
-
     public WorkUnitDto(Type type){
         this.type = type;
     }

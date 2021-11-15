@@ -39,37 +39,41 @@
         <label>Select car:</label>
             <select>
                 <option value="">Select Licence Plate</option>
-                <option th:each="car : ${Car}" th:value="${Car.licencePlate}"
-                        th:text="${Car.licencePlate}"></option>
+                <option th:each="car : ${listOfCars}" th:value="${car.licencePlate}"
+                        th:text="${car.licencePlate}"></option>
             </select>
-
-<!--           <input type="text" th:field="*{licencePlate}" />
-            <br/>
-            <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
-                Licence Plate Error</p>
-            <br>-->
 
         <div th:object="${Customer}">
             <label>Select customer:</label>
 
             <select>
-                <option value="">Select Email</option>
-                <option th:each="customer : ${Customer}" th:value="${Customer.email}"
-                        th:text="${Customer.email}"></option>
+                <option value="">Select Customer</option>
+                <option th:each="customer : ${listOfCustomers}" th:value="${customer.fullName}"
+                        th:text="${customer.fullName}"></option>
             </select>
+
+
+            <!--           <input type="text" th:field="*{licencePlate}" />
+            <br/>
+            <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
+                Licence Plate Error</p>
+            <br>-->
 
 <!--            <input type="text" th:field="*{email}" />
             <br/>
             <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
                 Email Error</p>
             <br>-->
+
         </div>
 
         <button type="submit">Register</button>
         <br>
         <button type="reset">Empty form</button>
         <br>
-        <a href="/home">Back to the home page.</a>
+        <a href="/cars/">Back to cars list</a>
+        <br>
+        <a href="/home">Back to home page</a>
 
     </form>
 </div>

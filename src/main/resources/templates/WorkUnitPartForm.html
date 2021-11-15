@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkUnitPartForm</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/workUnitParts/create}" th:object="${form}"
+      method="post">
+    <fieldset>
+        <input type="submit" id="submitButton" th:value="Save">
+        <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+        <table>
+            <tbody>
+            <tr th:each="workUnitPart, itemStat : ${form.partsForm}">
+
+                <td>
+                    <th:block th:each="p : ${listOfParts}" >
+                        <input type="checkbox" th:field="*{workUnitParts}" name="p.name" th:value="p.name"/>
+                        <label th:text="${p.name}"></label>
+                    </th:block>
+                </td>
+                <td><input th:field="*{partsForm[__${itemStat.index}__].amount}" /></td>
+<!--                <td>-->
+<!--                    <input hidden th:name="|partsForm[${itemStat.index}].id|"-->
+<!--                           th:value="${form.getPart}"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input th:name="|partsForm[${itemStat.index}].part|" th:value="${form.getPart}"/>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input th:name="|workUnitParts[${itemStat.index}].author|"-->
+<!--                           th:value="${workUnitPart.getAmount()}"/>-->
+<!--                </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</form>
+
+
+<button type="submit">Register</button>
+<br>
+<button type="reset">Empty form</button>
+<br>
+<br>
+<a href="/workUnits/">Back to work unit list</a>
+<br>
+<br>
+<a href="/home">Back to home page</a>
+
+</body>
+</html>

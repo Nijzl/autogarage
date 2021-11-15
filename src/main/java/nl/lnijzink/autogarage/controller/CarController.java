@@ -69,7 +69,7 @@ public class CarController {
             return "CarUpdate";
         }
         carRepository.save(car);
-        return "redirect:/index";
+        return "redirect:/cars/";
     }
 
     @GetMapping("/delete/{licencePlate}")
@@ -77,7 +77,7 @@ public class CarController {
         Car car = carRepository.findById(licencePlate)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid licence plate:" + licencePlate));
         carRepository.delete(car);
-        return "redirect:/home";
+        return "redirect:/cars/";
     }
 
 //    @GetMapping("/{id}/customer")
@@ -103,15 +103,19 @@ public class CarController {
 
     @GetMapping("/customer")
     public String assignCarToCustomer(Model model){
-        model.addAttribute("Customer", new CustomerDto());
         model.addAttribute("Car", new CarDto());
+        model.addAttribute("Customer", new CustomerDto());
+        var cars = carService.getCars();
+        model.addAttribute("listOfCars", cars);
+        var customers = customerService.getCustomers();
+        model.addAttribute("listOfCustomers", customers);
         return "LinkCustomerAndCar";
     }
 
     @PostMapping("/customer")
-    public String assignCarToCustomer(@RequestParam String email,
-                                      @RequestParam String licencePlate) {
-        carService.assignCarToCustomer(email, licencePlate);
+    public String assignCarToCustomer(@RequestParam String licencePlate,
+                                      @RequestParam String fullName) {
+        carService.assignCarToCustomer(licencePlate, fullName);
         return "LinkCustomerAndCarSuccessful";
     }
 

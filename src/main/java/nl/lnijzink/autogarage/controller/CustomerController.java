@@ -68,7 +68,7 @@ public class CustomerController {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         customerRepository.delete(customer);
-        return "redirect:/customers";
+        return "redirect:/customers/";
     }
 
     @GetMapping("/{id}/cars")

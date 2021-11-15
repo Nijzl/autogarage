@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarUpdate</title>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/cars/update/{licencePlate}(licencePlate=${car.licencePlate})}"
+      th:object="${car}"
+      method="post">
+    <label for="licencePlate"> Licence plate: </label>
+    <input type="text" th:field="*{licencePlate}" id="licencePlate" placeholder="${licencePlate}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('licencePlate')}" >
+        Licence Plate Error</p>
+    <br>
+
+    <label for="brand"> Brand: </label>
+    <input type="text" th:field="*{brand}" id="brand" placeholder="${brand}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
+        Brand Error</p>
+    <br>
+
+    <label for="model"> Model: </label>
+    <input type="text" th:field="*{model}" id="model" placeholder="${model}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('model')}" >
+        Model Error</p>
+    <br>
+
+    <label for="year"> Year: </label>
+    <input type="number" th:field="*{year}" id="year" placeholder="${year}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('year')}" >
+        Year Error</p>
+    <br>
+
+    <label for="owner"> Owner: </label>
+    <input type="text" th:field="*{owner}" id="owner" placeholder="${owner}">
+    <br/>
+    <p class="hasErrors" th:if="${#fields.hasErrors('owner')}" >
+        Owner Error</p>
+    <br>
+
+    <input type="submit" value="Update">
+    <br>
+
+
+</form>
+</body>
+</html>

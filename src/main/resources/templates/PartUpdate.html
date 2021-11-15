@@ -18,14 +18,14 @@
     <br>
 
     <label for="price"> Price: </label>
-    <input type="number" th:field="*{price}" id="price" placeholder="${price}">
+    <input type="text" th:field="*{price}" id="price" placeholder="${price}">
     <br/>
     <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
         Address Error</p>
     <br>
 
     <label for="quantity"> Quantity: </label>
-    <input type="text" th:field="*{quantity}" id="quantity" placeholder="${quantity}">
+    <input type="number" th:field="*{quantity}" id="quantity" placeholder="${quantity}">
     <br/>
     <p class="hasErrors" th:if="${#fields.hasErrors('quantity')}" >
         Phone Number Error</p>

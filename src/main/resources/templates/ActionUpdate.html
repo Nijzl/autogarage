@@ -25,7 +25,7 @@
     <br>
 
     <label for="price"> Price: </label>
-    <input type="number" th:field="*{price}" id="price" placeholder="${price}">
+    <input type="text" th:field="*{price}" id="price" placeholder="${price}">
     <br/>
     <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
         Phone Number Error</p>
