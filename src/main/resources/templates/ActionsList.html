@@ -31,19 +31,30 @@
     </style>
 </head>
 <body>
-<div align="center">
 
     <h2>Actions List</h2>
 
-<!--    <tr th:each="action : ${listOfActions}">
-        <td><span th:text="${action.name}"> Name </span></td>
-        <td><span th:text="${action.description}"> Description </span></td>
-        <td><span th:text="${action.price}"> Quantity </span></td>
-    </tr>-->
+    <table>
+        <thead>
+        <tr>
+            <th> Id </th>
+            <th> Name </th>
+            <th> Description </th>
+            <th> Price </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="action : ${listOfActions}">
+            <td><span th:text="${action.id}"> Id </span></td>
+            <td><span th:text="${action.name}"> Name </span></td>
+            <td><span th:text="${action.description}"> Description </span></td>
+            <td><span th:text="${action.price}"> Price </span></td>
+        </tr>
+        </tbody>
+    </table>
 
     <br>
     <a href="/home">Back to home page</a>
 
-</div>
 </body>
 </html>

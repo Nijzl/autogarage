@@ -31,23 +31,38 @@
     </style>
 </head>
 <body>
+
 <div align="center">
     <h1>Car registration to Customer</h1>
     <form action="#" th:action="@{/cars/customer}" method="post" th:object="${Car}">
 
-            <label>Licence plate:</label>
-            <input type="text" th:field="*{licencePlate}" />
+        <label>Select car:</label>
+            <select>
+                <option value="">Select Licence Plate</option>
+                <option th:each="car : ${Car}" th:value="${Car.licencePlate}"
+                        th:text="${Car.licencePlate}"></option>
+            </select>
+
+<!--           <input type="text" th:field="*{licencePlate}" />
             <br/>
             <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
                 Licence Plate Error</p>
-            <br>
+            <br>-->
+
         <div th:object="${Customer}">
-            <label>Email:</label>
-            <input type="text" th:field="*{email}" />
+            <label>Select customer:</label>
+
+            <select>
+                <option value="">Select Email</option>
+                <option th:each="customer : ${Customer}" th:value="${Customer.email}"
+                        th:text="${Customer.email}"></option>
+            </select>
+
+<!--            <input type="text" th:field="*{email}" />
             <br/>
             <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
                 Email Error</p>
-            <br>
+            <br>-->
         </div>
 
         <button type="submit">Register</button>

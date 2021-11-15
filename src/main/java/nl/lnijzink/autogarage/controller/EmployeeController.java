@@ -8,8 +8,10 @@ import nl.lnijzink.autogarage.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -24,25 +26,38 @@ public class EmployeeController {
         this.employeeRepository = employeeRepository; this.employeeService = employeeService;
     }
 
-    @GetMapping("/{licencePlate}")
+    @GetMapping("/")
+    public String getEmployees(Model model) {
+        var employees = employeeService.getEmployees();
+        model.addAttribute("listOfEmployees", employees);
+        return "EmployeesList";
+    }
+
+    @GetMapping("/{id}")
     public EmployeeDto getEmployee(@PathVariable Long id) {
         return employeeService.getEmployee(id);
     }
 
-    @GetMapping("/list")
-    public List<EmployeeDto> getEmployees(Model model) {
-        var employees = employeeService.getEmployees();
-        model.addAttribute("employees", employees);
-        return employees; //form maken
+    @GetMapping("/create")
+    public String createEmployee(Model model) {
+        model.addAttribute("Employee", new EmployeeDto());
+        return "EmployeeForm";
     }
 
     @PostMapping("/create")
-    public void addEmployee(@RequestParam String name){
-        Employee emp1 = new Employee();
-        emp1.setName(name);
-        employeeRepository.save(emp1);
+    public String createEmployee(@Valid @ModelAttribute("Employee") EmployeeDto employeeDto,
+                            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "EmployeeForm";
+        }
+        employeeService.createEmployee(employeeDto);
+        return "EmployeeDisplay";
     }
 
-
+    @DeleteMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable("employeeId") Long id){
+        employeeService.deleteEmployee(id);
+        return "EmployeeDeleteDisplay";
+    }
 
 }

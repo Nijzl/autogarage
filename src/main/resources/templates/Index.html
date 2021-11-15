@@ -8,7 +8,7 @@
             display: inline-block;
             width: 200px;
             margin: 5px;
-            text-align: left;
+            text-align: center;
         }
         input[type=text], input[type=password], select {
             display: inline-block;
@@ -37,37 +37,93 @@
     <img th:src="@{CarMechanicSim.jpg}"/>
     <br>
     <br>
+    <br>
     <h2>Customers:</h2>
     <a href="/customers/">List of registered customers</a>
     <br>
+    <br>
     <a href="/customers/create">Register a new customer</a>
     <br>
+    <br>
     <a href="/customers/delete">Delete a customer</a>
+    <br>
     <br>
     <br>
     <h2>Cars:</h2>
     <a href="/cars/">List of registered cars</a>
     <br>
+    <br>
     <a href="/cars/create">Register a new car</a>
+    <br>
     <br>
     <a href="/files">Upload car documentation</a>
     <br>
     <br>
-    <h2>Check-ups and Repairs:</h2>
-    <a href="/appointments/">List of appointments</a>
+    <a href="/cars/delete">Delete a car</a>
     <br>
-    <a href="/appointments/create">Plan an appointment</a>
+    <br>
+    <br>
+    <h2>Check-ups and Repairs: </h2>
+    <label>Work units:</label>
+    <br>
+    <a href="/workUnit/">List of work units</a>
+    <br>
     <br>
     <a href="/workUnit/create">New work unit</a>
     <br>
     <br>
+    <a href="/workUnit/delete">Delete a work unit</a>
+    <br>
+    <br>
+    <br>
+    <label>Parts:</label>
+    <br>
     <a href="/parts/">List of parts</a>
     <br>
+    <br>
+    <a href="/parts/create">Add part to database</a>
+    <br>
+    <br>
+    <a href="/parts/delete">Delete part from database</a>
+    <br>
+    <br>
+    <br>
+    <label>Actions:</label>
     <br>
     <a href="/actions/">List of actions</a>
     <br>
     <br>
-    <a href="/receipt">Generate a receipt</a>
+    <a href="/actions/create">Add action to database</a>
+    <br>
+    <br>
+    <a href="/actions/delete">Delete action from database</a>
+    <br>
+    <br>
+    <br>
+    <label>Appointments:</label>
+    <br>
+    <a href="/appointments/">List of appointments</a>
+    <br>
+    <br>
+    <a href="/appointments/create">Plan an appointment</a>
+    <br>
+    <br>
+    <a href="/appointments/delete">Delete an appointment</a>
+    <br>
+    <br>
+    <br>
+    <h2>Employees:</h2>
+    <a href="/employees/">List of registered employees</a>
+    <br>
+    <br>
+    <a href="/employees/create">Register a new employee</a>
+    <br>
+    <br>
+    <a href="/employees/delete">Delete an employee</a>
+    <br>
+    <br>
+    <br>
+<!--    <a href="/receipt">Generate a receipt</a>-->
 
 </div>
 </body>

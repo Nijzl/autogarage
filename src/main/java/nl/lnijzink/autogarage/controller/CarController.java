@@ -3,6 +3,7 @@ package nl.lnijzink.autogarage.controller;
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CarService;
+import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,10 @@ import java.util.List;
 public class CarController {
 
     private final CarService carService;
+    private final CustomerService customerService;
 
-    protected CarController(CarService carService) {
-        this.carService = carService;
+    protected CarController(CarService carService, CustomerService customerService) {
+        this.carService = carService; this.customerService = customerService;
     }
 
     @GetMapping("/")
@@ -51,7 +53,7 @@ public class CarController {
         return "CarDisplay";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{licencePlate}")
     public String deleteCar(@PathVariable("carId") String licencePlate){
         carService.deleteCar(licencePlate);
         return "CarDeleteDisplay";
@@ -64,7 +66,7 @@ public class CarController {
 //        return "CustomerByCarId";
 //    }
 
-    @GetMapping("/customer")
+/*    @GetMapping("/customer")
     public String assignCarToCustomer(Model model){
         model.addAttribute("Customer", new CustomerDto());
         model.addAttribute("Car", new CarDto());
@@ -76,7 +78,20 @@ public class CarController {
                                                       @RequestParam String licencePlate){
         carService.assignCarToCustomer(email, licencePlate);
         return "LinkCustomerAndCarSuccessful";
+    }*/
+
+    @GetMapping("/customer")
+    public String assignCarToCustomer(Model model){
+        model.addAttribute("Customer", new CustomerDto());
+        model.addAttribute("Car", new CarDto());
+        return "LinkCustomerAndCar";
     }
 
+    @PostMapping("/customer")
+    public String assignCarToCustomer(@RequestParam String email,
+                                      @RequestParam String licencePlate) {
+        carService.assignCarToCustomer(email, licencePlate);
+        return "LinkCustomerAndCarSuccessful";
+    }
 
 }

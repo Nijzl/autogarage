@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>PartDisplay</title>
+    <title>EmployeeDisplay</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,19 +24,15 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
     </style>
 </head>
 <body>
 <div align="center">
 
     <h2>Registration succeeded</h2>
-    <th>Name: </th><th th:text="${Part.name}"></th><br/>
-    <th>Price: </th><th th:text="${Part.price}"></th><br/>
-    <th>Quantity: </th><th th:text="${Part.quantity}"></th><br/>
+    <th>Name: </th><th th:text="${Employee.name}"></th><br/>
+    <th>Role: </th><th th:text="${Employee.role}"></th><br/>
+
     <br>
     <br>
     <a href="/home">Back to home page</a>

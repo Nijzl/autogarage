@@ -24,10 +24,4 @@ public class HomeController {
         return "Index";
     }
 
-
-    @GetMapping("/appointment")
-    public @ResponseBody String showAgenda(){
-        return "here go the appointments";
-    }
-
 }

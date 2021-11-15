@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nl.lnijzink.autogarage.model.Customer;
 
 import javax.validation.constraints.*;
 
@@ -19,7 +20,7 @@ public class CarDto {
     private String licencePlate;
 
     @NotNull
-    @Size(min = 3, max = 100)
+    @Size(min = 2, max = 100)
     private String brand;
 
     @NotNull
@@ -28,5 +29,8 @@ public class CarDto {
 
     @NotNull
     private Integer year;
+
+    @NotNull
+    private Customer owner;
 
 }

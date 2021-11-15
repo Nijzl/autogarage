@@ -15,18 +15,21 @@ import java.util.Collection;
 @Setter
 public class WorkUnitDto {
 
-    @NotNull
     private Long id;
 
     private Type type;
 
     private Car car;
 
-    private Employee mechanic;
+    private String mechanic;
 
-    private Collection<WorkUnitPart> workUnitParts;
+    private Boolean checkAgree;
 
-    private Collection<WorkUnitAction> workUnitActions;
+    private Boolean repairPerformed;
+
+//    private Collection<WorkUnitPart> workUnitParts;
+//
+//    private Collection<WorkUnitAction> workUnitActions;
 
     public WorkUnitDto(Type type){
         this.type = type;

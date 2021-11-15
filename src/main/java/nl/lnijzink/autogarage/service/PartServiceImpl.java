@@ -29,7 +29,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public long createPart(PartDto odto){
+    public Long createPart(PartDto odto){
         Part o = new Part(odto.getName(), odto.getPrice(), odto.getQuantity());
         partRepository.save(o);
         return o.getId();

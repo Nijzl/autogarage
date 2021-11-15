@@ -27,7 +27,7 @@ public class PartController {
     }
 
     @GetMapping("/{id}")
-    public PartDto getPart(@PathVariable long id){
+    public PartDto getPart(@PathVariable Long id){
         return partService.getPart(id);
     }
 

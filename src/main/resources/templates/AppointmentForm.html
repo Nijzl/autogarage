@@ -35,12 +35,23 @@
     <h1>Plan an appointment</h1>
     <form action="#" th:action="@{/appointments/create}" method="post" th:object="${Appointment}">
         <label>Date:</label>
-        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker"
-               th:field="*{date}" id="date" placeholder="Date"/>
+        <input type="text" th:field="*{date}" id="date" placeholder="dd/mm/yyyy"/>
         <br/>
         <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
             Date error</p>
         <br>
+        <br>
+<!--        <label>Time:</label>
+            <select th:field="*{time}">
+                <option th:value="0" th:text="Select time block"></option>
+                <option th:value="1" th:text="AM Nine to ten">09:00 to 10:00</option>
+                <option th:value="2" th:text="AM Ten to eleven">10:00 to 11:00</option>
+                <option th:value="3" th:text="AM Eleven to twelve">11:00 to 12:00</option>
+                <option th:value="4" th:text="PM One to two">13:00 to 14:00</option>
+                <option th:value="5" th:text="PM Two to three">14:00 to 15:00</option>
+                <option th:value="6" th:text="PM Three to four">15:00 to 16:00</option>
+                <option th:value="7" th:text="PM Four to five">16:00 to 17:00</option>
+            </select>-->
 
         <br>
         <br>

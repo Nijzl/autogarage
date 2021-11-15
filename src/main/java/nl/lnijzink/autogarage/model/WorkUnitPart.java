@@ -26,4 +26,5 @@ public class WorkUnitPart {
     private Part part;
 
     private Long amount;
+
 }

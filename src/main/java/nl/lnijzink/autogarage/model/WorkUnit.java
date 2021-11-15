@@ -19,17 +19,12 @@ public class WorkUnit {
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
     Type type;
+    String mechanic;
+
 
     @ManyToOne
     @JoinColumn(name = "car_licencePlate", referencedColumnName = "licencePlate")
     private Car car;
-
-    @ManyToOne
-    @JoinColumn(name = "mechanic_id", referencedColumnName = "id")
-    private Employee mechanic;
-
-/*    @OneToOne
-    private Appointment appointment;*/
 
     @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -41,6 +36,10 @@ public class WorkUnit {
 //    @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
+    private Boolean checkAgree;
+
+    private Boolean repairPerformed;
+
 //    @OneToOne
 //    @Nullable
 //    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
@@ -48,10 +47,12 @@ public class WorkUnit {
 
     public WorkUnit(){}
 
-    public WorkUnit(Type type, Car car, Employee mechanic) {
+    public WorkUnit(Type type, Car car, String mechanic, Boolean checkAgree, Boolean repairPerformed) {
         this.type = type;
         this.car = car;
         this.mechanic = mechanic;
+        this.checkAgree = checkAgree;
+        this.repairPerformed = repairPerformed;
     }
 
 }

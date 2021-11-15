@@ -23,7 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     public List<AppointmentDto> getAppointments() {
         ArrayList<AppointmentDto> appointmentList = new ArrayList<>();
         appointmentRepository.findAll().forEach((appointment) -> appointmentList.add(new AppointmentDto(appointment.getId(),
-                appointment.getDate()
+                appointment.getDate(), appointment.getTime()
         )));
         return appointmentList;
     }
@@ -32,7 +32,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     public AppointmentDto getAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
         if (appointment.isPresent()){
-            return new AppointmentDto(appointment.get().getId(), appointment.get().getDate());}
+            return new AppointmentDto(appointment.get().getId(), appointment.get().getDate(), appointment.get().getTime());}
         else{
             return new AppointmentDto();
         }
@@ -40,7 +40,7 @@ public class AppointmentServiceImpl implements AppointmentService{
 
     @Override
     public Long createAppointment(AppointmentDto appointmentDto) {
-        Appointment appointment = new Appointment(appointmentDto.getDate());
+        Appointment appointment = new Appointment(appointmentDto.getDate(), appointmentDto.getTime());
         appointmentRepository.save(appointment);
         return appointment.getId();
     }

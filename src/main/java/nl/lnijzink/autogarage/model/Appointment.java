@@ -2,14 +2,8 @@ package nl.lnijzink.autogarage.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import javax.persistence.*;
 
 @Entity(name = "Appointment")
 @Table(name = "appointments")
@@ -18,19 +12,20 @@ import java.util.Date;
 public class Appointment {
 
     @Id
-    @NotNull
+    @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
+    String date;
+    String time;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
-    Date date;
-
-/*    @OneToOne
-    private WorkUnit workUnit;*/
+/*    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "licence_plate", referencedColumnName = "licencePlate")
+    private Car car;*/
 
     public Appointment(){}
 
-    public Appointment(Date date){
+    public Appointment(String date, String time){
         this.date = date;
+        this.time = time;
     }
 
 }

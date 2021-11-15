@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
+import nl.lnijzink.autogarage.model.Car;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -19,7 +19,12 @@ public class AppointmentDto {
     private Long id;
 
     @NotNull
-    @DateTimeFormat(pattern = "dd/MM/yyyy h:mm a")
-    private Date date;
+    private String date;
+
+    @NotNull
+    private String time;
+
+/*    @NotNull
+    private Car car;*/
 
 }

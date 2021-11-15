@@ -1,6 +1,5 @@
 package nl.lnijzink.autogarage.controller;
 
-import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/customers")

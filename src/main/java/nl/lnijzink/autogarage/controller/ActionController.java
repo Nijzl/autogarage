@@ -2,12 +2,15 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
 import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.service.ActionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -25,29 +28,31 @@ public class ActionController {
         return "ActionsList";
     }
 
-/*
-    @GetMapping(path = "/")
-    public List<Action> getActions(){return actionService.getActions();}
-*/
-
-/*    @GetMapping("/part/{id}")
-    public PartDto getPart(@PathVariable long id){
-        return service.getPart(id);
+    @GetMapping("/{id}")
+    public ActionDto getAction(@PathVariable Long id) {
+        return actionService.getAction(id);
     }
 
-    @PostMapping("/part/create")
-    @ResponseStatus(HttpStatus.CREATED)
-    public long createPart(@RequestBody PartDto odto){return service.createPart(odto);}
-
-    @GetMapping(path = "/parts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PartDto> getParts(){
-        return service.getParts();
-    }*/
-
-    @GetMapping("/add")
-    public String addAction(Model model){
+    @GetMapping("/create")
+    public String createAction(Model model) {
         model.addAttribute("Action", new ActionDto());
         return "ActionForm";
+    }
+
+    @PostMapping("/create")
+    public String createAction(@Valid @ModelAttribute("Action") ActionDto actionDto,
+                                 BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "ActionForm";
+        }
+        actionService.createAction(actionDto);
+        return "ActionDisplay";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteAction(@PathVariable("actionId") Long id){
+        actionService.deleteAction(id);
+        return "ActionDeleteDisplay";
     }
 
 }

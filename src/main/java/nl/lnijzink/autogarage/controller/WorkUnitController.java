@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequestMapping("/workUnit")
 public class WorkUnitController {
 
@@ -23,14 +23,16 @@ public class WorkUnitController {
     CarService carService;
     EmployeeService employeeService;
     PartService partService;
+    ActionService actionService;
     WorkUnitPartService workUnitPartService;
     WorkUnitActionService workUnitActionService;
 
     protected WorkUnitController(WorkUnitService service, CarService carService, EmployeeService employeeService,
-                                 PartService partService, WorkUnitActionService workUnitActionService,
+                                 PartService partService, ActionService actionService,
+                                 WorkUnitActionService workUnitActionService,
                                  WorkUnitPartService workUnitPartService){this.workunitService =
             service; this.carService = carService; this.employeeService = employeeService; this.partService =
-            partService; this.workUnitPartService = workUnitPartService; this.workUnitActionService =
+            partService; this.actionService = actionService; this.workUnitPartService = workUnitPartService; this.workUnitActionService =
             workUnitActionService;}
 
     @GetMapping("/")
@@ -46,26 +48,26 @@ public class WorkUnitController {
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());
         model.addAttribute("listOfParts", partService.getParts());
+        model.addAttribute("listOfActions", actionService.getActions());
         return "WorkUnitForm";
     }
 
     @PostMapping("/create")
     public String createWorkUnit(@Valid @ModelAttribute("WorkUnit") WorkUnitDto wdto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return "WorkUnitForm";}
+//        if (bindingResult.hasErrors()) {
+//            return "WorkUnitForm";}
 
-        workunitService.createWorkUnit(wdto);
         var wu = workunitService.createWorkUnit(wdto);
 
-        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
-            workUnitPartService.addWorkUnitPart(wu, wup.getId().getPartId());
-        }
+//        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
+//            workUnitPartService.addWorkUnitPart(wu, wup.getId().getPartId());
+//        }
+//
+//        for (WorkUnitAction wua : wdto.getWorkUnitActions()) {
+//            workUnitActionService.addWorkUnitAction(wu, wua.getId().getActionId());
+//        }
 
-        for (WorkUnitAction wua : wdto.getWorkUnitActions()) {
-            workUnitActionService.addWorkUnitAction(wu, wua.getId().getActionId());
-        }
-
-        return "WorkUnitForm";
+        return "WorkUnitDisplay";
     }
 
     @GetMapping("/check-not-agreed")

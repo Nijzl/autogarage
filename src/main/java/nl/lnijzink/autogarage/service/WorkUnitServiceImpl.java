@@ -21,14 +21,16 @@ public class WorkUnitServiceImpl implements WorkUnitService {
     public List<WorkUnitDto> getWorkUnits(){
         ArrayList<WorkUnitDto> pList = new ArrayList<>();
         workUnitRepository.findAll().forEach((p) -> pList.add(new WorkUnitDto(p.getId(), p.getType(),
-                p.getCar(), p.getMechanic(), p.getWorkUnitParts(), p.getWorkUnitActions()
+                p.getCar(), p.getMechanic(), p.getCheckAgree(), p.getRepairPerformed()
+//                p.getWorkUnitParts(),
+//                p.getWorkUnitActions()
                 )));
         return pList;
     }
 
     @Override
     public Long createWorkUnit(WorkUnitDto dto){
-        WorkUnit workUnit = new WorkUnit(dto.getType(), dto.getCar(), dto.getMechanic());
+        WorkUnit workUnit = new WorkUnit(dto.getType(), dto.getCar(), dto.getMechanic(), dto.getCheckAgree(), dto.getRepairPerformed());
         workUnitRepository.save(workUnit);
         return workUnit.getId();
     }

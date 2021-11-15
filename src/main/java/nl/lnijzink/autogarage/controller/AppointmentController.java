@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.AppointmentDto;
+import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.service.AppointmentService;
 import org.springframework.stereotype.Controller;
@@ -40,9 +41,6 @@ public class AppointmentController {
     @PostMapping("/create")
     public String createAppointment(@Valid @ModelAttribute("Appointment") AppointmentDto appointmentDto,
                     BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            return "AppointmentForm";
-        }
         appointmentService.createAppointment(appointmentDto);
         return "AppointmentDisplay";
     }
