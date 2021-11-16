@@ -49,13 +49,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public ResponseEntity<Object> assignCarToCustomer(String email, String licencePlate) {
-        var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
+    public ResponseEntity<Object> assignCarToCustomer(String licencePlate, String email) {
         var optionalCar = carRepository.findById(licencePlate);
+        var optionalCustomer = customerRepository.findCustomerByEmailEquals(email);
 
-        if ( optionalCustomer.isPresent() && optionalCar.isPresent()) {
-            var customer = optionalCustomer.get();
+        if ( optionalCar.isPresent() && optionalCustomer.isPresent()) {
             var car = optionalCar.get();
+            var customer = optionalCustomer.get();
             car.setOwner(customer);
             carRepository.save(car);
         }

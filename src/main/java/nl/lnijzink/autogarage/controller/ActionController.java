@@ -2,6 +2,7 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
 import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.model.Customer;
@@ -31,6 +32,13 @@ public class ActionController {
         var actions = actionService.getActions();
         model.addAttribute("listOfActions", actions);
         return "ActionsList";
+    }
+
+    @GetMapping("/view/{id}")
+    public String getAction(@PathVariable("id") Long id, Model model) {
+        ActionDto action = actionService.getAction(id);
+        model.addAttribute("action", action);
+        return "ActionGet";
     }
 
     @GetMapping("/create")

@@ -44,6 +44,7 @@
             <th> Model </th>
             <th> Build Year </th>
             <th> Owner </th>
+            <th> View </th>
             <th> Update </th>
             <th> Delete </th>
 
@@ -56,6 +57,7 @@
             <td><span th:text="${car.model}"> Model </span></td>
             <td><span th:text="${car.year}"> Year </span></td>
             <td><span th:text="${car.owner}"> Owner </span></td>
+            <td><a th:href="@{/cars/view/{licencePlate}(licencePlate=${car.licencePlate})}"> View </a></td>
             <td><a th:href="@{/cars/update/{licencePlate}(licencePlate=${car.licencePlate})}"> Update </a></td>
             <td><a th:href="@{/cars/delete/{licencePlate}(licencePlate=${car.licencePlate})}"> Delete </a></td>
         </tr>

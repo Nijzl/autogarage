@@ -41,6 +41,13 @@ public class AppointmentController {
         return "AppointmentsList";
     }
 
+    @GetMapping("/view/{id}")
+    public String getAppointment(@PathVariable("id") Long id, Model model) {
+        AppointmentDto appointment = appointmentService.getAppointment(id);
+        model.addAttribute("appointment", appointment);
+        return "AppointmentGet";
+    }
+
     @GetMapping("/create")
     public String createAppointment(Model model){
         model.addAttribute("Appointment", new AppointmentDto());
@@ -81,9 +88,15 @@ public class AppointmentController {
         return "redirect:/appointments/";
     }
 
-    @GetMapping("/car")
+        @GetMapping("/car")
+        public String assignAppointmentToCar(Model model) {
+            model.addAttribute("cars", carRepository.findAll());
+/*            model.addAttribute("Appointments", appointmentRepository.findAll());*/
+            return "LinkCarAndAppointment";
+        }
+/*    @GetMapping("/car")
     public String assignAppointmentToCar(Model model) {
-/*        model.addAttribute("Car", new CarDto());
+model.addAttribute("Car", new CarDto());
         model.addAttribute("Appointment", new AppointmentDto());
         var cars = carService.getCars();
         model.addAttribute("listOfCars", cars);
@@ -91,12 +104,12 @@ public class AppointmentController {
         model.addAttribute("listOfAppointments", appointments);
         return "LinkCarAndAppointment";
     }*/
-        model.addAttribute("Car", new CarDto());
+/*        model.addAttribute("Car", new CarDto());
         model.addAttribute("Appointment", new AppointmentDto());
         model.addAttribute("listOfCars", carRepository.findAll());
         model.addAttribute("listOfAppointments", appointmentRepository.findAll());
         return "LinkCarAndAppointment";
-    }
+    }*/
 
     @PostMapping("/car")
     public String assignAppointmentToCar(@RequestParam String licencePlate,
@@ -104,7 +117,6 @@ public class AppointmentController {
         appointmentService.assignAppointmentToCar(licencePlate, id);
         return "LinkCarAndAppointmentSuccessful";
     }
-
 
  }
 

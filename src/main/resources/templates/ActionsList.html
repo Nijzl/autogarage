@@ -41,6 +41,7 @@
             <th> Name </th>
             <th> Description </th>
             <th> Price </th>
+            <th> View </th>
             <th> Update</th>
             <th> Delete </th>
         </tr>
@@ -51,6 +52,7 @@
             <td><span th:text="${action.name}"> Name </span></td>
             <td><span th:text="${action.description}"> Description </span></td>
             <td><span th:text="${action.price}"> Price </span></td>
+            <td><a th:href="@{/actions/view/{id}(id=${action.id})}"> View </a></td>
             <td><a th:href="@{/actions/update/{id}(id=${action.id})}"> Update </a></td>
             <td><a th:href="@{/actions/delete/{id}(id=${action.id})}"> Delete </a></td>
         </tr>

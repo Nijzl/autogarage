@@ -5,6 +5,7 @@ import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Car;
 import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.CarRepository;
+import nl.lnijzink.autogarage.reposit.CustomerRepository;
 import nl.lnijzink.autogarage.service.CarService;
 import nl.lnijzink.autogarage.service.CustomerService;
 import org.springframework.http.MediaType;
@@ -24,17 +25,27 @@ public class CarController {
     private final CarService carService;
     private final CustomerService customerService;
     private final CarRepository carRepository;
+    private final CustomerRepository customerRepository;
 
-    protected CarController(CarService carService, CustomerService customerService, CarRepository carRepository) {
+    protected CarController(CarService carService, CustomerService customerService, CarRepository carRepository,
+                            CustomerRepository customerRepository) {
         this.carService = carService;
         this.customerService = customerService;
-        this.carRepository = carRepository;}
+        this.carRepository = carRepository;
+        this.customerRepository = customerRepository;}
 
     @GetMapping("/")
     public String getCars(Model model) {
         var cars = carService.getCars();
         model.addAttribute("listOfCars", cars);
         return "CarsList";
+    }
+
+    @GetMapping("/view/{licencePlate}")
+    public String getCar(@PathVariable("licencePlate") String licencePlate, Model model) {
+        CarDto car = carService.getCar(licencePlate);
+        model.addAttribute("car", car);
+        return "CarGet";
     }
 
     @GetMapping("/create")
@@ -105,17 +116,15 @@ public class CarController {
     public String assignCarToCustomer(Model model){
         model.addAttribute("Car", new CarDto());
         model.addAttribute("Customer", new CustomerDto());
-        var cars = carService.getCars();
-        model.addAttribute("listOfCars", cars);
-        var customers = customerService.getCustomers();
-        model.addAttribute("listOfCustomers", customers);
+        model.addAttribute("listOfCars", carRepository.findAll());
+        model.addAttribute("listOfCustomers", customerRepository.findAll());
         return "LinkCustomerAndCar";
     }
 
     @PostMapping("/customer")
     public String assignCarToCustomer(@RequestParam String licencePlate,
-                                      @RequestParam String fullName) {
-        carService.assignCarToCustomer(licencePlate, fullName);
+                                      @RequestParam String email) {
+        carService.assignCarToCustomer(licencePlate, email);
         return "LinkCustomerAndCarSuccessful";
     }
 

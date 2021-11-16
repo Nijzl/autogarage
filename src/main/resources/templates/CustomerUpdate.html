@@ -10,6 +10,7 @@
       th:action="@{/customers/update/{id}(id=${customer.id})}"
       th:object="${customer}"
       method="post">
+    <h2> Update </h2>
     <label for="fullName"> Full name: </label>
     <input type="text" th:field="*{fullName}" id="fullName" placeholder="${fullName}">
     <br/>

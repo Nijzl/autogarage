@@ -34,54 +34,61 @@
 
 <div align="center">
     <h1>Appointment registration to Car</h1>
-    <form action="#" th:action="@{/appointments/car}" method="post" th:object="${Appointment}">
+    <form action="#" th:action="@{/appointments/car}" method="post" th:object="${Car}">
 
-
-        <label>Select appointment:</label>
-<!--        <th:block th:each="car : ${listOfCars}">
-            <tr>
-                <option th:value="${car.licencePlate}" th:text="${car.licencePlate}"></option>
-            </tr>
-        </th:block>-->
-
-        <select>
-            <!--                <option value="">Select Appointment</option>-->
-            <option th:each="appointment : ${listOfAppointments}" th:value="${appointment.id}"
-                    th:text="${appointment.id}"></option>
-        </select>
-
-        <div th:object="${Car}">
-            <label>Select car:</label>
-<!--
-            <select>
-                &lt;!&ndash;                <option value="">Select Licence Plate</option>&ndash;&gt;
-                <option th:each="car : ${listOfCars}" th:value="${car.licencePlate}"
-                        th:text="${car.licencePlate}"></option>
-            </select>
--->
-
-            <select>
-                <option th:each="car : ${listOfCars}" th:value="${car.licencePlate}"
-                        th:text="${car.licencePlate}"></option>
-            </select>
-
-
-
-
-
-            <!--           <input type="text" th:field="*{licencePlate}" />
-            <br/>
+        <input type="text" th:field="*{car.licencePlate}" />
+        <br/>
             <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
                 Licence Plate Error</p>
-            <br>-->
+            <br>
 
-<!--            <input type="text" th:field="*{email}" />
+        <div th:object="${Appointment}">
+            <input type="text" th:field="*{date}" />
             <br/>
-            <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
-                Email Error</p>
-            <br>-->
-
+                <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
+                    Email Error</p>
+        <br>
         </div>
+
+
+
+
+
+ <!--       <div>
+            <label>Select appointment:</label>
+            <div>
+                <select>
+                    <option th:each="appointment : ${Appointments}"
+                            th:value="${appointment.id}"
+                            th:text="${appointment.id}">
+                    </option>
+                </select>
+        </div>-->
+<!--
+
+        <div>
+            <label>Select car:</label>
+            <select>
+                <div th:each="car : ${cars}">
+                    <option
+                            th:value="${car.licencePlate}"
+                            th:text="${car.licencePlate}">
+                    </option>
+                </div>
+            </select>
+        </div>
+-->
+
+<!--        <div>
+            <label>Select car:</label>
+                    <label>Select car:</label>
+                    <select>
+                        <option th:each="car : ${Cars}"
+                                th:value="${car.licencePlate}"
+                                th:text="${car.licencePlate}">
+                        </option>
+                    </select>
+        </div>-->
 
         <button type="submit">Register</button>
         <br>

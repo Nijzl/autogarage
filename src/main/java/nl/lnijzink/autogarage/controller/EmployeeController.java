@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.CarDto;
+import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.model.Employee;
@@ -32,6 +33,13 @@ public class EmployeeController {
         var employees = employeeService.getEmployees();
         model.addAttribute("listOfEmployees", employees);
         return "EmployeesList";
+    }
+
+    @GetMapping("/view/{id}")
+    public String getEmployee(@PathVariable("id") Long id, Model model) {
+        EmployeeDto employee = employeeService.getEmployee(id);
+        model.addAttribute("employee", employee);
+        return "EmployeeGet";
     }
 
     @GetMapping("/create")

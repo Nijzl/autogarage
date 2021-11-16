@@ -41,6 +41,7 @@
             <th> Part Name </th>
             <th> Part Price </th>
             <th> Quantity </th>
+            <th> View </th>
             <th> Update </th>
             <th> Delete </th>
         </tr>
@@ -51,8 +52,9 @@
             <td><span th:text="${part.name}"> Name </span></td>
             <td><span th:text="${part.price}"> Price </span></td>
             <td><span th:text="${part.quantity}"> Quantity </span></td>
-            <td><a th:href="@{/parts/update/{id}(id=${part.id})}">Update</a></td>
-            <td><a th:href="@{/parts/delete/{id}(id=${part.id})}">Delete (all)</a></td>
+            <td><a th:href="@{/parts/view/{id}(id=${part.id})}"> View </a></td>
+            <td><a th:href="@{/parts/update/{id}(id=${part.id})}"> Update </a></td>
+            <td><a th:href="@{/parts/delete/{id}(id=${part.id})}"> Delete (item) </a></td>
         </tr>
         </tbody>
     </table>

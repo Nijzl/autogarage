@@ -1,5 +1,6 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.PartDto;
 import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.model.Part;
@@ -30,6 +31,13 @@ public class PartController {
         var parts = partService.getParts();
         model.addAttribute("listOfParts", parts);
         return "PartsList";
+    }
+
+    @GetMapping("/view/{id}")
+    public String getPart(@PathVariable("id") Long id, Model model) {
+        PartDto part = partService.getPart(id);
+        model.addAttribute("part", part);
+        return "PartGet";
     }
 
     @GetMapping("/create")

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CustomerDisplay</title>
+    <title>CustomersList</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,26 +24,25 @@
             padding: 5px;
             margin: 10px;
         }
+        th {
+            padding-right: 10px;
+        }
+        td {
+            padding-right: 20px;
+        }
     </style>
 </head>
 <body>
-<div align="center">
 
-    <h2>Registration succeeded</h2>
-    <th>Full name: </th><th th:text="${Customer.fullName}"></th><br/>
-    <th>Address: </th><th th:text="${Customer.address}"></th><br/>
-    <th>Phone number: </th><th th:text="${Customer.phoneNumber}"></th><br/>
-    <th>E-mail: </th><th th:text="${Customer.email}"></th><br/>
+<h2> View </h2>
+<th>Name: </th><th th:text="${employee.name}"></th><br/>
+<th>Role: </th><th th:text="${employee.role}"></th><br/>
 
-    <br>
-    <br>
-    <a href="/cars/create">Add a car to this customer</a>
-    <br>
-    <br>
-    <a href="/customers/">Back to customer list</a>
-    <br>
-    <a href="/home/">Back to home page</a>
+<br>
+<br>
+<a href="/employees/">Back to employees list</a>
+<br>
+<a href="/home/">Back to home page</a>
 
-</div>
 </body>
 </html>

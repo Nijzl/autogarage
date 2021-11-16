@@ -18,9 +18,9 @@ public class DataLoaderCustomers implements CommandLineRunner {
     @Override
     public void run(String...args) {
 
-        Customer customer1 = new Customer("Mark Fishbach", "Somewhere 1", "markefishbach@gmail.com", "06-12345678");
-        Customer customer2 = new Customer("Mia Ang", "Somewhere 2", "miaang@gmail.com", "06-87654321");
-        Customer customer3 = new Customer("Sean McLoughlin", "Somewhere 3", "seanwmcloughlin@gmail.com", "06-23456789");
+        Customer customer1 = new Customer("Mark Fishbach", "Somewhere 1", "06-12345678", "markefishbach@gmail.com");
+        Customer customer2 = new Customer("Mia Ang", "Somewhere 2", "06-87654321", "miaang@gmail.com");
+        Customer customer3 = new Customer("Sean McLoughlin", "Somewhere 3", "06-23456789", "seanwmcloughlin@gmail.com");
 
         customer1 = customerRepository.save(customer1);
         customer2 = customerRepository.save(customer2);

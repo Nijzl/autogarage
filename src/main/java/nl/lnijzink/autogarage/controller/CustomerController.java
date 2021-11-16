@@ -29,6 +29,13 @@ public class CustomerController {
         return "CustomersList";
 }
 
+    @GetMapping("/view/{id}")
+    public String getCustomer(@PathVariable("id") Long id, Model model) {
+        CustomerDto customer = customerService.getCustomer(id);
+        model.addAttribute("customer", customer);
+        return "CustomerGet";
+    }
+
     @GetMapping("/create")
     public String createCustomer(Model model){
         model.addAttribute("Customer", new CustomerDto());

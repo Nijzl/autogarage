@@ -44,6 +44,7 @@
             <th> Address </th>
             <th> Phone number </th>
             <th> Email address </th>
+            <th> View </th>
             <th> Update </th>
             <th> Delete </th>
 
@@ -56,6 +57,7 @@
                 <td><span th:text="${customer.address}"> Address </span></td>
                 <td><span th:text="${customer.phoneNumber}"> Phone Number </span></td>
                 <td><span th:text="${customer.email}"> Email Address </span></td>
+                <td><a th:href="@{/customers/view/{id}(id=${customer.id})}"> View </a></td>
                 <td><a th:href="@{/customers/update/{id}(id=${customer.id})}"> Update </a></td>
                 <td><a th:href="@{/customers/delete/{id}(id=${customer.id})}"> Delete </a></td>
             </tr>
@@ -63,7 +65,7 @@
     </table>
     <br>
     <br>
-    <a href="/customers/create">Register a new customer</a>
+    <a href="/customers/create"> Add customer </a>
     <br>
     <br>
     <a href="/home">Back to home page</a>
