@@ -39,10 +39,12 @@
     <br>
     <br>
 
-    <label>Select a car: </label>
-    <select th:field="*{car}" id="car" placeholder="${car}">
-        <option th:each="car : ${listOfCars}" th:value="${car.licencePlate}" th:text="${car.licencePlate}"></option>
-    </select>
+    <label for="car"> Car: </label>
+        <input type="text" th:field="*{car}" id="car" placeholder="${car}">
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('car')}" >
+            Car Error</p>
+    <br>
 
     <br>
     <br>

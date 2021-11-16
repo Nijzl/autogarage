@@ -21,7 +21,7 @@ public class Customer {
     String phoneNumber;
     String email;
 
-    // relatie tussen 1 customer en 1 car
+    // Relation between one car and one customer
     @OneToMany(mappedBy= "owner")
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();

@@ -19,6 +19,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         this.invoiceRepository = invoiceRepository;
         this.workUnitRepository = workUnitRepository;}
 
+    // Get List of Invoices
     @Override
     public List<InvoiceDto> getInvoices(){
         ArrayList<InvoiceDto> pList = new ArrayList<>();
@@ -27,12 +28,14 @@ public class InvoiceServiceImpl implements InvoiceService {
         return pList;
     }
 
+    // Get Single Invoice
     @Override
     public InvoiceDto getInvoice(Long id){
         Invoice i = invoiceRepository.findById(id).get();
         return new InvoiceDto(i.getId());
     }
 
+    // Create New Invoice
     @Override
     public Long createInvoice(InvoiceDto invoiceDto){
         Invoice i = new Invoice();
@@ -40,6 +43,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         return i.getId();
     }
 
+    // Delete Invoice
     @Override
     public void deleteInvoice(Long id){
         boolean exists = invoiceRepository.existsById(id);

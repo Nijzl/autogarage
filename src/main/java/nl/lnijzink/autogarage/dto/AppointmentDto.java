@@ -7,7 +7,6 @@ import lombok.Setter;
 import nl.lnijzink.autogarage.model.Car;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor

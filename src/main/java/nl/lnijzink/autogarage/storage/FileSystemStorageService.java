@@ -27,6 +27,7 @@ public class FileSystemStorageService implements StorageService {
 		this.rootLocation = Paths.get(properties.getLocation());
 	}
 
+	// Store File
 	@Override
 	public void store(MultipartFile file) {
 		try {
@@ -51,6 +52,7 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
+	// Get All Files
 	@Override
 	public Stream<Path> loadAll() {
 		try {
@@ -61,14 +63,15 @@ public class FileSystemStorageService implements StorageService {
 		catch (IOException e) {
 			throw new StorageException("Failed to read stored files", e);
 		}
-
 	}
 
+	// Load File
 	@Override
 	public Path load(String filename) {
 		return rootLocation.resolve(filename);
 	}
 
+	// Load File as Resource
 	@Override
 	public Resource loadAsResource(String filename) {
 		try {
@@ -80,7 +83,6 @@ public class FileSystemStorageService implements StorageService {
 			else {
 				throw new StorageFileNotFoundException(
 						"Could not read file: " + filename);
-
 			}
 		}
 		catch (MalformedURLException e) {
@@ -88,11 +90,13 @@ public class FileSystemStorageService implements StorageService {
 		}
 	}
 
+	// Delete All Files
 	@Override
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
 	}
 
+	// Initialize
 	@Override
 	public void init() {
 		try {

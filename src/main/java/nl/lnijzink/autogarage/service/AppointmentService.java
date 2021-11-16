@@ -1,7 +1,6 @@
 package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.AppointmentDto;
-import nl.lnijzink.autogarage.dto.CarDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

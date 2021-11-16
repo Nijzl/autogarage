@@ -25,7 +25,6 @@ public class EmployeeDto {
     @Size(min = 3, max = 100)
     private String role;
 
-
     public EmployeeDto(String name, String role){
         this.name = name;
         this.role = role;

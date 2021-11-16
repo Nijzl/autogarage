@@ -41,13 +41,13 @@
             Name Error</p>
         <br>
         <label>Price:</label>
-        <input type="number" th:field="*{price}" />
+        <input type="text" th:field="*{price}" />
         <br/>
         <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
             Price Error</p>
         <br>
         <label>Quantity:</label>
-        <input type="number" th:field="*{quantity}" />
+        <input type="text" th:field="*{quantity}" />
         <br>
         <p class="hasErrors" th:if="${#fields.hasErrors('quantity')}" >
             Quantity Error</p>

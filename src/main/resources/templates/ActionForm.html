@@ -43,10 +43,12 @@
 
         <label>Description:</label>
         <textarea rows="5" cols="25" th:field="*{description}"></textarea>
+        <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
+            Description Error</p>
         <br>
 
         <label>Price:</label>
-        <input type="number" th:field="*{price}" />
+        <input type="text" th:field="*{price}" />
         <br/>
         <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
             Price Error</p>

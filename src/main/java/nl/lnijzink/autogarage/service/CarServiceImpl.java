@@ -18,6 +18,7 @@ public class CarServiceImpl implements CarService {
 
     public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){this.carRepository = carRepository; this.customerRepository = customerRepository;}
 
+    // Get List of Cars
     @Override
     public List<CarDto> getCars(){
         ArrayList<CarDto> pList = new ArrayList<>();
@@ -27,12 +28,14 @@ public class CarServiceImpl implements CarService {
         return pList;
     }
 
+    // Get Single Car
     @Override
     public CarDto getCar(String licencePlate){
         Car p = carRepository.findById(licencePlate).get();
         return new CarDto(p.getLicencePlate(), p.getBrand(), p.getModel(), p.getYear(), p.getOwner(), p.getAppointment());
     }
 
+    // Create New Car
     @Override
     public String createCar(CarDto adto){
         Car a = new Car(adto.getLicencePlate(), adto.getBrand(), adto.getModel(), adto.getYear());
@@ -40,6 +43,7 @@ public class CarServiceImpl implements CarService {
         return a.getLicencePlate();
     }
 
+    // Delete Car
     @Override
     public void deleteCar(String licencePlate){
         boolean exists = carRepository.existsById(licencePlate);
@@ -48,6 +52,7 @@ public class CarServiceImpl implements CarService {
         }
     }
 
+    // Assign Car to Customer
     @Override
     public ResponseEntity<Object> assignCarToCustomer(String licencePlate, String email) {
         var optionalCar = carRepository.findById(licencePlate);

@@ -20,6 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     public CustomerServiceImpl(CustomerRepository customerRepository, CarRepository carRepository){this.customerRepository = customerRepository; this.carRepository = carRepository;}
 
+    // Get List of Customers
     @Override
     public List<CustomerDto> getCustomers(){
         ArrayList<CustomerDto> pList = new ArrayList<>();
@@ -29,12 +30,14 @@ public class CustomerServiceImpl implements CustomerService {
         return pList;
     }
 
+    // Get Single Customer
     @Override
     public CustomerDto getCustomer(Long id){
         Customer p = customerRepository.findById(id).get();
         return new CustomerDto(p.getId(), p.getFullName(), p.getAddress(), p.getPhoneNumber(), p.getEmail());
     }
 
+    // Create New Customer
     @Override
     public Long createCustomer(CustomerDto cdto){
         Customer c = new Customer();
@@ -46,6 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
         return c.getId();
     }
 
+    // Delete Customer
     @Override
     public void deleteCustomer(Long id){
         boolean exists = customerRepository.existsById(id);
@@ -54,6 +58,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    // Get Customer based on Licence Plate
     @Override
     public Customer getCustomerByCar(String licencePlate) {
         var optionalCar = carRepository.findById(licencePlate);
@@ -64,6 +69,7 @@ public class CustomerServiceImpl implements CustomerService {
         throw new StorageException("TODO");
     }
 
+    // Get List of Cars by Customer Id
     @Override
     public List<Car> getListCarsByCustomerId(Long customerId) {
         return null; //?

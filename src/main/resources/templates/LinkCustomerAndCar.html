@@ -24,10 +24,6 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
     </style>
 </head>
 <body>
@@ -43,6 +39,7 @@
                         th:value="${car.licencePlate}"
                         th:text="${car.licencePlate}"></option>
             </select>
+        <br>
 
         <label>Select customer:</label>
             <select id="email" name="email">
@@ -51,22 +48,7 @@
                     th:value="${customer.email}"
                     th:text="${customer.email}"></option>
             </select>
-
-<!--        <label>Select car: </label>
-            <input type="text" th:field="*{licencePlate}" />
-            <br/>
-            <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
-                Licence Plate Error</p>
-            <br>
-
-        <div th:object="${Customer}">
-            <label>Select customer:</label>
-                <input type="text" th:field="*{email}" />
-                <br/>
-                <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
-                    Email Error</p>
-            <br>
-        </div>-->
+        <br>
 
         <br>
         <button type="submit">Register</button>

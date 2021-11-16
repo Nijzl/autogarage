@@ -21,14 +21,14 @@
     <input type="text" th:field="*{description}" id="description" placeholder="${description}">
     <br/>
     <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
-        Address Error</p>
+        Description Error</p>
     <br>
 
     <label for="price"> Price: </label>
     <input type="text" th:field="*{price}" id="price" placeholder="${price}">
     <br/>
     <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
-        Phone Number Error</p>
+        Price Error</p>
     <br>
 
     <input type="submit" value="Update Action">

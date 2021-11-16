@@ -5,10 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nl.lnijzink.autogarage.model.Car;
 
 import javax.validation.constraints.*;
-import java.util.Collection;
 
 @NoArgsConstructor
 @AllArgsConstructor

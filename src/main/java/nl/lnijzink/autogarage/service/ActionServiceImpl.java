@@ -5,7 +5,6 @@ import nl.lnijzink.autogarage.model.Action;
 import nl.lnijzink.autogarage.reposit.ActionRepository;
 import org.springframework.stereotype.Service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +15,7 @@ public class ActionServiceImpl implements ActionService {
 
     public ActionServiceImpl(ActionRepository actionRepository){this.actionRepository = actionRepository;}
 
+    // Get List of Actions
     @Override
     public List<ActionDto> getActions(){
         ArrayList<ActionDto> pList = new ArrayList<>();
@@ -24,12 +24,14 @@ public class ActionServiceImpl implements ActionService {
         return pList;
     }
 
+    // Get Single Action
     @Override
     public ActionDto getAction(Long id){
         Action b = actionRepository.findById(id).get();
         return new ActionDto(b.getId(), b.getName(), b.getDescription(), b.getPrice());
     }
 
+    // Create New Action
     @Override
     public Long createAction(ActionDto gdto){
         Action a = new Action(gdto.getName(), gdto.getDescription(), gdto.getPrice());
@@ -37,6 +39,7 @@ public class ActionServiceImpl implements ActionService {
         return a.getId();
     }
 
+    //Delete Action
     @Override
     public void deleteAction(Long id){
         boolean exists = actionRepository.existsById(id);

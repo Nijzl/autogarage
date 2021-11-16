@@ -23,6 +23,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         this.appointmentRepository = appointmentRepository;
         this.carRepository = carRepository;}
 
+    //Get List of Appointments
     @Override
     public List<AppointmentDto> getAppointments() {
         ArrayList<AppointmentDto> appointmentList = new ArrayList<>();
@@ -32,6 +33,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         return appointmentList;
     }
 
+    // Get Single Appointment
     @Override
     public AppointmentDto getAppointment(Long id) {
         Optional<Appointment> appointment = appointmentRepository.findById(id);
@@ -43,6 +45,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         }
     }
 
+    // Create New Appointment
     @Override
     public Long createAppointment(AppointmentDto appointmentDto) {
         Appointment appointment = new Appointment(appointmentDto.getDate(), appointmentDto.getTime(),
@@ -51,6 +54,7 @@ public class AppointmentServiceImpl implements AppointmentService{
         return appointment.getId();
     }
 
+    // Delete Appointment
     @Override
     public void deleteAppointment(Long id){
         boolean exists = appointmentRepository.existsById(id);
@@ -59,18 +63,18 @@ public class AppointmentServiceImpl implements AppointmentService{
         }
     }
 
+    // Assign Appointment to Car
     @Override
     public ResponseEntity<Object> assignAppointmentToCar(String licencePlate, Long id) {
-        var optionalAppointment = appointmentRepository.findById(id);
         var optionalCar = carRepository.findById(licencePlate);
+        var optionalAppointment = appointmentRepository.findById(id);
 
-        if (optionalAppointment.isPresent() && optionalCar.isPresent()) {
-            var appointment = optionalAppointment.get();
+        if (optionalCar.isPresent() && optionalAppointment.isPresent()) {
             var car = optionalCar.get();
+            var appointment = optionalAppointment.get();
             appointment.setCar(car);
             appointmentRepository.save(appointment);
         }
-        //exception op later moment toevoegen
         return ResponseEntity.ok("Success");
     }
 

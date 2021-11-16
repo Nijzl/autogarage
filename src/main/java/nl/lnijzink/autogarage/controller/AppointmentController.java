@@ -58,7 +58,7 @@ public class AppointmentController {
     public String createAppointment(@Valid @ModelAttribute("Appointment") AppointmentDto appointmentDto,
                     BindingResult bindingResult){
         appointmentService.createAppointment(appointmentDto);
-        return "LinkCarAndAppointment";
+        return "AppointmentDisplay";
     }
 
     @GetMapping("/update/{id}")
@@ -88,13 +88,40 @@ public class AppointmentController {
         return "redirect:/appointments/";
     }
 
-        @GetMapping("/car")
+    @GetMapping("/car")
+    public String assignAppointmentToCar(Model model){
+        model.addAttribute("Car", new CarDto());
+        model.addAttribute("Appointment", new AppointmentDto());
+        model.addAttribute("listOfCars", carRepository.findAll());
+        model.addAttribute("listOfAppointments", appointmentRepository.findAll());
+        return "LinkCarAndAppointment";
+    }
+
+    @PostMapping("/car")
+    public String assignAppointmentToCar(@RequestParam String licencePlate,
+                                      @RequestParam Long id) {
+        appointmentService.assignAppointmentToCar(licencePlate, id);
+        return "LinkCarAndAppointmentSuccessful";
+    }
+
+
+
+
+/*        @GetMapping("/car")
         public String assignAppointmentToCar(Model model) {
             model.addAttribute("cars", carRepository.findAll());
-/*            model.addAttribute("Appointments", appointmentRepository.findAll());*/
+*//*            model.addAttribute("Appointments", appointmentRepository.findAll());*//*
             return "LinkCarAndAppointment";
         }
-/*    @GetMapping("/car")
+
+    @PostMapping("/car")
+    public String assignAppointmentToCar(@RequestParam String licencePlate,
+                                      @RequestParam Long id) {
+        appointmentService.assignAppointmentToCar(licencePlate, id);
+        return "LinkCarAndAppointmentSuccessful";
+    }
+    */
+    /*    @GetMapping("/car")
     public String assignAppointmentToCar(Model model) {
 model.addAttribute("Car", new CarDto());
         model.addAttribute("Appointment", new AppointmentDto());
@@ -110,13 +137,6 @@ model.addAttribute("Car", new CarDto());
         model.addAttribute("listOfAppointments", appointmentRepository.findAll());
         return "LinkCarAndAppointment";
     }*/
-
-    @PostMapping("/car")
-    public String assignAppointmentToCar(@RequestParam String licencePlate,
-                                      @RequestParam Long id) {
-        appointmentService.assignAppointmentToCar(licencePlate, id);
-        return "LinkCarAndAppointmentSuccessful";
-    }
 
  }
 

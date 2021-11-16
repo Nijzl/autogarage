@@ -34,61 +34,23 @@
 
 <div align="center">
     <h1>Appointment registration to Car</h1>
-    <form action="#" th:action="@{/appointments/car}" method="post" th:object="${Car}">
+    <form action="#" th:action="@{/appointments/car}" method="post" th:object="${Appointment}">
 
-        <input type="text" th:field="*{car.licencePlate}" />
-        <br/>
-            <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
-                Licence Plate Error</p>
-            <br>
+        <label>Select car:</label>
+        <select id="licencePlate" name="licencePlate">
+            <option disabled> Please select </option>
+            <option th:each="car : ${listOfCars}"
+                    th:value="${car.licencePlate}"
+                    th:text="${car.licencePlate}"></option>
+        </select>
 
-        <div th:object="${Appointment}">
-            <input type="text" th:field="*{date}" />
-            <br/>
-                <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
-                    Email Error</p>
-        <br>
-        </div>
-
-
-
-
-
- <!--       <div>
-            <label>Select appointment:</label>
-            <div>
-                <select>
-                    <option th:each="appointment : ${Appointments}"
-                            th:value="${appointment.id}"
-                            th:text="${appointment.id}">
-                    </option>
-                </select>
-        </div>-->
-<!--
-
-        <div>
-            <label>Select car:</label>
-            <select>
-                <div th:each="car : ${cars}">
-                    <option
-                            th:value="${car.licencePlate}"
-                            th:text="${car.licencePlate}">
-                    </option>
-                </div>
-            </select>
-        </div>
--->
-
-<!--        <div>
-            <label>Select car:</label>
-                    <label>Select car:</label>
-                    <select>
-                        <option th:each="car : ${Cars}"
-                                th:value="${car.licencePlate}"
-                                th:text="${car.licencePlate}">
-                        </option>
-                    </select>
-        </div>-->
+        <label>Select appointment:</label>
+        <select id="id" name="id">
+            <option disabled> Please select </option>
+            <option th:each="appointment : ${listOfAppointments}"
+                    th:value="${appointment.id}"
+                    th:text="${appointment.id}"></option>
+        </select>
 
         <button type="submit">Register</button>
         <br>

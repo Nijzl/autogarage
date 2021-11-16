@@ -15,6 +15,7 @@ public class PartServiceImpl implements PartService {
 
     public PartServiceImpl(PartRepository partRepository){this.partRepository = partRepository;}
 
+    // Get List of Parts
     @Override
     public List<PartDto> getParts(){
         ArrayList<PartDto> pList = new ArrayList<>();
@@ -22,12 +23,14 @@ public class PartServiceImpl implements PartService {
         return pList;
     }
 
+    // Get Single Part
     @Override
     public PartDto getPart(Long id){
         Part p = partRepository.findById(id).get();
         return new PartDto(p.getId(), p.getName(), p.getPrice(), p.getQuantity());
     }
 
+    // Create New Part
     @Override
     public Long createPart(PartDto odto){
         Part o = new Part(odto.getName(), odto.getPrice(), odto.getQuantity());
@@ -35,6 +38,7 @@ public class PartServiceImpl implements PartService {
         return o.getId();
     }
 
+    // Delete Part
     @Override
     public void deletePart(Long id){
         boolean exists = partRepository.existsById(id);
@@ -42,8 +46,5 @@ public class PartServiceImpl implements PartService {
             partRepository.deleteById(id);
         }
     }
-
-
-
 
 }
