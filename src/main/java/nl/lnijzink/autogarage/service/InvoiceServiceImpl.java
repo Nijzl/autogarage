@@ -4,6 +4,7 @@ import nl.lnijzink.autogarage.dto.InvoiceDto;
 import nl.lnijzink.autogarage.model.Invoice;
 import nl.lnijzink.autogarage.reposit.InvoiceRepository;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,16 +25,16 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceDto> getInvoices(){
         ArrayList<InvoiceDto> pList = new ArrayList<>();
-        invoiceRepository.findAll().forEach((p) -> pList.add(new InvoiceDto(p.getId()
+        invoiceRepository.findAll().forEach((p) -> pList.add(new InvoiceDto(p.getInvoiceId()
         )));
         return pList;
     }
 
     // Get Single Invoice
     @Override
-    public InvoiceDto getInvoice(Long id){
-        Invoice i = invoiceRepository.findById(id).get();
-        return new InvoiceDto(i.getId());
+    public InvoiceDto getInvoice(Long invoiceId){
+        Invoice i = invoiceRepository.findById(invoiceId).get();
+        return new InvoiceDto(i.getInvoiceId());
     }
 
     // Create New Invoice
@@ -41,16 +42,32 @@ public class InvoiceServiceImpl implements InvoiceService {
     public Long createInvoice(InvoiceDto invoiceDto){
         Invoice i = new Invoice();
         invoiceRepository.save(i);
-        return i.getId();
+        return i.getInvoiceId();
     }
 
     // Delete Invoice
     @Override
-    public void deleteInvoice(Long id){
-        boolean exists = invoiceRepository.existsById(id);
+    public void deleteInvoice(Long invoiceId){
+        boolean exists = invoiceRepository.existsById(invoiceId);
         if(exists){
-            invoiceRepository.deleteById(id);
+            invoiceRepository.deleteById(invoiceId);
         }
+    }
+
+
+    // Assign Invoice to Work Unit
+    @Override
+    public ResponseEntity<Object> assignInvoiceToWorkUnit(Long id, Long invoiceId) {
+        var optionalWorkUnit = workUnitRepository.findById(id);
+        var optionalInvoice = invoiceRepository.findById(invoiceId);
+
+        if (optionalWorkUnit.isPresent() && optionalInvoice.isPresent()) {
+            var workUnit = optionalWorkUnit.get();
+            var invoice = optionalInvoice.get();
+            invoice.setWorkUnit(workUnit);
+            invoiceRepository.save(invoice);
+        }
+        return ResponseEntity.ok("Success");
     }
 
 }

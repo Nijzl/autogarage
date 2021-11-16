@@ -33,7 +33,7 @@
 <body>
 
     <form action="#"
-          th:action="@{/invoices/update/{id}(id=${invoice.id})}"
+          th:action="@{/invoices/update/{invoiceId}(invoiceId=${invoice.invoiceId})}"
           th:object="${invoice}"
           method="post">
 

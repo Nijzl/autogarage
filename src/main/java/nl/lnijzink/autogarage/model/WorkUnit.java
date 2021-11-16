@@ -1,7 +1,9 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -10,7 +12,10 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
+@Entity(name = "WorkUnit")
+@Table(name = "workUnits")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class WorkUnit {
@@ -40,12 +45,13 @@ public class WorkUnit {
 
     private Boolean repairPerformed;
 
+    @OneToOne
+    private Invoice invoice;
+
 //    @OneToOne
 //    @Nullable
 //    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
 //    private WorkUnit workUnit;
-
-    public WorkUnit(){}
 
     public WorkUnit(Type type, Car car, String mechanic, Boolean checkAgree, Boolean repairPerformed) {
         this.type = type;

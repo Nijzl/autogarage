@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>LinkWorkUnitAndInvoice</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+
+<div align="center">
+
+    <h1>Invoice registration to Work Unit</h1>
+
+    <form action="#" th:action="@{/invoices/workUnit}" method="post" th:object="${Invoice}">
+
+        <label>Select work unit:</label>
+            <select id="id" name="id">
+                <option disabled> Please select </option>
+                <option th:each="workUnit : ${listOfWorkUnits}"
+                        th:value="${workUnit.id}"
+                        th:text="${workUnit.id}"></option>
+            </select>
+        <br>
+
+        <label>Select invoice:</label>
+            <select id="invoiceId" name="invoiceId">
+                <option disabled> Please select </option>
+                <option th:each="invoice : ${listOfInvoices}"
+                        th:value="${invoice.invoiceId}"
+                        th:text="${invoice.invoiceId}"></option>
+            </select>
+        <br>
+
+        <br>
+        <br>
+        <button type="submit">Register</button>
+        <br>
+        <br>
+        <button type="reset">Empty form</button>
+        <br>
+
+        <br>
+        <br>
+        <a href="/invoices/">Back to invoices list</a>
+        <br>
+        <br>
+        <a href="/home">Back to home page</a>
+
+    </form>
+</div>
+</body>
+</html>

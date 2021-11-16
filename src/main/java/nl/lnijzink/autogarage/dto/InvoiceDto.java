@@ -13,6 +13,6 @@ import lombok.Setter;
 public class InvoiceDto {
 
     @NotNull
-    private Long id;
+    private Long invoiceId;
 
 }

@@ -1,8 +1,10 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.InvoiceDto;
+import nl.lnijzink.autogarage.dto.WorkUnitDto;
 import nl.lnijzink.autogarage.model.Invoice;
 import nl.lnijzink.autogarage.reposit.InvoiceRepository;
+import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.service.InvoiceService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,13 @@ public class InvoiceController {
 
     private final InvoiceService invoiceService;
     private final InvoiceRepository invoiceRepository;
+    private final WorkUnitRepository workUnitRepository;
 
-    protected InvoiceController(InvoiceService invoiceService, InvoiceRepository invoiceRepository){
+    protected InvoiceController(InvoiceService invoiceService, InvoiceRepository invoiceRepository,
+                                WorkUnitRepository workUnitRepository){
         this.invoiceService = invoiceService;
-        this.invoiceRepository = invoiceRepository;}
+        this.invoiceRepository = invoiceRepository;
+        this.workUnitRepository = workUnitRepository;}
 
 
     // Get List of Invoices
@@ -32,9 +37,9 @@ public class InvoiceController {
     }
 
     // Get Single Invoice
-    @GetMapping("/view/{id}")
-    public String getInvoice(@PathVariable("id") Long id, Model model) {
-        InvoiceDto invoice = invoiceService.getInvoice(id);
+    @GetMapping("/view/{invoiceId}")
+    public String getInvoice(@PathVariable("invoiceId") Long invoiceId, Model model) {
+        InvoiceDto invoice = invoiceService.getInvoice(invoiceId);
         model.addAttribute("invoice", invoice);
         return "InvoiceGet";
     }
@@ -56,19 +61,19 @@ public class InvoiceController {
     }
 
     // Update Invoice
-    @GetMapping("/update/{id}")
-    public String updateInvoice(@PathVariable("id") Long id, Model model) {
-        Invoice invoice = invoiceRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid invoice Id:" + id));
+    @GetMapping("/update/{invoiceId}")
+    public String updateInvoice(@PathVariable("invoiceId") Long invoiceId, Model model) {
+        Invoice invoice = invoiceRepository.findById(invoiceId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid invoice Id:" + invoiceId));
         model.addAttribute("invoice", invoice);
         return "InvoiceUpdate";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateInvoice(@PathVariable("id") Long id, @Valid Invoice invoice,
+    @PostMapping("/update/{invoiceId}")
+    public String updateInvoice(@PathVariable("invoiceId") Long invoiceId, @Valid Invoice invoice,
                             BindingResult result, Model model) {
         if (result.hasErrors()) {
-            invoice.setId(id);
+            invoice.setInvoiceId(invoiceId);
             return "InvoiceUpdate";
         }
         invoiceRepository.save(invoice);
@@ -76,10 +81,27 @@ public class InvoiceController {
     }
 
     // Delete Invoice
-    @DeleteMapping("/delete/{id}")
-    public String deleteInvoice(@PathVariable("invoiceId") Long id) {
-        invoiceService.deleteInvoice(id);
+    @DeleteMapping("/delete/{invoiceId}")
+    public String deleteInvoice(@PathVariable("invoiceId") Long invoiceId) {
+        invoiceService.deleteInvoice(invoiceId);
         return "redirect:/invoices/";
+    }
+
+    // Assign Invoice to Work Unit
+    @GetMapping("/workUnit")
+    public String assignInvoiceToWorkUnit(Model model){
+        model.addAttribute("WorkUnit", new WorkUnitDto());
+        model.addAttribute("Invoice", new InvoiceDto());
+        model.addAttribute("listOfWorkUnits", workUnitRepository.findAll());
+        model.addAttribute("listOfInvoices", invoiceRepository.findAll());
+        return "LinkWorkUnitAndInvoice";
+    }
+
+    @PostMapping("/workUnit")
+    public String assignInvoiceToWorkUnit(@RequestParam Long id,
+                                         @RequestParam Long invoiceId) {
+        invoiceService.assignInvoiceToWorkUnit(id, invoiceId);
+        return "LinkWorkUnitAndInvoiceSuccessful";
     }
 
 }

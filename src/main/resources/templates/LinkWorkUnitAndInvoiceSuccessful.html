@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>InvoicesList</title>
+    <title>LinkWorkUnitAndInvoiceSuccessful</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,39 +24,21 @@
             padding: 5px;
             margin: 10px;
         }
-        th {
-            padding-right: 10px;
-        }
-        td {
-            padding-right: 20px;
-        }
     </style>
 </head>
 <body>
+<div align="center">
 
-    <h2>Invoices List</h2>
-
-    <table>
-        <thead>
-        <tr>
-            <th> Id </th>
-        </tr>
-        </thead>
-
-        <tbody>
-            <tr th:each="invoice : ${listOfInvoices}">
-                <td><span th:text="${invoice.invoiceId}"> Invoice id </span></td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>Invoice successfully added to work unit</h1>
+    <br>
 
     <br>
     <br>
+    <a href="/invoices/">Return to invoices list</a>
     <br>
-    <a href="/invoices/create">Add invoice</a>
     <br>
-    <br>
-    <a href="/home">Back to home page</a>
+    <a href="/home">Return to home page</a>
 
+</div>
 </body>
 </html>
