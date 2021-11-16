@@ -3,36 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>ActionUpdate</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
 </head>
 <body>
 
-<form action="#"
-      th:action="@{/actions/update/{id}(id=${action.id})}"
-      th:object="${action}"
-      method="post">
-    <label for="name"> Name: </label>
-    <input type="text" th:field="*{name}" id="name" placeholder="${name}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
-        Name Error</p>
-    <br>
+    <form action="#"
+          th:action="@{/actions/update/{id}(id=${action.id})}"
+          th:object="${action}"
+          method="post">
+        <label for="name"> Name: </label>
+        <input type="text" th:field="*{name}" id="name" placeholder="${name}">
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
+            Name Error</p>
+        <br>
 
-    <label for="description"> Description: </label>
-    <input type="text" th:field="*{description}" id="description" placeholder="${description}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
-        Description Error</p>
-    <br>
+        <label for="description"> Description: </label>
+        <input type="text" th:field="*{description}" id="description" placeholder="${description}">
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
+            Description Error</p>
+        <br>
 
-    <label for="price"> Price: </label>
-    <input type="text" th:field="*{price}" id="price" placeholder="${price}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
-        Price Error</p>
-    <br>
+        <label for="price"> Price: </label>
+        <input type="text" th:field="*{price}" id="price" placeholder="${price}">
+        <br/>
+        <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
+            Price Error</p>
+        <br>
 
-    <input type="submit" value="Update Action">
+        <input type="submit" value="Update Action">
 
-</form>
+    </form>
 </body>
 </html>

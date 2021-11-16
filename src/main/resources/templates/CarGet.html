@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CustomersList</title>
+    <title>CarGet</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -34,18 +34,20 @@
 </head>
 <body>
 
-<h2> View </h2>
-<th>Licence plate: </th><th th:text="${car.licencePlate}"></th><br/>
-<th>Brand: </th><th th:text="${car.brand}"></th><br/>
-<th>Model: </th><th th:text="${car.model}"></th><br/>
-<th>Build year: </th><th th:text="${car.year}"></th><br/>
-<th>Owner: </th><th th:text="${car.owner}"></th><br/>
+    <h2> View </h2>
+        <th>Licence plate: </th><th th:text="${car.licencePlate}"></th><br/>
+        <th>Brand: </th><th th:text="${car.brand}"></th><br/>
+        <th>Model: </th><th th:text="${car.model}"></th><br/>
+        <th>Build year: </th><th th:text="${car.year}"></th><br/>
+        <th>Owner: </th><th th:text="${car.owner}"></th><br/>
+    <br>
 
-<br>
-<br>
-<a href="/cars/">Back to cars list</a>
-<br>
-<a href="/home/">Back to home page</a>
+    <br>
+    <br>
+    <a href="/cars/">Back to cars list</a>
+    <br>
+    <br>
+    <a href="/home">Back to home page</a>
 
 </body>
 </html>

@@ -29,7 +29,9 @@
 <body>
 
 <div align="center">
+
     <h1>Car registration to Customer</h1>
+
     <form action="#" th:action="@{/cars/customer}" method="post" th:object="${Car}">
 
         <label>Select car:</label>
@@ -51,11 +53,17 @@
         <br>
 
         <br>
+        <br>
         <button type="submit">Register</button>
+        <br>
         <br>
         <button type="reset">Empty form</button>
         <br>
+
+        <br>
+        <br>
         <a href="/cars/">Back to cars list</a>
+        <br>
         <br>
         <a href="/home">Back to home page</a>
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CustomersList</title>
+    <title>EmployeeGet</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -34,15 +34,17 @@
 </head>
 <body>
 
-<h2> View </h2>
-<th>Name: </th><th th:text="${employee.name}"></th><br/>
-<th>Role: </th><th th:text="${employee.role}"></th><br/>
+    <h2> View </h2>
+        <th>Name: </th><th th:text="${employee.name}"></th><br/>
+        <th>Role: </th><th th:text="${employee.role}"></th><br/>
+    <br>
 
-<br>
-<br>
-<a href="/employees/">Back to employees list</a>
-<br>
-<a href="/home/">Back to home page</a>
+    <br>
+    <br>
+    <a href="/employees/">Back to employees list</a>
+    <br>
+    <br>
+    <a href="/home">Back to home page</a>
 
 </body>
 </html>

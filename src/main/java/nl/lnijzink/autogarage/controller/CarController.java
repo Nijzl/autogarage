@@ -34,6 +34,7 @@ public class CarController {
         this.carRepository = carRepository;
         this.customerRepository = customerRepository;}
 
+    // Get List of Cars
     @GetMapping("/")
     public String getCars(Model model) {
         var cars = carService.getCars();
@@ -41,6 +42,7 @@ public class CarController {
         return "CarsList";
     }
 
+    // Get Single Car
     @GetMapping("/view/{licencePlate}")
     public String getCar(@PathVariable("licencePlate") String licencePlate, Model model) {
         CarDto car = carService.getCar(licencePlate);
@@ -48,6 +50,7 @@ public class CarController {
         return "CarGet";
     }
 
+    // Create New Car
     @GetMapping("/create")
     public String createCar(Model model) {
         model.addAttribute("Car", new CarDto());
@@ -64,6 +67,7 @@ public class CarController {
         return "CarDisplay";
     }
 
+    // Update Car
     @GetMapping("/update/{licencePlate}")
     public String updateCar(@PathVariable("licencePlate") String licencePlate, Model model) {
         Car car = carRepository.findById(licencePlate)
@@ -83,6 +87,7 @@ public class CarController {
         return "redirect:/cars/";
     }
 
+    // Delete Car
     @GetMapping("/delete/{licencePlate}")
     public String deleteCar(@PathVariable("licencePlate") String licencePlate, Model model) {
         Car car = carRepository.findById(licencePlate)
@@ -91,27 +96,7 @@ public class CarController {
         return "redirect:/cars/";
     }
 
-//    @GetMapping("/{id}/customer")
-//    public String getCustomerByCar(@PathVariable("id") Long id, Model model){
-//        var customer = carService.getCustomerByCar(id);
-//        model.addAttribute("customer", customer);
-//        return "CustomerByCarId";
-//    }
-
-/*    @GetMapping("/customer")
-    public String assignCarToCustomer(Model model){
-        model.addAttribute("Customer", new CustomerDto());
-        model.addAttribute("Car", new CarDto());
-        return "LinkCustomerAndCar";
-    }
-
-    @PostMapping("/customer")
-    public String assignCarToCustomer(@RequestParam String email,
-                                                      @RequestParam String licencePlate){
-        carService.assignCarToCustomer(email, licencePlate);
-        return "LinkCustomerAndCarSuccessful";
-    }*/
-
+    // Assign Car to Customer
     @GetMapping("/customer")
     public String assignCarToCustomer(Model model){
         model.addAttribute("Car", new CarDto());

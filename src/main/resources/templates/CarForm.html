@@ -33,36 +33,49 @@
 <body>
 <div align="center">
     <h1>Car registration</h1>
-    <form action="#" th:action="@{/cars/create}" method="post" th:object="${Car}">
-        <label>Licence plate:</label>
-        <input type="text" th:field="*{licencePlate}" />
-        <br/>
-        <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
-            Licence Plate Error</p>
-        <br>
-        <label>Brand:</label>
-        <input type="text" th:field="*{brand}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
-            Brand Error</p>
-        <br>
-        <label>Model:</label>
-        <input type="text" th:field="*{model}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('model')}" >
-            Model Error</p>
-        <br>
-        <label>Year:</label>
-        <input type="number" th:field="*{year}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('year')}" >
-            Build Year Error</p>
 
+    <form action="#" th:action="@{/cars/create}" method="post" th:object="${Car}">
+
+        <label>Licence plate:</label>
+            <input type="text" th:field="*{licencePlate}" />
+            <br/>
+            <p  class="hasErrors"  th:if="${#fields.hasErrors('licencePlate')}" >
+                Licence Plate Error</p>
+        <br>
+
+        <label>Brand:</label>
+            <input type="text" th:field="*{brand}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
+                Brand Error</p>
+        <br>
+
+        <label>Model:</label>
+            <input type="text" th:field="*{model}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('model')}" >
+                Model Error</p>
+        <br>
+
+        <label>Year:</label>
+            <input type="number" th:field="*{year}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('year')}" >
+                Build Year Error</p>
+        <br>
+
+        <br>
+        <br>
         <button type="submit">Register</button>
+        <br>
         <br>
         <button type="reset">Empty form</button>
         <br>
+
+        <br>
+        <br>
         <a href="/cars/">Back to car list</a>
+        <br>
         <br>
         <a href="/home">Back to home page</a>
     </form>

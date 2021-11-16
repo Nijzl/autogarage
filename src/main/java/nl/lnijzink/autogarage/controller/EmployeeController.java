@@ -28,6 +28,8 @@ public class EmployeeController {
         this.employeeRepository = employeeRepository; this.employeeService = employeeService;
     }
 
+
+    // Get List of Employees
     @GetMapping("/")
     public String getEmployees(Model model) {
         var employees = employeeService.getEmployees();
@@ -35,6 +37,7 @@ public class EmployeeController {
         return "EmployeesList";
     }
 
+    // Get Single Employee
     @GetMapping("/view/{id}")
     public String getEmployee(@PathVariable("id") Long id, Model model) {
         EmployeeDto employee = employeeService.getEmployee(id);
@@ -42,6 +45,7 @@ public class EmployeeController {
         return "EmployeeGet";
     }
 
+    // Create New Employee
     @GetMapping("/create")
     public String createEmployee(Model model) {
         model.addAttribute("Employee", new EmployeeDto());
@@ -58,6 +62,7 @@ public class EmployeeController {
         return "EmployeeDisplay";
     }
 
+    // Update Employee
     @GetMapping("/update/{id}")
     public String updateEmployee(@PathVariable("id") Long id, Model model) {
         Employee employee = employeeRepository.findById(id)
@@ -77,6 +82,7 @@ public class EmployeeController {
         return "redirect:/employees/";
     }
 
+    // Delete Employee
     @GetMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable("id") Long id, Model model) {
         Employee employee = employeeRepository.findById(id)

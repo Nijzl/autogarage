@@ -19,6 +19,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         this.invoiceRepository = invoiceRepository;
         this.workUnitRepository = workUnitRepository;}
 
+
     // Get List of Invoices
     @Override
     public List<InvoiceDto> getInvoices(){

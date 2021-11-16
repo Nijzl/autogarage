@@ -22,6 +22,8 @@ public class CustomerController {
         this.customerService = customerService;
         this.customerRepository = customerRepository;}
 
+
+    // Get List of Customers
     @GetMapping("/")
     public String getCustomers(Model model) {
         var customers = customerService.getCustomers();
@@ -29,6 +31,7 @@ public class CustomerController {
         return "CustomersList";
 }
 
+    // Get Single Customer
     @GetMapping("/view/{id}")
     public String getCustomer(@PathVariable("id") Long id, Model model) {
         CustomerDto customer = customerService.getCustomer(id);
@@ -36,6 +39,7 @@ public class CustomerController {
         return "CustomerGet";
     }
 
+    // Create New Customer
     @GetMapping("/create")
     public String createCustomer(Model model){
         model.addAttribute("Customer", new CustomerDto());
@@ -51,6 +55,7 @@ public class CustomerController {
         return "CustomerDisplay";
     }
 
+    // Update Customer
     @GetMapping("/update/{id}")
     public String updateCustomer(@PathVariable("id") Long id, Model model) {
         Customer customer = customerRepository.findById(id)
@@ -70,6 +75,7 @@ public class CustomerController {
         return "redirect:/customers/";
     }
 
+    // Delete Customer
     @GetMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable("id") Long id, Model model) {
         Customer customer = customerRepository.findById(id)
@@ -78,7 +84,7 @@ public class CustomerController {
         return "redirect:/customers/";
     }
 
-    @GetMapping("/{id}/cars")
+/*    @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
         customerService.getListCarsByCustomerId(customerId);
         return "CarsByCustomerId";
@@ -89,6 +95,6 @@ public class CustomerController {
         var customer = customerService.getCustomerByCar(licencePlate);
         model.addAttribute("customer", customer);
         return "CustomerByCarId";
-    }
+    }*/
 
 }

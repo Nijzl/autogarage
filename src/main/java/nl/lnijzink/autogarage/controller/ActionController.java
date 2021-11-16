@@ -27,6 +27,8 @@ public class ActionController {
         this.actionService = actionService;
         this.actionRepository = actionRepository;}
 
+
+    // Get List of Actions
     @GetMapping("/")
     public String getActions(Model model) {
         var actions = actionService.getActions();
@@ -34,6 +36,7 @@ public class ActionController {
         return "ActionsList";
     }
 
+    // Get Single Action
     @GetMapping("/view/{id}")
     public String getAction(@PathVariable("id") Long id, Model model) {
         ActionDto action = actionService.getAction(id);
@@ -41,6 +44,7 @@ public class ActionController {
         return "ActionGet";
     }
 
+    // Create New Action
     @GetMapping("/create")
     public String createAction(Model model) {
         model.addAttribute("Action", new ActionDto());
@@ -57,6 +61,7 @@ public class ActionController {
         return "ActionDisplay";
     }
 
+    // Update Action
     @GetMapping("/update/{id}")
     public String updateAction(@PathVariable("id") Long id, Model model) {
         Action action = actionRepository.findById(id)
@@ -76,6 +81,7 @@ public class ActionController {
         return "redirect:/actions/";
     }
 
+    // Delete Action
     @GetMapping("/delete/{id}")
     public String deleteAction(@PathVariable("id") Long id, Model model) {
         Action action = actionRepository.findById(id)
@@ -83,4 +89,5 @@ public class ActionController {
         actionRepository.delete(action);
         return "redirect:/actions/";
     }
+
 }

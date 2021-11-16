@@ -24,10 +24,6 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
     </style>
 </head>
 <body>
@@ -38,19 +34,19 @@
     <th>Time: </th><th th:text="${Appointment.time}"></th><br/>
     <br>
     <th>Type: </th><th th:text="${Appointment.type}"></th><br/>
-<!--    <br>
-    <th>Car: </th><th th:text="${Appointment.car}"></th><br/>-->
+    <br>
 
     <br>
     <br>
     <a href="/appointments/car/">Assign car to appointment</a>
     <br>
     <br>
+    <br>
     <a href="/appointments/">Back to appointment list</a>
+    <br>
     <br>
     <a href="/home">Back to home page</a>
 
 </div>
-
 </body>
 </html>

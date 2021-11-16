@@ -12,4 +12,5 @@ public interface AppointmentService {
     public List<AppointmentDto> getAppointments();
     public void deleteAppointment(Long id);
     public ResponseEntity assignAppointmentToCar(String licencePlate, Long id);
+
 }

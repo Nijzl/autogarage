@@ -28,6 +28,8 @@ public class StockController {
         this.actionService = actionService;
     }
 
+
+    // Get Stock
     @GetMapping("/")
     public String getStock(Model model) {
         var parts = partService.getParts();
@@ -37,6 +39,7 @@ public class StockController {
         return "StockList";
     }
 
+    // Update Stock
     @GetMapping("/update/{id}")
     public String updatePart(@PathVariable("id") Long id, Model model) {
         Part part = partRepository.findById(id)
@@ -56,6 +59,7 @@ public class StockController {
         return "redirect:/stock/";
     }
 
+    // Delete Item from Stock
     @GetMapping("/delete/{id}")
     public String deletePart(@PathVariable("id") Long id, Model model) {
         Part part = partRepository.findById(id)
@@ -63,6 +67,5 @@ public class StockController {
         partRepository.delete(part);
         return "redirect:/stock/";
     }
-
 
 }

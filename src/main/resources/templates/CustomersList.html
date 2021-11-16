@@ -47,9 +47,9 @@
             <th> View </th>
             <th> Update </th>
             <th> Delete </th>
-
         </tr>
         </thead>
+
         <tbody>
             <tr th:each="customer : ${listOfCustomers}">
                 <td><span th:text="${customer.id}"> Customer ID </span></td>
@@ -63,6 +63,8 @@
             </tr>
         </tbody>
     </table>
+
+    <br>
     <br>
     <br>
     <a href="/customers/create"> Add customer </a>

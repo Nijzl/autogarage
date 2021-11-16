@@ -16,7 +16,10 @@ public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
     private final CustomerRepository customerRepository;
 
-    public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){this.carRepository = carRepository; this.customerRepository = customerRepository;}
+    public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){
+        this.carRepository = carRepository;
+        this.customerRepository = customerRepository;}
+
 
     // Get List of Cars
     @Override
@@ -67,7 +70,5 @@ public class CarServiceImpl implements CarService {
         //exception op later moment toevoegen
         return ResponseEntity.ok("Car added to customer.");
     }
-
-
 
 }

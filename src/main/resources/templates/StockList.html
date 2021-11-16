@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>PartsList</title>
+    <title>StockList</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -30,6 +30,7 @@
 
     <h2>Stock List: </h2>
     <br>
+
     <table>
         <thead>
         <tr>
@@ -42,6 +43,7 @@
             <th> Delete </th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="part : ${listOfParts}">
             <td><span th:text="${part.id}"> Part id </span></td>
@@ -54,6 +56,7 @@
         </tr>
         </tbody>
     </table>
+
     <br>
     <br>
     <br>

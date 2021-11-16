@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>CustomersList</title>
+    <title>PartGet</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -34,16 +34,18 @@
 </head>
 <body>
 
-<h2> View </h2>
-<th>Name: </th><th th:text="${part.name}"></th><br/>
-<th>Price: </th><th th:text="${part.price}"></th><br/>
-<th>Quantity: </th><th th:text="${part.quantity}"></th><br/>
+    <h2> View </h2>
+        <th>Name: </th><th th:text="${part.name}"></th><br/>
+        <th>Price: </th><th th:text="${part.price}"></th><br/>
+        <th>Quantity: </th><th th:text="${part.quantity}"></th><br/>
+    <br>
 
-<br>
-<br>
-<a href="/parts/">Back to parts list</a>
-<br>
-<a href="/home/">Back to home page</a>
+    <br>
+    <br>
+    <a href="/parts/">Back to parts list</a>
+    <br>
+    <br>
+    <a href="/home">Back to home page</a>
 
 </body>
 </html>

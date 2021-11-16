@@ -32,13 +32,16 @@
 </head>
 <body>
 <div align="center">
+
     <h1>Plan an appointment</h1>
+
     <form action="#" th:action="@{/appointments/create}" method="post" th:object="${Appointment}">
+
         <label>Date:</label>
-        <input type="text" th:field="*{date}" id="date" placeholder="dd/mm/yyyy"/>
-        <br/>
-        <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
-            Date error</p>
+            <input type="text" th:field="*{date}" id="date" placeholder="dd/mm/yyyy"/>
+            <br/>
+            <p  class="hasErrors"  th:if="${#fields.hasErrors('date')}" >
+                Date error</p>
         <br>
 
         <label>Time:</label>
@@ -60,13 +63,18 @@
             <option th:value="REPAIR" th:text="Repair"></option>
         </select>
         <br>
-        <br>
 
+        <br>
         <button type="submit">Register</button>
+        <br>
         <br>
         <button type="reset">Empty form</button>
         <br>
+
+        <br>
+        <br>
         <a href="/appointments/">Back to appointment list</a>
+        <br>
         <br>
         <a href="/home">Back to home page</a>
 

@@ -22,9 +22,11 @@ public class DataLoaderWorkUnit implements CommandLineRunner {
         this.partRepository = partRepository;
     }
 
+
     @Override
     public void run(String...args) {
 
+        // DataLoader Actions
         Action changeTyre = new Action("Change tyre", "Replacing a tyre with another tyre", 49.99F);
         Action changeOil = new Action("Change oil", "Refresh the motor oil", 9.99F);
         Action mot = new Action("MOT test", "Yearly Ministry of Transport test (APK)", 25.00F);
@@ -33,6 +35,8 @@ public class DataLoaderWorkUnit implements CommandLineRunner {
         changeOil = actionRepository.save(changeOil);
         mot = actionRepository.save(mot);
 
+
+        // DataLoader Parts
         Part tyre = new Part("Tyre", 50.00F, 20L);
         Part oil = new Part("Oil", 5.00F, 5L);
         Part headLight = new Part("Head light", 1.99F, 40L);

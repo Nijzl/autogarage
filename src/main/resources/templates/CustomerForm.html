@@ -32,44 +32,54 @@
 </head>
 <body>
 <div align="center">
+
     <h1>Customer registration</h1>
+
     <form action="#" th:action="@{/customers/create}" method="post" th:object="${Customer}">
+
         <label>Full name:</label>
-        <input type="text" th:field="*{fullName}" />
-        <br/>
-        <p  class="hasErrors"  th:if="${#fields.hasErrors('fullName')}" >
-            Full Name Error</p>
+            <input type="text" th:field="*{fullName}" />
+            <br/>
+            <p  class="hasErrors"  th:if="${#fields.hasErrors('fullName')}" >
+                Full Name Error</p>
         <br>
+
         <label>Address:</label>
-        <input type="text" th:field="*{address}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('address')}" >
-            Address Error</p>
+            <input type="text" th:field="*{address}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('address')}" >
+                Address Error</p>
         <br>
+
         <label>Phone number:</label>
-        <input type="text" th:field="*{phoneNumber}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('phoneNumber')}" >
-            Phone Number Error</p>
+            <input type="text" th:field="*{phoneNumber}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('phoneNumber')}" >
+                Phone Number Error</p>
         <br>
+
         <label>E-mail:</label>
-        <input type="email" th:field="*{email}" />
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
-            E-mail Error</p>
-        <br>
+            <input type="email" th:field="*{email}" />
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('email')}" >
+                E-mail Error</p>
         <br>
 
-
+        <br>
+        <br>
         <button type="submit">Register</button>
         <br>
+        <br>
         <button type="reset">Empty form</button>
+        <br>
+
         <br>
         <br>
         <a href="/customers/">Back to customer list</a>
         <br>
         <br>
         <a href="/home">Back to home page</a>
+
     </form>
 </div>
 </body>

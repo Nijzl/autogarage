@@ -9,4 +9,5 @@ import java.util.Collection;
 public interface WorkUnitActionRepository extends JpaRepository<WorkUnitAction, WorkUnitActionKey> {
     Collection<WorkUnitAction> findAllByActionId(Long actionId);
     Collection<WorkUnitAction> findAllByWorkUnitId(Long workUnitId);
+
 }

@@ -3,29 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>EmployeeUpdate</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
 </head>
 <body>
 
-<form action="#"
-      th:action="@{/employees/update/{id}(id=${employee.id})}"
-      th:object="${employee}"
-      method="post">
-    <label for="name"> Name: </label>
-    <input type="text" th:field="*{name}" id="name" placeholder="${name}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
-        Name Error</p>
-    <br>
+    <form action="#"
+          th:action="@{/employees/update/{id}(id=${employee.id})}"
+          th:object="${employee}"
+          method="post">
 
-    <label>Role:</label>
-    <select th:field="*{role}" id="role" placeholder="${role}">
-        <option th:value="'mechanic'" th:text="Mechanic"></option>
-        <option th:value="'administrator'" th:text="Administrator"></option>
-        <option th:value="'backoffice'" th:text="BackOffice"></option>
-    </select>
+        <label for="name"> Name: </label>
+            <input type="text" th:field="*{name}" id="name" placeholder="${name}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
+                Name Error</p>
+        <br>
 
-    <input type="submit" value="Update">
+        <label>Role:</label>
+        <select th:field="*{role}" id="role" placeholder="${role}">
+            <option th:value="'mechanic'" th:text="Mechanic"></option>
+            <option th:value="'administrator'" th:text="Administrator"></option>
+            <option th:value="'backoffice'" th:text="BackOffice"></option>
+        </select>
+        <br>
 
-</form>
+        <br>
+        <br>
+        <input type="submit" value="Update">
+
+    </form>
 </body>
 </html>

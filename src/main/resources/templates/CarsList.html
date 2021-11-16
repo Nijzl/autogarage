@@ -47,9 +47,9 @@
             <th> View </th>
             <th> Update </th>
             <th> Delete </th>
-
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="car : ${listOfCars}">
             <td><span th:text="${car.licencePlate}"> Licence Plate </span></td>
@@ -63,6 +63,8 @@
         </tr>
         </tbody>
     </table>
+
+    <br>
     <br>
     <br>
     <a href="/cars/create">Add car</a>

@@ -47,6 +47,7 @@
             <th> Delete </th>
         </tr>
         </thead>
+
         <tbody>
             <tr th:each="employee : ${listOfEmployees}">
                 <td><span th:text="${employee.id}"> Employee id </span></td>
@@ -58,6 +59,8 @@
             </tr>
         </tbody>
     </table>
+
+    <br>
     <br>
     <br>
     <a href="/employees/create">Add employee</a>

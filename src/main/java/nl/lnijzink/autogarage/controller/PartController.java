@@ -26,6 +26,8 @@ public class PartController {
         this.partService = partService;
         this.partRepository = partRepository;}
 
+
+    // Get List of Parts
     @GetMapping("/")
     public String getParts(Model model) {
         var parts = partService.getParts();
@@ -33,6 +35,7 @@ public class PartController {
         return "PartsList";
     }
 
+    // Get Single Part
     @GetMapping("/view/{id}")
     public String getPart(@PathVariable("id") Long id, Model model) {
         PartDto part = partService.getPart(id);
@@ -40,6 +43,7 @@ public class PartController {
         return "PartGet";
     }
 
+    // Create New Part
     @GetMapping("/create")
     public String createPart(Model model){
         model.addAttribute("Part", new PartDto());
@@ -55,6 +59,7 @@ public class PartController {
         return "PartDisplay";
     }
 
+    // Update Part
     @GetMapping("/update/{id}")
     public String updatePart(@PathVariable("id") Long id, Model model) {
         Part part = partRepository.findById(id)
@@ -74,6 +79,7 @@ public class PartController {
         return "redirect:/parts/";
     }
 
+    // Delete Part
     @GetMapping("/delete/{id}")
     public String deletePart(@PathVariable("id") Long id, Model model) {
         Part part = partRepository.findById(id)

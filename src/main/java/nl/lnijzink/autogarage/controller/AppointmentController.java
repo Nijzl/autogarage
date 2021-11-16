@@ -34,6 +34,7 @@ public class AppointmentController {
         this.carService = carService;
         this.carRepository = carRepository;}
 
+    // Get List of Appointments
     @GetMapping("/")
     public String getAppointments(Model model) {
         var appointments = appointmentService.getAppointments();
@@ -41,6 +42,7 @@ public class AppointmentController {
         return "AppointmentsList";
     }
 
+    // Get Single Appointment
     @GetMapping("/view/{id}")
     public String getAppointment(@PathVariable("id") Long id, Model model) {
         AppointmentDto appointment = appointmentService.getAppointment(id);
@@ -48,6 +50,7 @@ public class AppointmentController {
         return "AppointmentGet";
     }
 
+    // Create New Appointment
     @GetMapping("/create")
     public String createAppointment(Model model){
         model.addAttribute("Appointment", new AppointmentDto());
@@ -61,6 +64,7 @@ public class AppointmentController {
         return "AppointmentDisplay";
     }
 
+    // Update Appointment
     @GetMapping("/update/{id}")
     public String updateAppointment(@PathVariable("id") Long id, Model model) {
         Appointment appointment = appointmentRepository.findById(id)
@@ -80,6 +84,7 @@ public class AppointmentController {
         return "redirect:/appointments/";
     }
 
+    // Delete Appointment
     @GetMapping("/delete/{id}")
     public String deleteAppointment(@PathVariable("id") Long id, Model model) {
         Appointment appointment = appointmentRepository.findById(id)
@@ -88,6 +93,7 @@ public class AppointmentController {
         return "redirect:/appointments/";
     }
 
+    // Assign Appointment to Car
     @GetMapping("/car")
     public String assignAppointmentToCar(Model model){
         model.addAttribute("Car", new CarDto());
@@ -103,40 +109,6 @@ public class AppointmentController {
         appointmentService.assignAppointmentToCar(licencePlate, id);
         return "LinkCarAndAppointmentSuccessful";
     }
-
-
-
-
-/*        @GetMapping("/car")
-        public String assignAppointmentToCar(Model model) {
-            model.addAttribute("cars", carRepository.findAll());
-*//*            model.addAttribute("Appointments", appointmentRepository.findAll());*//*
-            return "LinkCarAndAppointment";
-        }
-
-    @PostMapping("/car")
-    public String assignAppointmentToCar(@RequestParam String licencePlate,
-                                      @RequestParam Long id) {
-        appointmentService.assignAppointmentToCar(licencePlate, id);
-        return "LinkCarAndAppointmentSuccessful";
-    }
-    */
-    /*    @GetMapping("/car")
-    public String assignAppointmentToCar(Model model) {
-model.addAttribute("Car", new CarDto());
-        model.addAttribute("Appointment", new AppointmentDto());
-        var cars = carService.getCars();
-        model.addAttribute("listOfCars", cars);
-        var appointments = appointmentService.getAppointments();
-        model.addAttribute("listOfAppointments", appointments);
-        return "LinkCarAndAppointment";
-    }*/
-/*        model.addAttribute("Car", new CarDto());
-        model.addAttribute("Appointment", new AppointmentDto());
-        model.addAttribute("listOfCars", carRepository.findAll());
-        model.addAttribute("listOfAppointments", appointmentRepository.findAll());
-        return "LinkCarAndAppointment";
-    }*/
 
  }
 

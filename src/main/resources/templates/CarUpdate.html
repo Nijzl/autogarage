@@ -3,52 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>CarUpdate</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
 </head>
 <body>
 
-<form action="#"
-      th:action="@{/cars/update/{licencePlate}(licencePlate=${car.licencePlate})}"
-      th:object="${car}"
-      method="post">
-    <label for="licencePlate"> Licence plate: </label>
-    <input type="text" th:field="*{licencePlate}" id="licencePlate" placeholder="${licencePlate}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('licencePlate')}" >
-        Licence Plate Error</p>
-    <br>
+    <form action="#"
+          th:action="@{/cars/update/{licencePlate}(licencePlate=${car.licencePlate})}"
+          th:object="${car}"
+          method="post">
 
-    <label for="brand"> Brand: </label>
-    <input type="text" th:field="*{brand}" id="brand" placeholder="${brand}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
-        Brand Error</p>
-    <br>
+        <label for="licencePlate"> Licence plate: </label>
+            <input type="text" th:field="*{licencePlate}" id="licencePlate" placeholder="${licencePlate}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('licencePlate')}" >
+                Licence Plate Error</p>
+        <br>
 
-    <label for="model"> Model: </label>
-    <input type="text" th:field="*{model}" id="model" placeholder="${model}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('model')}" >
-        Model Error</p>
-    <br>
+        <label for="brand"> Brand: </label>
+            <input type="text" th:field="*{brand}" id="brand" placeholder="${brand}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('brand')}" >
+                Brand Error</p>
+        <br>
 
-    <label for="year"> Year: </label>
-    <input type="number" th:field="*{year}" id="year" placeholder="${year}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('year')}" >
-        Year Error</p>
-    <br>
+        <label for="model"> Model: </label>
+            <input type="text" th:field="*{model}" id="model" placeholder="${model}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('model')}" >
+                Model Error</p>
+        <br>
 
-    <label for="owner"> Owner: </label>
-    <input type="text" th:field="*{owner}" id="owner" placeholder="${owner}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('owner')}" >
-        Owner Error</p>
-    <br>
+        <label for="year"> Year: </label>
+            <input type="number" th:field="*{year}" id="year" placeholder="${year}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('year')}" >
+                Year Error</p>
+        <br>
 
-    <input type="submit" value="Update">
-    <br>
+        <label for="owner"> Owner: </label>
+            <input type="text" th:field="*{owner}" id="owner" placeholder="${owner}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('owner')}" >
+                Owner Error</p>
+        <br>
 
+        <br>
+        <br>
+        <input type="submit" value="Update">
+        <br>
 
-</form>
+    </form>
 </body>
 </html>

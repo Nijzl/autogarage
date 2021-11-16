@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AppointmentServiceImpl implements AppointmentService{
+public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final CarRepository carRepository;
@@ -22,6 +22,7 @@ public class AppointmentServiceImpl implements AppointmentService{
     public AppointmentServiceImpl(AppointmentRepository appointmentRepository, CarRepository carRepository){
         this.appointmentRepository = appointmentRepository;
         this.carRepository = carRepository;}
+
 
     //Get List of Appointments
     @Override
