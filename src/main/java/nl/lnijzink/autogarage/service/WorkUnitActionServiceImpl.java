@@ -1,10 +1,9 @@
 package nl.lnijzink.autogarage.service;
 
+import nl.lnijzink.autogarage.dto.WorkUnitActionDto;
+import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
 import nl.lnijzink.autogarage.exception.RecordNotFoundException;
-import nl.lnijzink.autogarage.model.Action;
-import nl.lnijzink.autogarage.model.WorkUnit;
-import nl.lnijzink.autogarage.model.WorkUnitAction;
-import nl.lnijzink.autogarage.model.WorkUnitActionKey;
+import nl.lnijzink.autogarage.model.*;
 import nl.lnijzink.autogarage.reposit.ActionRepository;
 import nl.lnijzink.autogarage.reposit.WorkUnitActionRepository;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
@@ -35,7 +34,7 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
         return workUnitActions;
     }
 
-    @Override
+/*    @Override
     public Collection<WorkUnit> getWorkUnitsByActionId(Long actionId){
         Collection<WorkUnit> workUnits = new HashSet<>();
         Collection<WorkUnitAction> workUnitActions = workUnitActionRepository.findAllByActionId(actionId);
@@ -43,35 +42,37 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
             workUnits.add(workUnitAction.getWorkUnit());
         }
         return workUnits;
-    }
+    }*/
 
     @Override
-    public Collection<Action> getActionsByWorkUnitId(Long workUnitId){
-        Collection<Action> actions = new HashSet<>();
+    public Collection<WorkUnitAction> getWorkUnitActionsByWorkUnitId(Long workUnitId) {
+        Collection<WorkUnitAction> actionList = new HashSet<>();
         Collection<WorkUnitAction> workUnitActions = workUnitActionRepository.findAllByWorkUnitId(workUnitId);
-        for(WorkUnitAction workUnitAction : workUnitActions){
-            actions.add(workUnitAction.getAction());
+        for(WorkUnitAction workUnitAction : workUnitActions) {
+            actionList.add(workUnitAction);
         }
-        return actions;
+        return actionList;
     }
 
-    @Override
+/*    @Override
     public WorkUnitAction getWorkUnitActionById(Long workUnitId, Long actionId){
         return workUnitActionRepository.findById(new WorkUnitActionKey(workUnitId, actionId)).orElse(null);
-    }
+    }*/
 
     @Override
-    public WorkUnitActionKey addWorkUnitAction(Long workUnitId, Long actionId){
-        var workUnitAction = new WorkUnitAction();
-        if(!workUnitRepository.existsById(workUnitId)) {throw new RecordNotFoundException();}
-        WorkUnit workUnit = workUnitRepository.findById(workUnitId).orElse(null);
-        if(!actionRepository.existsById(actionId)) {throw new RecordNotFoundException();}
-        Action action = actionRepository.findById(actionId).orElse(null);
-        workUnitAction.setWorkUnit(workUnit);
-        workUnitAction.setAction(action);
-        WorkUnitActionKey id = new WorkUnitActionKey(workUnitId, actionId);
-        workUnitAction.setId(id);
-        return id;
+    public WorkUnitAction addWorkUnitAction(WorkUnitActionDto workUnitAction) {
+        var workUnitAction1 = new WorkUnitAction();
+        if(!workUnitRepository.existsById(workUnitAction.getWorkUnitId())) {throw new RecordNotFoundException();}
+        WorkUnit workUnit = workUnitRepository.findById(workUnitAction.getWorkUnitId()).orElse(null);
+        if(!actionRepository.existsById(workUnitAction.getActionId())) {throw new RecordNotFoundException();}
+        Action action = actionRepository.findById(workUnitAction.getActionId()).orElse(null);
+        workUnitAction1.setWorkUnit(workUnit);
+        workUnitAction1.setAction(action);
+        WorkUnitActionKey id = new WorkUnitActionKey(workUnitAction.getWorkUnitId(), workUnitAction.getActionId());
+        workUnitAction1.setId(id);
+        workUnitAction1.setAmount(workUnitAction.getAmount());
+        workUnitActionRepository.save(workUnitAction1);
+        return workUnitAction1;
     }
 
 }

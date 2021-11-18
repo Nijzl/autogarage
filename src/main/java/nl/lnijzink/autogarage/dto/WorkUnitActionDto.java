@@ -14,16 +14,8 @@ import java.util.List;
 @Setter
 public class WorkUnitActionDto {
 
-/*    private WorkUnit workUnit;
-
-    private Action action;
-
-    private Long amount;*/
-
-    private List<WorkUnitAction> actions;
-
-    public void addAction(WorkUnitAction action) {
-        this.actions.add(action);
-    }
+    Long workUnitId;
+    Long ActionId;
+    Long amount;
 
 }

@@ -45,10 +45,10 @@
             <th> Mechanic </th>
             <th> Customer Status </th>
             <th> Repair Status </th>
-            <th> View </th>
+            <th> View Customer Info </th>
             <th> Update Customer Info </th>
-            <th> Update Parts </th>
-            <th> Update Actions </th>
+            <th> Update/View Parts </th>
+            <th> Update/View Actions </th>
             <th> Delete </th>
         </tr>
         </thead>
@@ -60,10 +60,10 @@
             <td><span th:text="${workUnit.mechanic}"></span></td>
             <td><span th:text="${workUnit.customerStatus}"></span></td>
             <td><span th:text="${workUnit.repairStatus}"></span></td>
-            <td><a th:href="@{/workUnit/view/{id}(id=${workUnit.id})}"> View </a></td>
-            <td><a th:href="@{/workUnit/update/{id}(id=${workUnit.id})}"> Update </a></td>
-            <td><a th:href="@{/workUnitParts/addWorkUnitPart/{id}(id=${workUnit.id})}"> Update Parts </a></td>
-            <td><a th:href="@{/workUnitActions/addAction/{id}(id=${workUnit.id})}"> Update Actions </a></td>
+            <td><a th:href="@{/workUnit/view/{id}(id=${workUnit.id})}"> View Customer Info </a></td>
+            <td><a th:href="@{/workUnit/update/{id}(id=${workUnit.id})}"> Update Customer Info </a></td>
+            <td><a th:href="@{/workUnitParts/addWorkUnitPart/{id}(id=${workUnit.id})}"> Update/View Parts </a></td>
+            <td><a th:href="@{/workUnitActions/addWorkUnitAction/{id}(id=${workUnit.id})}"> Update/View Actions </a></td>
             <td><a th:href="@{/workUnit/delete/{id}(id=${workUnit.id})}"> Delete </a></td>
 
         </tr>

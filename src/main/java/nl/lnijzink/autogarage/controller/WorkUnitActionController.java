@@ -1,6 +1,8 @@
 package nl.lnijzink.autogarage.controller;
 
+import nl.lnijzink.autogarage.dto.WorkUnitActionDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.model.WorkUnitAction;
 import nl.lnijzink.autogarage.model.WorkUnitPart;
@@ -39,7 +41,29 @@ public class WorkUnitActionController {
             this.workUnitRepository = workUnitRepository;
     }
 
+    @GetMapping("/addWorkUnitAction/{id}")
+    public String addAction(@PathVariable("id") Long id, Model model) {
+        WorkUnitAction workUnitAction = new WorkUnitAction();
+        WorkUnit workUnit = workUnitRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
+        model.addAttribute("workUnit", workUnit);
+        model.addAttribute("workUnits", workunitService.getWorkUnits());
+        model.addAttribute("workUnitAction", workUnitAction);
+        model.addAttribute("listOfCars", carService.getCars());
+        model.addAttribute("listOfEmployees", employeeService.getEmployees());
+        model.addAttribute("listOfActions", actionService.getActions());
+        model.addAttribute("listOfWorkUnitActions", workUnitActionService.getWorkUnitActionsByWorkUnitId(id));
+        return "WorkUnitActionUpdate";
+    }
 
+    @PostMapping("/addWorkUnitAction/{id}")
+    public String addAction(@PathVariable("id")  Long id, WorkUnitActionDto workUnitAction){
+        workUnitActionService.addWorkUnitAction(workUnitAction);
+        return "redirect:/workUnit/";
+    }
+
+
+/*
     @GetMapping("/")
     public String getWorkUnits(Model model) {
         var workUnits = workunitService.getWorkUnits();
@@ -64,18 +88,18 @@ public class WorkUnitActionController {
 
         var wu = workunitService.createWorkUnit(wdto);
 
-/*        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
+*//*        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
             workUnitPartService.addWorkUnitPart(wu, wup.getId().getPartId());
         }
 
         for (WorkUnitAction wua : wdto.getWorkUnitActions()) {
             workUnitActionService.addWorkUnitAction(wu, wua.getId().getActionId());
-        }*/
+        }*//*
 
         return "WorkUnitDisplay";
     }
 
-/*    @GetMapping("/check-not-agreed")
+*//*    @GetMapping("/check-not-agreed")
     public String checkNotAgreed(){
         return "WorkUnitQuintanceCheck";
     }
@@ -93,7 +117,7 @@ public class WorkUnitActionController {
     @GetMapping("/quintance/repair")
     public String quintanceRepair(){
         return "WorkUnitQuintanceRepair";
-    }*/
+    }*//*
 
     @GetMapping("/addAction/{id}")
     public String addAction(@PathVariable("id") Long id, Model model) {
@@ -107,6 +131,6 @@ public class WorkUnitActionController {
         model.addAttribute("listOfActions", actionService.getActions());
         model.addAttribute("listOfWorkUnitActions", new ArrayList<>());
         return "WorkUnitActionUpdate";
-    }
+    }*/
 
 }

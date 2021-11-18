@@ -1,9 +1,7 @@
 package nl.lnijzink.autogarage.service;
 
-import nl.lnijzink.autogarage.model.Action;
-import nl.lnijzink.autogarage.model.WorkUnit;
-import nl.lnijzink.autogarage.model.WorkUnitAction;
-import nl.lnijzink.autogarage.model.WorkUnitActionKey;
+import nl.lnijzink.autogarage.dto.WorkUnitActionDto;
+import nl.lnijzink.autogarage.model.*;
 
 import java.util.Collection;
 
@@ -11,9 +9,9 @@ public interface WorkUnitActionService {
 
     Collection<WorkUnitAction> getAllWorkUnitActions();
 
-    Collection<WorkUnit> getWorkUnitsByActionId(Long actionId);
-    Collection<Action> getActionsByWorkUnitId(Long workUnitId);
-    WorkUnitAction getWorkUnitActionById(Long workUnitId, Long actionId);
-    WorkUnitActionKey addWorkUnitAction(Long workUnitId, Long actionId);
+/*    Collection<WorkUnit> getWorkUnitsByActionId(Long actionId);*/
+    Collection<WorkUnitAction> getWorkUnitActionsByWorkUnitId(Long workUnitId);
+/*    WorkUnitAction getWorkUnitActionById(Long workUnitId, Long actionId);*/
+    WorkUnitAction addWorkUnitAction(WorkUnitActionDto workUnitAction);
 
 }

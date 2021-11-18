@@ -10,6 +10,7 @@ import lombok.Setter;
 //@Getter
 //@Setter
 public class WorkUnitPartDto {
+
     Long workUnitId;
     Long partId;
     Long amount;
