@@ -6,22 +6,26 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/workUnitParts/create}" th:object="${form}"
+<form action="#" th:action="@{/workUnitParts/create}" th:object="${workUnitParts}"
       method="post">
-    <fieldset>
+<!--    <fieldset>-->
         <input type="submit" id="submitButton" th:value="Save">
         <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
         <table>
-            <tbody>
-            <tr th:each="workUnitPart, itemStat : ${form.partsForm}">
+            <tr th:each="part : ${listOfParts}">
 
                 <td>
-                    <th:block th:each="p : ${listOfParts}" >
-                        <input type="checkbox" th:field="*{workUnitParts}" name="p.name" th:value="p.name"/>
-                        <label th:text="${p.name}"></label>
-                    </th:block>
+                    <input type="text" name="workUnitId" />
                 </td>
-                <td><input th:field="*{partsForm[__${itemStat.index}__].amount}" /></td>
+                <td>
+                    <input type="text" name="partId" />
+                </td>
+                <td>
+                    <input type="text" name="amount" />
+                </td>
+
+
+
 <!--                <td>-->
 <!--                    <input hidden th:name="|partsForm[${itemStat.index}].id|"-->
 <!--                           th:value="${form.getPart}"/>-->
@@ -34,9 +38,8 @@
 <!--                           th:value="${workUnitPart.getAmount()}"/>-->
 <!--                </td>-->
             </tr>
-            </tbody>
         </table>
-    </fieldset>
+<!--    </fieldset>-->
 </form>
 
 

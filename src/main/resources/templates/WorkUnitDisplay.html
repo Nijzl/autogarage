@@ -30,7 +30,17 @@
 <div align="center">
 
     <h2>Registration succeeded</h2>
+<!--    <th> ID: </th> <th th:text="${WorkUnit.id}"></th><br/>-->
+    <th> Type: </th> <th th:text="${WorkUnit.type}"></th><br/>
+    <th> Car: </th> <th th:text="${WorkUnit.car.licencePlate}"></th><br/>
+    <th> Mechanic: </th> <th th:text="${WorkUnit.mechanic}"></th><br/>
+    <th> Customer Status: </th> <th th:text="${WorkUnit.customerStatus}"></th><br/>
+    <th> Repair Status: </th> <th th:text="${WorkUnit.repairStatus}"></th><br/>
+    <br>
 
+    <br>
+    <br>
+    <a href="/workUnit/"> Back to work units list </a>
     <br>
     <br>
     <a href="/home">Back to home page</a>

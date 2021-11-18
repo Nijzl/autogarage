@@ -1,14 +1,19 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Entity
+@Entity(name = "Customer")
+@Table(name = "customers")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Customer {
@@ -26,7 +31,7 @@ public class Customer {
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();
 
-    //getters and setters
+    //Getters and setters
     public Collection<Car> getCars() {
         return cars;
     }
@@ -35,9 +40,7 @@ public class Customer {
         this.cars = cars;
     }
 
-    // constructors
-    public Customer(){}
-
+    // Constructors
     public Customer(String fullName, String address, String phoneNumber, String email){
         this.fullName = fullName;
         this.address = address;

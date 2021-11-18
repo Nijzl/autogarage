@@ -1,14 +1,18 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+//@Setter
 public class WorkUnitPart {
 
     @EmbeddedId
@@ -27,4 +31,45 @@ public class WorkUnitPart {
 
     private Long amount;
 
+    public WorkUnitPart() {
+    }
+
+    public WorkUnitPart(WorkUnitPartKey id, WorkUnit workUnit, Part part, Long amount) {
+        this.id = id;
+        this.workUnit = workUnit;
+        this.part = part;
+        this.amount = amount;
+    }
+
+    public WorkUnitPartKey getId() {
+        return id;
+    }
+
+    public void setId(WorkUnitPartKey id) {
+        this.id = id;
+    }
+
+    public WorkUnit getWorkUnit() {
+        return workUnit;
+    }
+
+    public void setWorkUnit(WorkUnit workUnit) {
+        this.workUnit = workUnit;
+    }
+
+    public Part getPart() {
+        return part;
+    }
+
+    public void setPart(Part part) {
+        this.part = part;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
 }

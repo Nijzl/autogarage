@@ -1,0 +1,175 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkUnitUpdate</title>
+    <style type="text/css">
+        label {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+            text-align: left;
+        }
+        input[type=text], input[type=password], select {
+            display: inline-block;
+            width: 200px;
+        }
+        input[type=radio] {
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            margin-right: 190px;
+        }
+        button {
+            padding: 5px;
+            margin: 10px;
+        }
+        .hasErrors{
+            color: red;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="#"
+          th:action="@{/workUnit/update/{id}(id=${workUnit.id})}"
+          th:object="${workUnit}"
+          method="post">
+
+        <h2> Update </h2>
+
+        <label> Type: </label>
+        <select id="type" name="type">
+            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
+            <option th:value="REPAIR" th:text="Repair"></option>
+        </select>
+        <br>
+        <br>
+
+        <label> Car: </label>
+        <select id="car" name="car">
+            &lt;!&ndash;            <option th:value="">Select a car</option>&ndash;&gt;
+            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+        </select>
+        <br>
+        <br>
+
+        <label> Mechanic: </label>
+        <select id="mechanic" name="mechanic">
+            &lt;!&ndash;            <option th:value="">Select an employee</option>&ndash;&gt;
+            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
+        </select>
+        <br>
+        <br>
+
+        <label> Check Status: </label>
+        <select id="checkAgree" name="checkAgree">
+            <option th:value="false" th:selected="false">Don't agree</option>
+            <option th:value="true">Agree</option>
+        </select>
+        <br>
+        <br>
+
+        <label> Repair Status </label>
+        <select id="repairPerformed" name="repairPerformed">
+            <option th:value="false" th:selected="false">Not performed yet</option>
+            <option th:value="true">Performed</option>
+        </select>
+        <br>
+
+        <br>
+        <br>
+        <input type="submit" value="Update">
+
+    </form>
+
+
+</body>
+</html>-->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thymeleaf Form handling Demo</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+</head>
+<body class="container">
+
+<h1 class="py-5">Thymeleaf Form handling Demo</h1>
+
+    <h2>Registration succeeded</h2>
+        <th> ID: </th> <th th:text="${workUnit.id}"></th><br/>
+        <th> Type: </th> <th th:text="${workUnit.type}"></th><br/>
+        <th> Car: </th> <th th:text="${workUnit.car.licencePlate}"></th><br/>
+        <th> Mechanic: </th> <th th:text="${workUnit.mechanic}"></th><br/>
+        <th> Customer Status: </th> <th th:text="${workUnit.customerStatus}"></th><br/>
+        <th> Repair Status: </th> <th th:text="${workUnit.repairStatus}"></th><br/>
+        <br>
+
+    <form action="#"
+          th:action="@{/workUnitActions/addAction/{id}(id=${workUnit.id})}"
+          th:object="${workUnitAction}"
+          method="post">
+
+        <h2> Form 2 Update </h2>
+
+        <div class="form-group">
+            <label for="workUnit">workUnit</label>
+            <input id="workUnit" type="text" th:placeholder="${workUnit.id}" th:field="*{workUnit.id}"
+                   class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <!--            <label for="partName">Part Name</label>
+                        <input id="partName" placeholder="partName" type="text" th:field="*{partName}"
+                               class="form-control"/>-->
+            <select id="action" name="action">
+                <!--            <option th:value="">Select a car</option>-->
+                <option th:each="action : ${listOfActions}" th:value="${action.id}" th:text="${action.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input id="amount" placeholder="amount" type="number" th:field="*{amount}"
+                   class="form-control"/>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value=" Update">
+
+    </form>
+
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th> WorkUnit </th>
+            <th> Part </th>
+            <th> Amount </th>
+        </tr>
+        <tr th:if="${#lists.isEmpty(listOfWorkUnitActions)}">
+            <td colspan="5"> No parts added </td>
+        </tr>
+        <tr th:each="workUnitPart : ${listOfWorkUnitActions}">
+            <td th:text="${workUnitAction.workUnit}"></td>
+            <td th:text="${workUnitAction.action}"></td>
+            <td th:text="${workUnitAction.amount}"></td>
+        </tr>
+    </table>
+
+
+    <br>
+    <br>
+    <br>
+    <a href="/workUnit/"> Back to work units list </a>
+    <br>
+    <br>
+    <a href="/home">Back to home page</a>
+
+
+</body>
+</html>

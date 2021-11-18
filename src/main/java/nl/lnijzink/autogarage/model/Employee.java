@@ -1,11 +1,16 @@
 package nl.lnijzink.autogarage.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Employee")
+@Table(name = "employees")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Employee {
@@ -15,8 +20,6 @@ public class Employee {
     Long id;
     String name;
     String role;
-
-    public Employee(){}
 
     public Employee(String name, String role) {
         this.name = name;

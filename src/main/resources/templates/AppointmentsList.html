@@ -55,7 +55,7 @@
                 <td><span th:text="${appointment.date}"> Date </span></td>
                 <td><span th:text="${appointment.time}"> Time </span></td>
                 <td><span th:text="${appointment.type}"> Type </span></td>
-                <td><span th:text="${appointment.car}"> Car </span></td>
+                <td><span th:text="${appointment.car.licencePlate}"> Car </span></td>
                 <td><a th:href="@{/appointments/view/{id}(id=${appointment.id})}"> View </a></td>
                 <td><a th:href="@{/appointments/update/{id}(id=${appointment.id})}"> Update </a></td>
                 <td><a th:href="@{/appointments/delete/{id}(id=${appointment.id})}"> Delete </a></td>

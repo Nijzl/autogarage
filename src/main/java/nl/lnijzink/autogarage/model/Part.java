@@ -1,7 +1,9 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -9,7 +11,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.Collection;
 
-@Entity
+@Entity(name = "Part")
+@Table(name = "parts")
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class Part {
@@ -25,8 +30,6 @@ public class Part {
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
-
-    public Part(){}
 
     public Part(String name, Float price, Long quantity) {
         this.name = name;

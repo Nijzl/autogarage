@@ -107,7 +107,7 @@
 
 
 <div align="center">
-    <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${WorkUnit}">
+    <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${workUnit}">
 
         <h2>New Work Unit</h2>
 
@@ -133,6 +133,8 @@
             <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
         </select>
         <br>
+
+
 
 <!--
         <td>
@@ -172,19 +174,19 @@
 <!--        <br>-->
 
         <br>
-        <label>IF CHECK: Select a customer status: </label>
-        <label>IF REPAIR: Select a repair status: </label>
-        <br>
-        <br>
 
-        <select id="checkAgree" name="checkAgree">
-            <option th:value="false" th:selected="false">Don't agree</option>
-            <option th:value="true">Agree</option>
+        <label> Customer Status </label>
+        <select id="customerStatus" name="customerStatus">
+            <option th:value="DISAGREE" selected="DISAGREE"> Disagree </option>
+            <option th:value="AGREE"> Agree </option>
         </select>
+        <br>
+        <br>
 
-        <select id="repairPerformed" name="repairPerformed">
-            <option th:value="false" th:selected="false">Not performed yet</option>
-            <option th:value="true">Performed</option>
+        <label> Repair Status </label>
+        <select id="repairStatus" name="repairStatus">
+            <option th:value="NOTPERFORMED" selected="NOTPERFORMED"> Not performed yet </option>
+            <option th:value="PERFORMED"> Performed </option>
         </select>
         <br>
         <br>

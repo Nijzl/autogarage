@@ -1,5 +1,6 @@
 package nl.lnijzink.autogarage.service;
 
+import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
 import nl.lnijzink.autogarage.model.Part;
 import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.model.WorkUnitPartKey;
@@ -11,9 +12,10 @@ public interface WorkUnitPartService {
 
     Collection<WorkUnitPart> getAllWorkUnitParts();
 
-    Collection<WorkUnit> getWorkUnitsByPartId(Long partId);
-    Collection<Part> getPartsByWorkUnitId(Long workUnitId);
-    WorkUnitPart getWorkUnitPartById(Long workUnitId, Long partId);
-    WorkUnitPartKey addWorkUnitPart(Long workUnitId, Long partId);
+//   Collection<WorkUnit> getWorkUnitsByPartId(Long partId);
+   Collection<WorkUnitPart> getWorkUnitPartsByWorkUnitId(Long workUnitId);
+   // WorkUnitPart getWorkUnitPartById(Long workUnitId, Long partId);
+    WorkUnitPart addWorkUnitPart(WorkUnitPartDto workUnitPart);
+
 
 }

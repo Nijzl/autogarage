@@ -41,9 +41,15 @@ public class WorkUnit {
 //    @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
-    private Boolean checkAgree;
+    private CustomerStatus customerStatus;
 
-    private Boolean repairPerformed;
+    private RepairStatus repairStatus;
+
+    private String partName;
+
+    private Float partPrice;
+
+    private Integer amount;
 
     @OneToOne
     private Invoice invoice;
@@ -53,12 +59,12 @@ public class WorkUnit {
 //    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
 //    private WorkUnit workUnit;
 
-    public WorkUnit(Type type, Car car, String mechanic, Boolean checkAgree, Boolean repairPerformed) {
+    public WorkUnit(Type type, Car car, String mechanic, CustomerStatus customerStatus, RepairStatus repairStatus) {
         this.type = type;
         this.car = car;
         this.mechanic = mechanic;
-        this.checkAgree = checkAgree;
-        this.repairPerformed = repairPerformed;
+        this.customerStatus = customerStatus;
+        this.repairStatus = repairStatus;
     }
 
 }
