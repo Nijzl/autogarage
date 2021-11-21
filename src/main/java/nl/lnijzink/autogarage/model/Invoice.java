@@ -20,7 +20,19 @@ public class Invoice {
     Long invoiceId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
     private WorkUnit workUnit;
+
+    private Double subTotalCheck;
+
+    private Double subTotalParts;
+
+    private Double subTotalActions;
+
+    private Double tax;
+
+    private Double total;
+
+    private PaymentStatus paymentStatus;
 
 }

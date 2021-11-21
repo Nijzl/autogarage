@@ -20,9 +20,10 @@ public class Action {
     Long id;
     String name;
     String description;
-    Float price;
+    Double price;
 
-    public Action(String name, String description, Float price){
+
+    public Action(String name, String description, Double price){
         this.name = name;
         this.description = description;
         this.price = price;

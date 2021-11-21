@@ -2,6 +2,8 @@ package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.InvoiceDto;
 import nl.lnijzink.autogarage.model.Invoice;
+import nl.lnijzink.autogarage.model.WorkUnitAction;
+import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.reposit.InvoiceRepository;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,9 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public List<InvoiceDto> getInvoices(){
         ArrayList<InvoiceDto> pList = new ArrayList<>();
-        invoiceRepository.findAll().forEach((p) -> pList.add(new InvoiceDto(p.getInvoiceId()
+        invoiceRepository.findAll().forEach((p) -> pList.add(new InvoiceDto(p.getInvoiceId(), p.getWorkUnit(),
+                p.getSubTotalCheck(), p.getSubTotalParts(), p.getSubTotalActions(), p.getTax(), p.getTotal(),
+                p.getPaymentStatus()
         )));
         return pList;
     }
@@ -34,13 +38,37 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public InvoiceDto getInvoice(Long invoiceId){
         Invoice i = invoiceRepository.findById(invoiceId).get();
-        return new InvoiceDto(i.getInvoiceId());
+        return new InvoiceDto(i.getInvoiceId(),i.getWorkUnit(),i.getSubTotalCheck(),i.getSubTotalParts(),
+                i.getSubTotalActions(),i.getTax(),i.getTotal(),i.getPaymentStatus());
     }
 
     // Create New Invoice
     @Override
     public Long createInvoice(InvoiceDto invoiceDto){
         Invoice i = new Invoice();
+        var totalParts = new ArrayList<Double>();
+        var resultParts = new Double(0);
+        var totalActions = new ArrayList<Double>();
+        var resultActions = new Double(0);
+        for( WorkUnitPart workUnitPart: invoiceDto.getWorkUnit().getWorkUnitParts()) {
+            totalParts.add(workUnitPart.getTotalPartCost());
+        }
+        for( WorkUnitAction workUnitAction: invoiceDto.getWorkUnit().getWorkUnitActions()) {
+            totalActions.add(workUnitAction.getTotalActionCost());
+        }
+        for( Double totalPart: totalParts){
+            resultParts += totalPart;
+        }
+        for( Double totalAction: totalActions){
+            resultActions += totalAction;
+        }
+        i.setSubTotalParts((double)Math.round(resultParts*100)/100);
+        i.setSubTotalActions((double)Math.round(resultActions*100)/100);
+        i.setWorkUnit(invoiceDto.getWorkUnit());
+        i.setPaymentStatus(invoiceDto.getPaymentStatus());
+        i.setSubTotalCheck((double)45);
+        i.setTax((double)0.21);
+        i.setTotal((double) Math.round((i.getSubTotalParts()+i.getSubTotalCheck()+i.getSubTotalActions()) + ((i.getSubTotalParts()+i.getSubTotalCheck()+i.getSubTotalActions()) * i.getTax())*100)/100);
         invoiceRepository.save(i);
         return i.getInvoiceId();
     }

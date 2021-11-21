@@ -2,10 +2,16 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.InvoiceDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
 import nl.lnijzink.autogarage.model.Invoice;
+import nl.lnijzink.autogarage.model.WorkUnit;
+import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.reposit.InvoiceRepository;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.service.InvoiceService;
+import nl.lnijzink.autogarage.service.WorkUnitActionService;
+import nl.lnijzink.autogarage.service.WorkUnitPartService;
+import nl.lnijzink.autogarage.service.WorkUnitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +26,20 @@ public class InvoiceController {
     private final InvoiceService invoiceService;
     private final InvoiceRepository invoiceRepository;
     private final WorkUnitRepository workUnitRepository;
+    private final WorkUnitService workUnitService;
+    private final WorkUnitPartService workUnitPartService;
+    private final WorkUnitActionService workUnitActionService;
 
     protected InvoiceController(InvoiceService invoiceService, InvoiceRepository invoiceRepository,
-                                WorkUnitRepository workUnitRepository){
+                                WorkUnitRepository workUnitRepository, WorkUnitService workUnitService,
+                                WorkUnitPartService workUnitPartService, WorkUnitActionService workUnitActionService){
         this.invoiceService = invoiceService;
         this.invoiceRepository = invoiceRepository;
-        this.workUnitRepository = workUnitRepository;}
+        this.workUnitRepository = workUnitRepository;
+        this.workUnitService = workUnitService;
+        this.workUnitPartService = workUnitPartService;
+        this.workUnitActionService = workUnitActionService;
+    }
 
 
     // Get List of Invoices
@@ -45,14 +59,24 @@ public class InvoiceController {
     }
 
     // Create New Invoice
-    @GetMapping("/create")
-    public String createInvoice(Model model){
-        model.addAttribute("Invoice", new InvoiceDto());
+    @GetMapping("/create/{id}")
+    public String createInvoice(@PathVariable("id") Long id, Model model){
+        Invoice invoice = new Invoice();
+        WorkUnit workUnit = workUnitRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
+        model.addAttribute("invoice", invoice);
+        model.addAttribute("workUnit", workUnit);
+        model.addAttribute("listOfWorkUnitParts", workUnitPartService.getWorkUnitPartsByWorkUnitId(id));
+        model.addAttribute("listOfWorkUnitActions", workUnitActionService.getWorkUnitActionsByWorkUnitId(id));
         return "InvoiceForm";
     }
 
-    @PostMapping("/create")
-    public String createInvoice(@Valid @ModelAttribute("Invoice") InvoiceDto invoiceDto, BindingResult bindingResult){
+    @PostMapping("/create/{id}")
+    public String createInvoice(@PathVariable("id") Long id, Model model, InvoiceDto invoiceDto,
+                                BindingResult bindingResult){
+        WorkUnit workUnit = workUnitRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
+        model.addAttribute("workUnit", workUnit);
         if (bindingResult.hasErrors()) {
             return "InvoiceForm";
         }

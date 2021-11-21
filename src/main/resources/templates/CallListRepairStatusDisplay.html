@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>WorkUnitsList</title>
+    <title>CallListCustomerStatus</title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -34,7 +34,7 @@
 </head>
 <body>
 
-    <h2>Work Units List</h2>
+    <h2>Call List Repair Status</h2>
 
     <table>
         <thead>
@@ -45,12 +45,6 @@
             <th> Mechanic </th>
             <th> Customer Status </th>
             <th> Repair Status </th>
-            <th> View Customer Info </th>
-            <th> Update Customer Info </th>
-            <th> Update/View Parts </th>
-            <th> Update/View Actions </th>
-            <th> Invoice </th>
-            <th> Delete </th>
         </tr>
         </thead>
         <tbody>
@@ -61,12 +55,6 @@
             <td><span th:text="${workUnit.mechanic}"></span></td>
             <td><span th:text="${workUnit.customerStatus}"></span></td>
             <td><span th:text="${workUnit.repairStatus}"></span></td>
-            <td><a th:href="@{/workUnit/view/{id}(id=${workUnit.id})}"> View Customer Info </a></td>
-            <td><a th:href="@{/workUnit/update/{id}(id=${workUnit.id})}"> Update Customer Info </a></td>
-            <td><a th:href="@{/workUnitParts/addWorkUnitPart/{id}(id=${workUnit.id})}"> View/Update Parts </a></td>
-            <td><a th:href="@{/workUnitActions/addWorkUnitAction/{id}(id=${workUnit.id})}"> View/Update Actions </a></td>
-            <td><a th:href="@{/invoices/create/{id}(id=${workUnit.id})}"> Invoice </a></td>
-            <td><a th:href="@{/workUnit/delete/{id}(id=${workUnit.id})}"> Delete </a></td>
         </tr>
         </tbody>
     </table>
@@ -74,9 +62,6 @@
     <br>
     <br>
     <a href="/workUnit/create"> Add work unit </a>
-    <br>
-    <br>
-    <a href="/workUnit/callList/{repairStatus}"> Get call list </a>
     <br>
     <br>
     <a href="/home">Back to home page</a>

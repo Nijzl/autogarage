@@ -112,7 +112,7 @@
 
         <label> Type: </label>
         <select id="type" name="type">
-            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
+            <option th:value="CHECK" th:text="Check"></option>
             <option th:value="REPAIR" th:text="Repair"></option>
         </select>
         <br>
@@ -120,23 +120,23 @@
 
         <label> Car: </label>
         <select id="car" name="car">
-            <!--            <option th:value="">Select a car</option>-->
-            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}"
+                    th:text="${u.licencePlate}"></option>
         </select>
         <br>
         <br>
 
         <label> Mechanic: </label>
         <select id="mechanic" name="mechanic">
-            <!--            <option th:value="">Select an employee</option>-->
-            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
+            <option th:each="e : ${listOfEmployees}" th:value="${e.name}"
+                    th:text="${e.name}"></option>
         </select>
         <br>
         <br>
 
         <label> Check Status: </label>
         <select id="customerStatus" name="customerStatus">
-            <option th:value="DISAGREE" th:selected > Disagree </option>
+            <option th:value="DISAGREE"> Disagree </option>
             <option th:value="AGREE"> Agree </option>
         </select>
         <br>
@@ -144,8 +144,9 @@
 
         <label> Repair Status </label>
         <select id="repairStatus" name="repairStatus">
-            <option th:value="NOTPERFORMED" th:selected > Not performed yet </option>
+            <option th:value="NOTPERFORMED" > Not performed yet </option>
             <option th:value="PERFORMED"> Performed </option>
+            <option th:value="DONTPERFORM"> Don't perform </option>
         </select>
         <br>
 

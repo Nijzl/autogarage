@@ -73,6 +73,7 @@ public class WorkUnitPartServiceImpl implements WorkUnitPartService {
         WorkUnitPartKey id = new WorkUnitPartKey(workUnitPart.getWorkUnitId(), workUnitPart.getPartId());
         workUnitPart1.setId(id);
         workUnitPart1.setAmount(workUnitPart.getAmount());
+        workUnitPart1.setTotalPartCost(part.getPrice()* workUnitPart.getAmount());
         workUnitPartRepository.save(workUnitPart1);
         return workUnitPart1;
     }

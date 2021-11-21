@@ -1,94 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>WorkUnitUpdate</title>
-    <style type="text/css">
-        label {
-            display: inline-block;
-            width: 200px;
-            margin: 5px;
-            text-align: left;
-        }
-        input[type=text], input[type=password], select {
-            display: inline-block;
-            width: 200px;
-        }
-        input[type=radio] {
-            margin-left: 45px;
-        }
-        input[type=checkbox] {
-            margin-right: 190px;
-        }
-        button {
-            padding: 5px;
-            margin: 10px;
-        }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
-    </style>
-</head>
-<body>
-
-    <form action="#"
-          th:action="@{/workUnit/update/{id}(id=${workUnit.id})}"
-          th:object="${workUnit}"
-          method="post">
-
-        <h2> Update </h2>
-
-        <label> Type: </label>
-        <select id="type" name="type">
-            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
-            <option th:value="REPAIR" th:text="Repair"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Car: </label>
-        <select id="car" name="car">
-            &lt;!&ndash;            <option th:value="">Select a car</option>&ndash;&gt;
-            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Mechanic: </label>
-        <select id="mechanic" name="mechanic">
-            &lt;!&ndash;            <option th:value="">Select an employee</option>&ndash;&gt;
-            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Check Status: </label>
-        <select id="checkAgree" name="checkAgree">
-            <option th:value="false" th:selected="false">Don't agree</option>
-            <option th:value="true">Agree</option>
-        </select>
-        <br>
-        <br>
-
-        <label> Repair Status </label>
-        <select id="repairPerformed" name="repairPerformed">
-            <option th:value="false" th:selected="false">Not performed yet</option>
-            <option th:value="true">Performed</option>
-        </select>
-        <br>
-
-        <br>
-        <br>
-        <input type="submit" value="Update">
-
-    </form>
-
-
-</body>
-</html>-->
-
-
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
@@ -101,46 +10,30 @@
 </head>
 <body class="container">
 
-<h1 class="py-5">Thymeleaf Form handling Demo</h1>
+<h1> Add parts to work unit </h1>
 
-    <h2>Registration succeeded</h2>
-        <th> ID: </th> <th th:text="${workUnit.id}"></th><br/>
-        <th> Type: </th> <th th:text="${workUnit.type}"></th><br/>
-        <th> Car: </th> <th th:text="${workUnit.car.licencePlate}"></th><br/>
-        <th> Mechanic: </th> <th th:text="${workUnit.mechanic}"></th><br/>
-        <th> Customer Status: </th> <th th:text="${workUnit.customerStatus}"></th><br/>
-        <th> Repair Status: </th> <th th:text="${workUnit.repairStatus}"></th><br/>
-        <br>
+<div th:object="${workUnit}">
+    <h2> Selected work unit </h2>
+    <th> ID: </th> <th th:text="${workUnit.id}"></th><br/>
+    <th> Type: </th> <th th:text="${workUnit.type}"></th><br/>
+    <th> Car: </th> <th th:text="${workUnit.car.licencePlate}"></th><br/>
+    <th> Mechanic: </th> <th th:text="${workUnit.mechanic}"></th><br/>
+    <th> Customer Status: </th> <th th:text="${workUnit.customerStatus}"></th><br/>
+    <th> Repair Status: </th> <th th:text="${workUnit.repairStatus}"></th><br/>
+    <br>
+</div>
 
     <form action="#"
           th:action="@{/workUnitParts/addWorkUnitPart/{id}(id=${workUnit.id})}"
           th:object="${workUnitPart}"
           method="post">
 
-        <h2> Form 2 Update </h2>
+        <h2> Add parts </h2>
 
-<!--        <div class="form-group">-->
-<!--            <label for="workUnit">workUnit</label>-->
-<!--            <input id="workUnit" type="number" th:placeholder="${workUnit.id}" th:attr="value = ${workUnit.id}"-->
-<!--                   th:field="*{workUnit.id}"-->
-<!--                   class="form-control"/>-->
-<!--        </div>-->
-        <div class="form-group">
-            <!--            <label for="partName">Part Name</label>
-                        <input id="partName" placeholder="partName" type="text" th:field="*{partName}"
-                               class="form-control"/>-->
-            <select id="workUnitId" name="workUnitId">
-                <!--            <option th:value="">Select a car</option>-->
-                <option th:each="workUnit : ${workUnits}" th:value="${workUnit.id}" th:text="${workUnit.id}"></option>
-            </select>
-        </div>
+        <input hidden type="text" th:value="${workUnit.id}" id="workUnitId" name="workUnitId" />
 
         <div class="form-group">
-            <!--            <label for="partName">Part Name</label>
-                        <input id="partName" placeholder="partName" type="text" th:field="*{partName}"
-                               class="form-control"/>-->
             <select id="partId" name="partId">
-                <!--            <option th:value="">Select a car</option>-->
                 <option th:each="part : ${listOfParts}" th:value="${part.id}" th:text="${part.name}"></option>
             </select>
         </div>
@@ -151,7 +44,7 @@
                    class="form-control"/>
         </div>
 
-        <input type="submit" class="btn btn-primary" value=" Update">
+        <input type="submit" class="btn btn-primary" value="Update">
 
     </form>
 
@@ -171,12 +64,9 @@
         </tr>
     </table>
 
-
-    <br>
     <br>
     <br>
     <a href="/workUnit/"> Back to work units list </a>
-    <br>
     <br>
     <a href="/home">Back to home page</a>
     <br>

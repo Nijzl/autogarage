@@ -3,13 +3,19 @@ package nl.lnijzink.autogarage.service;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
 import nl.lnijzink.autogarage.model.Customer;
+import nl.lnijzink.autogarage.model.CustomerStatus;
+import nl.lnijzink.autogarage.model.RepairStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
+import nl.lnijzink.autogarage.storage.StorageException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static nl.lnijzink.autogarage.model.RepairStatus.PERFORMED;
 
 @Service
 public class WorkUnitServiceImpl implements WorkUnitService {
@@ -56,5 +62,26 @@ public class WorkUnitServiceImpl implements WorkUnitService {
             workUnitRepository.deleteById(id);
         }
     }
+
+/*    // Get List of Work Units where RepairStatus is PERFORMED
+    @Override
+    public List<WorkUnitDto> getWorkUnitsWhereRepairStatusIsPerformed(RepairStatus repairStatus) {
+        ArrayList<WorkUnitDto> pList = new ArrayList<>();
+        var workUnitDtos = workUnitRepository.findAll();
+        for (WorkUnit workUnit : workUnitDtos) {
+            if (workUnit.getRepairStatus().equals(PERFORMED)) {
+                pList.add(new WorkUnitDto(workUnit.getId(), workUnit.getType(), workUnit.getCar(),
+                        workUnit.getMechanic(), workUnit.getCustomerStatus(), workUnit.getRepairStatus()
+                ));
+            }
+        }
+        return pList;
+    }*/
+
+/*    @Override
+    public Collection<WorkUnit> getAllByRepairStatus (String repairStatus) {
+        var workUnits = workUnitRepository.findAllByRepairStatusEquals(repairStatus);
+        return workUnits;
+    }*/
 
 }

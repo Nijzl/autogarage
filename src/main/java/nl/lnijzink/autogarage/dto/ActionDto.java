@@ -26,8 +26,6 @@ public class ActionDto {
     private String description;
 
     @NotNull
-    @DecimalMin("0.00")
-    @DecimalMax("1.00e6")
-    private Float price;
+    private Double price;
 
 }

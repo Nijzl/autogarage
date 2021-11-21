@@ -27,23 +27,32 @@ public class DataLoaderWorkUnit implements CommandLineRunner {
     public void run(String...args) {
 
         // DataLoader Actions
-        Action changeTyre = new Action("Change tyre", "Replacing a tyre with another tyre", 49.99F);
-        Action changeOil = new Action("Change oil", "Refresh the motor oil", 9.99F);
-        Action mot = new Action("MOT test", "Yearly Ministry of Transport test (APK)", 25.00F);
+        Action changeTyre = new Action("Change tyre", "Replacing a tyre with another tyre", 49.99);
+        Action changeOil = new Action("Change oil", "Refresh the motor oil", 9.99);
+        Action changeHeadLight = new Action("Change head light", "Replace one head light with another head light",
+                5.99);
+        Action fixWindShield = new Action("Fix wind shield", "Repair problems with the wind shield", 14.90);
+        Action mot = new Action("MOT test", "Yearly Ministry of Transport test (APK)", 25.00);
 
         changeTyre = actionRepository.save(changeTyre);
         changeOil = actionRepository.save(changeOil);
+        changeHeadLight = actionRepository.save(changeHeadLight);
+        fixWindShield = actionRepository.save(fixWindShield);
         mot = actionRepository.save(mot);
 
 
         // DataLoader Parts
-        Part tyre = new Part("Tyre", 50.00F, 20L);
-        Part oil = new Part("Oil", 5.00F, 5L);
-        Part headLight = new Part("Head light", 1.99F, 40L);
+        Part tyre = new Part("Tyre", 50.00, 20L);
+        Part oil = new Part("Oil", 5.00, 5L);
+        Part headLight = new Part("Head light", 1.99, 40L);
+        Part windShield = new Part("Wind shield", 100.00, 10L);
+        Part blinker = new Part("Blinker", 3.68, 50L);
 
         tyre = partRepository.save(tyre);
         oil = partRepository.save(oil);
         headLight = partRepository.save(headLight);
+        windShield = partRepository.save(windShield);
+        blinker = partRepository.save(blinker);
     }
 
 }

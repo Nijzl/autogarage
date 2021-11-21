@@ -47,7 +47,7 @@ public class WorkUnitActionController {
         WorkUnit workUnit = workUnitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
         model.addAttribute("workUnit", workUnit);
-        model.addAttribute("workUnits", workunitService.getWorkUnits());
+        /*model.addAttribute("workUnits", workunitService.getWorkUnits());*/
         model.addAttribute("workUnitAction", workUnitAction);
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());
@@ -57,9 +57,12 @@ public class WorkUnitActionController {
     }
 
     @PostMapping("/addWorkUnitAction/{id}")
-    public String addAction(@PathVariable("id")  Long id, WorkUnitActionDto workUnitAction){
+    public String addAction(@PathVariable("id") Long id, WorkUnitActionDto workUnitAction, Model model){
+        WorkUnit workUnit = workUnitRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
+        model.addAttribute("workUnit", workUnit);
         workUnitActionService.addWorkUnitAction(workUnitAction);
-        return "redirect:/workUnit/";
+        return "redirect:/workUnitActions/addWorkUnitAction/{id}";
     }
 
 

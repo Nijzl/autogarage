@@ -45,19 +45,8 @@ public class WorkUnit {
 
     private RepairStatus repairStatus;
 
-    private String partName;
-
-    private Float partPrice;
-
-    private Integer amount;
-
     @OneToOne
     private Invoice invoice;
-
-//    @OneToOne
-//    @Nullable
-//    @JoinColumn(name = "workUnit_id", referencedColumnName = "id")
-//    private WorkUnit workUnit;
 
     public WorkUnit(Type type, Car car, String mechanic, CustomerStatus customerStatus, RepairStatus repairStatus) {
         this.type = type;

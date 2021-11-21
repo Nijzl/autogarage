@@ -8,7 +8,6 @@
 
 <form action="#" th:action="@{/workUnitParts/create}" th:object="${workUnitParts}"
       method="post">
-<!--    <fieldset>-->
         <input type="submit" id="submitButton" th:value="Save">
         <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
         <table>
@@ -24,28 +23,13 @@
                     <input type="text" name="amount" />
                 </td>
 
-
-
-<!--                <td>-->
-<!--                    <input hidden th:name="|partsForm[${itemStat.index}].id|"-->
-<!--                           th:value="${form.getPart}"/>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <input th:name="|partsForm[${itemStat.index}].part|" th:value="${form.getPart}"/>-->
-<!--                </td>-->
-<!--                <td>-->
-<!--                    <input th:name="|workUnitParts[${itemStat.index}].author|"-->
-<!--                           th:value="${workUnitPart.getAmount()}"/>-->
-<!--                </td>-->
             </tr>
         </table>
-<!--    </fieldset>-->
 </form>
 
 
 <button type="submit">Register</button>
 <br>
-<button type="reset">Empty form</button>
 <br>
 <br>
 <a href="/workUnits/">Back to work unit list</a>

@@ -51,7 +51,7 @@ public class WorkUnitPartController {
         WorkUnit workUnit = workUnitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
         model.addAttribute("workUnit", workUnit);
-        model.addAttribute("workUnits", workunitService.getWorkUnits());
+/*        model.addAttribute("workUnits", workunitService.getWorkUnits());*/
         model.addAttribute("workUnitPart", workUnitPart);
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());
@@ -61,9 +61,12 @@ public class WorkUnitPartController {
     }
 
     @PostMapping("/addWorkUnitPart/{id}")
-    public String addPart(@PathVariable("id")  Long id, WorkUnitPartDto workUnitPart){
+    public String addPart(@PathVariable("id") Long id, WorkUnitPartDto workUnitPart, Model model){
+        WorkUnit workUnit = workUnitRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
+        model.addAttribute("workUnit", workUnit);
         workUnitPartService.addWorkUnitPart(workUnitPart);
-        return "redirect:/workUnit/";
+        return "redirect:/workUnitParts/addWorkUnitPart/{id}";
     }
 
 }

@@ -23,7 +23,7 @@ public class Part {
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
     String name;
-    Float price;
+    Double price;
     Long quantity;
 
     @OneToMany(mappedBy = "part")
@@ -31,7 +31,7 @@ public class Part {
     @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
-    public Part(String name, Float price, Long quantity) {
+    public Part(String name, Double price, Long quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;

@@ -26,7 +26,7 @@ public class CarDto {
     private String brand;
 
     @NotNull
-    @Size(min = 3, max = 100)
+    @Size(min = 2, max = 100)
     private String model;
 
     @NotNull

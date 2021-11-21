@@ -39,14 +39,33 @@
     <table>
         <thead>
         <tr>
-            <th> Id </th>
+            <th> ID </th>
+            <th> Work Unit </th>
+            <th> Standard check fee </th>
+            <th> Subtotal Parts </th>
+            <th> Subtotal Actions </th>
+            <th> Tax </th>
+            <th> Total </th>
+            <th> Payment Status</th>
+            <th> View </th>
+            <th> Update </th>
+            <th> Delete </th>
         </tr>
         </thead>
 
         <tbody>
             <tr th:each="invoice : ${listOfInvoices}">
-                <td><span th:text="${invoice.invoiceId}"> Invoice id </span></td>
-                <p>Totaalprijs</p>
+                <td><span th:text="${invoice.invoiceId}"> Invoice ID </span></td>
+                <td><span th:text="${invoice.workUnit.id}"> Work Unit ID </span></td>
+                <td><span th:text="${invoice.subTotalCheck}"> Standard check fee </span></td>
+                <td><span th:text="${invoice.subTotalParts}"> Subtotal Parts </span></td>
+                <td><span th:text="${invoice.subTotalActions}"> Subtotal Parts </span></td>
+                <td><span th:text="${invoice.tax}"> Tax </span></td>
+                <td><span th:text="${invoice.total}"> Total Price </span></td>
+                <td><span th:text="${invoice.paymentStatus}"> Payment Status </span></td>
+                <td><a th:href="@{/invoices/view/{id}(id=${invoice.invoiceId})}"> View </a></td>
+                <td><a th:href="@{/invoices/update/{id}(id=${invoice.invoiceId})}"> Update </a></td>
+                <td><a th:href="@{/invoices/delete/{id}(id=${invoice.invoiceId})}"> Delete </a></td>
             </tr>
         </tbody>
     </table>
@@ -54,10 +73,7 @@
     <br>
     <br>
     <br>
-    <a href="/invoices/create">Add invoice</a>
-    <br>
-    <br>
-    <a href="/home">Back to home page</a>
+    <a href="/home"> Back to home page </a>
 
 </body>
 </html>

@@ -40,7 +40,6 @@
 
         <label>Select car:</label>
             <select id="licencePlate" name="licencePlate">
-                <option disabled> Please select </option>
                 <option th:each="car : ${listOfCars}"
                         th:value="${car.licencePlate}"
                         th:text="${car.licencePlate}"></option>
@@ -49,10 +48,9 @@
 
         <label>Select appointment:</label>
             <select id="id" name="id">
-                <option disabled> Please select </option>
                 <option th:each="appointment : ${listOfAppointments}"
                         th:value="${appointment.id}"
-                        th:text="${appointment.id}"></option>
+                        th:text="${appointment.id}" th:selected="appointment.id"></option>
             </select>
         <br>
 
@@ -61,15 +59,6 @@
         <button type="submit">Register</button>
         <br>
         <br>
-        <button type="reset">Empty form</button>
-        <br>
-
-        <br>
-        <br>
-        <a href="/appointments/">Back to appointments list</a>
-        <br>
-        <br>
-        <a href="/home">Back to home page</a>
 
     </form>
 </div>

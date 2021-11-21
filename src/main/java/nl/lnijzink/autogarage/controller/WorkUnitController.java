@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.model.RepairStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.service.*;
@@ -30,7 +31,8 @@ public class WorkUnitController {
                                  EmployeeService employeeService,
                                  PartService partService, ActionService actionService,
                                  WorkUnitActionService workUnitActionService,
-                                 WorkUnitPartService workUnitPartService, WorkUnitRepository workUnitRepository) {
+                                 WorkUnitPartService workUnitPartService, WorkUnitRepository workUnitRepository
+                                ) {
         this.workUnitService = workUnitService;
         this.carService = carService;
         this.employeeService = employeeService;
@@ -63,8 +65,6 @@ public class WorkUnitController {
         model.addAttribute("workUnit", new WorkUnitDto());
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());
-//        model.addAttribute("listOfParts", partService.getParts());
-//        model.addAttribute("listOfActions", actionService.getActions());
         return "WorkUnitForm";
     }
 
@@ -94,7 +94,9 @@ public class WorkUnitController {
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());
         model.addAttribute("listOfParts", partService.getParts());
+        model.addAttribute("listOfActions", actionService.getActions());
         model.addAttribute("listOfWorkUnitParts", workUnitPartService.getAllWorkUnitParts());
+        model.addAttribute("listOfWorkUnitActions", workUnitActionService.getAllWorkUnitActions());
         return "WorkUnitUpdate";
     }
 
@@ -118,26 +120,26 @@ public class WorkUnitController {
         return "redirect:/workUnit/";
     }
 
-
-
-/*    @GetMapping("/check-not-agreed")
-    public String checkNotAgreed(){
-        return "WorkUnitQuintanceCheck";
+    //Call List
+/*    @GetMapping("/callList/{requestStatus}")
+    public String getAllByRepairStatus(Model model){
+        var workUnit = new WorkUnit();
+        model.addAttribute("workUnit", workUnit);
+        return "CallListRepairStatusForm";
     }
 
-    @GetMapping("/repair")
-    public String repair(){
-        return "WorkUnitRepair";
-    }
+    @PostMapping("/callList/{requestStatus}")
+    public String getAllByRepairStatus(@PathVariable(value = "repairStatus") String repairStatus, Model model){
+        var repairs = workUnitService.getAllByRepairStatus(repairStatus);
+        model.addAttribute("repairStatus", repairStatus);
+        model.addAttribute("listOfWorkUnits", repairs);
+        return "CallListRepairStatusForm";
+    }*/
 
-    @GetMapping("/quintance/check")
-    public String quintanceCheck(){
-        return "WorkUnitQuintanceCheck";
-    }
 
-    @GetMapping("/quintance/repair")
-    public String quintanceRepair(){
-        return "WorkUnitQuintanceRepair";
+    // Get List of Work Units where Repair Status is DONTPERFORM
+/*    @GetMapping("callList/repairStatus")
+        return "";
     }*/
 
 
@@ -165,27 +167,5 @@ public class WorkUnitController {
             return "redirect:/workUnit/";
         }*/
 
-
-/*    @GetMapping("/update/parts/{id}")
-    public String updateWorkUnitParts(@PathVariable("id") Long id, Model model) {
-        WorkUnit workUnit = workUnitRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
-        model.addAttribute("workUnit", workUnit);
-        model.addAttribute("listOfCars", carService.getCars());
-        model.addAttribute("listOfEmployees", employeeService.getEmployees());
-        model.addAttribute("listOfWorkUnits", workUnitService.getWorkUnits());
-        return "WorkUnitPartUpdate";
-    }
-
-    @PostMapping("/update/parts/{id}")
-    public String updateWorkUnitParts(@PathVariable("id") Long id, @Valid WorkUnit workUnit,
-                                 BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            workUnit.setId(id);
-            return "WorkUnitPartUpdate";
-        }
-        workUnitRepository.save(workUnit);
-        return "redirect:/home";
-    }*/
 
 }

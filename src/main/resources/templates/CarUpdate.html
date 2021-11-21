@@ -65,12 +65,14 @@
                 Year Error</p>
         <br>
 
-        <label for="owner"> Owner: </label>
+        <label for="owner"> Owner ID: </label>
             <input type="text" th:field="*{owner}" id="owner" placeholder="${owner}">
             <br/>
             <p class="hasErrors" th:if="${#fields.hasErrors('owner')}" >
                 Owner Error</p>
         <br>
+        <br>
+
 
         <br>
         <br>

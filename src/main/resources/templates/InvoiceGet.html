@@ -35,9 +35,16 @@
 <body>
 
     <h2> View </h2>
-        <th>Id: </th><th th:text="${invoice.invoiceId}"></th><br/>
-        <p>Totaalprijs</p>
-        <p> Add whatever values belong to the invoice</p>
+        <th> Id: </th><th th:text="${invoice.invoiceId}"></th><br/>
+        <th> Work Unit: </th><th th:text="${invoice.workUnit.id}"></th><br/>
+        <th> Subtotal Check: </th><th th:text="${invoice.subTotalCheck}"></th><br/>
+        <th> Subtotal Parts: </th><th th:text="${invoice.subTotalParts}"></th><br/>
+        <th> Subtotal Actions: </th><th th:text="${invoice.subTotalActions}"></th><br/>
+        <th> Tax: </th>
+            <th
+                    th:text="${(invoice.subTotalActions + invoice.subTotalParts + invoice.subTotalCheck) * invoice.tax}"></th><br/>
+        <th> Total: </th><th th:text="${invoice.total}"></th><br/>
+        <th> Payment Status: </th><th th:text="${invoice.paymentStatus}"></th><br/>
     <br>
 
     <br>

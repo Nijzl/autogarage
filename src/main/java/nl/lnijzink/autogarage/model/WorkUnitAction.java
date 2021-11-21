@@ -24,9 +24,11 @@ public class WorkUnitAction {
 
     @ManyToOne
     @MapsId("actionId")
-    @JoinColumn(name = "part_id")
+    @JoinColumn(name = "action_id")
     private Action action;
 
     private Long amount;
+
+    private Double totalActionCost;
 
 }

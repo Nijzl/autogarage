@@ -71,6 +71,7 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
         WorkUnitActionKey id = new WorkUnitActionKey(workUnitAction.getWorkUnitId(), workUnitAction.getActionId());
         workUnitAction1.setId(id);
         workUnitAction1.setAmount(workUnitAction.getAmount());
+        workUnitAction1.setTotalActionCost(action.getPrice()* workUnitAction1.getAmount());
         workUnitActionRepository.save(workUnitAction1);
         return workUnitAction1;
     }

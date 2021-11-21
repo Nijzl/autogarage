@@ -67,9 +67,11 @@ public class AppointmentController {
     // Update Appointment
     @GetMapping("/update/{id}")
     public String updateAppointment(@PathVariable("id") Long id, Model model) {
+        var cars = carService.getCars();
         Appointment appointment = appointmentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid appointment Id:" + id));
         model.addAttribute("appointment", appointment);
+        model.addAttribute("listOfCars", cars);
         return "AppointmentUpdate";
     }
 

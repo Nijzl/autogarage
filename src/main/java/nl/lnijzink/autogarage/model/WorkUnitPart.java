@@ -1,10 +1,6 @@
 package nl.lnijzink.autogarage.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -31,14 +27,17 @@ public class WorkUnitPart {
 
     private Long amount;
 
+    private Double totalPartCost;
+
     public WorkUnitPart() {
     }
 
-    public WorkUnitPart(WorkUnitPartKey id, WorkUnit workUnit, Part part, Long amount) {
+    public WorkUnitPart(WorkUnitPartKey id, WorkUnit workUnit, Part part, Long amount, Double totalPartCost) {
         this.id = id;
         this.workUnit = workUnit;
         this.part = part;
         this.amount = amount;
+        this.totalPartCost = totalPartCost;
     }
 
     public WorkUnitPartKey getId() {
@@ -71,5 +70,13 @@ public class WorkUnitPart {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public Double getTotalPartCost() {
+        return totalPartCost;
+    }
+
+    public void setTotalPartCost(Double totalPartCost) {
+        this.totalPartCost = totalPartCost;
     }
 }
