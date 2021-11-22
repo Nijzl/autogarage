@@ -63,25 +63,4 @@ public class WorkUnitServiceImpl implements WorkUnitService {
         }
     }
 
-/*    // Get List of Work Units where RepairStatus is PERFORMED
-    @Override
-    public List<WorkUnitDto> getWorkUnitsWhereRepairStatusIsPerformed(RepairStatus repairStatus) {
-        ArrayList<WorkUnitDto> pList = new ArrayList<>();
-        var workUnitDtos = workUnitRepository.findAll();
-        for (WorkUnit workUnit : workUnitDtos) {
-            if (workUnit.getRepairStatus().equals(PERFORMED)) {
-                pList.add(new WorkUnitDto(workUnit.getId(), workUnit.getType(), workUnit.getCar(),
-                        workUnit.getMechanic(), workUnit.getCustomerStatus(), workUnit.getRepairStatus()
-                ));
-            }
-        }
-        return pList;
-    }*/
-
-/*    @Override
-    public Collection<WorkUnit> getAllByRepairStatus (String repairStatus) {
-        var workUnits = workUnitRepository.findAllByRepairStatusEquals(repairStatus);
-        return workUnits;
-    }*/
-
 }

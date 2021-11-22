@@ -3,32 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>InvoiceUpdate</title>
-    <style type="text/css">
-        label {
-            display: inline-block;
-            width: 200px;
-            margin: 5px;
-            text-align: left;
-        }
-        input[type=text], input[type=password], select {
-            display: inline-block;
-            width: 200px;
-        }
-        input[type=radio] {
-            margin-left: 45px;
-        }
-        input[type=checkbox] {
-            margin-right: 190px;
-        }
-        button {
-            padding: 5px;
-            margin: 10px;
-        }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
-    </style>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -37,19 +12,27 @@
           th:object="${invoice}"
           method="post">
 
-<!--    <label for="name"> Name: </label>
-    <input type="text" th:field="*{name}" id="name" placeholder="${name}">
-    <br/>
-    <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
-        Name Error</p>
-    <br>
+        <h1> Update </h1>
 
-    <label>Role:</label>
-    <select th:field="*{role}" id="role" placeholder="${role}">
-        <option th:value="'mechanic'" th:text="Mechanic"></option>
-        <option th:value="'administrator'" th:text="Administrator"></option>
-        <option th:value="'backoffice'" th:text="BackOffice"></option>
-    </select>-->
+        <h2> Selected invoice </h2>
+        <th> Id: </th><th th:text="${invoice.invoiceId}"></th><br/>
+        <th> Work Unit: </th><th th:text="${invoice.workUnit.id}"></th><br/>
+        <th> Subtotal Check: </th><th th:text="${invoice.subTotalCheck}"></th><br/>
+        <th> Subtotal Parts: </th><th th:text="${invoice.subTotalParts}"></th><br/>
+        <th> Subtotal Actions: </th><th th:text="${invoice.subTotalActions}"></th><br/>
+        <th> Tax: </th>
+        <th
+                th:text="${(invoice.subTotalActions + invoice.subTotalParts + invoice.subTotalCheck) * invoice.tax}"></th><br/>
+        <th> Total: </th><th th:text="${invoice.total}"></th><br/>
+        <th> Payment Status: </th><th th:text="${invoice.paymentStatus}"></th><br/>
+        <br>
+
+        <label> Payment Status </label>
+        <select id="paymentStatus" name="paymentStatus">
+            <option th:value="OPEN" selected="OPEN"> Open </option>
+            <option th:value="PAID"> Paid </option>
+        </select>
+        <br>
 
     <br>
     <br>

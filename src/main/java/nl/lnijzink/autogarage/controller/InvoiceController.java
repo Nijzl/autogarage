@@ -4,6 +4,7 @@ import nl.lnijzink.autogarage.dto.InvoiceDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
 import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
 import nl.lnijzink.autogarage.model.Invoice;
+import nl.lnijzink.autogarage.model.Part;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.reposit.InvoiceRepository;
@@ -81,7 +82,7 @@ public class InvoiceController {
             return "InvoiceForm";
         }
         invoiceService.createInvoice(invoiceDto);
-        return "InvoiceDisplay";
+        return "redirect:/invoices/";
     }
 
     // Update Invoice
@@ -105,9 +106,11 @@ public class InvoiceController {
     }
 
     // Delete Invoice
-    @DeleteMapping("/delete/{invoiceId}")
-    public String deleteInvoice(@PathVariable("invoiceId") Long invoiceId) {
-        invoiceService.deleteInvoice(invoiceId);
+    @GetMapping("/delete/{invoiceId}")
+    public String deleteInvoice(@PathVariable("invoiceId") Long invoiceId, Model model) {
+        Invoice invoice = invoiceRepository.findById(invoiceId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid invoice Id:" + invoiceId));
+        invoiceRepository.delete(invoice);
         return "redirect:/invoices/";
     }
 
