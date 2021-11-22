@@ -15,7 +15,8 @@ public class DataLoaderCustomers implements CommandLineRunner {
 
     public DataLoaderCustomers(CarRepository carRepository, CustomerRepository customerRepository){
         this.carRepository = carRepository;
-        this.customerRepository = customerRepository;}
+        this.customerRepository = customerRepository;
+    }
 
 
     @Override

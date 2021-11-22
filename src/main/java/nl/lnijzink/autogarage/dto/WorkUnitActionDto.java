@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import nl.lnijzink.autogarage.model.*;
-
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor

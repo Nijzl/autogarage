@@ -20,7 +20,8 @@ public class CustomerController {
 
     protected CustomerController(CustomerService customerService, CustomerRepository customerRepository){
         this.customerService = customerService;
-        this.customerRepository = customerRepository;}
+        this.customerRepository = customerRepository;
+    }
 
 
     // Get List of Customers
@@ -84,12 +85,14 @@ public class CustomerController {
         return "redirect:/customers/";
     }
 
-/*    @GetMapping("/{id}/cars")
+/*  // Get List of Cars by Customer ID
+    @GetMapping("/{id}/cars")
     public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
         customerService.getListCarsByCustomerId(customerId);
         return "CarsByCustomerId";
     }
 
+    // Get Customer by Car licencePlate
     @GetMapping("/car/{licencePlate}/customer")
     public String getCustomerByCar(@PathVariable("licencePlate") String licencePlate, Model model){
         var customer = customerService.getCustomerByCar(licencePlate);

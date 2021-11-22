@@ -1,9 +1,6 @@
 package nl.lnijzink.autogarage.controller;
 
-import nl.lnijzink.autogarage.dto.CarDto;
-import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.EmployeeDto;
-import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.model.Employee;
 import nl.lnijzink.autogarage.reposit.EmployeeRepository;
 import nl.lnijzink.autogarage.service.EmployeeService;
@@ -14,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/employees")
@@ -25,7 +21,8 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     protected EmployeeController(EmployeeRepository employeeRepository, EmployeeService employeeService){
-        this.employeeRepository = employeeRepository; this.employeeService = employeeService;
+        this.employeeRepository = employeeRepository;
+        this.employeeService = employeeService;
     }
 
 

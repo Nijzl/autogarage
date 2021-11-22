@@ -1,7 +1,6 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
-import nl.lnijzink.autogarage.model.RepairStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.service.*;
@@ -31,8 +30,7 @@ public class WorkUnitController {
                                  EmployeeService employeeService,
                                  PartService partService, ActionService actionService,
                                  WorkUnitActionService workUnitActionService,
-                                 WorkUnitPartService workUnitPartService, WorkUnitRepository workUnitRepository
-                                ) {
+                                 WorkUnitPartService workUnitPartService, WorkUnitRepository workUnitRepository) {
         this.workUnitService = workUnitService;
         this.carService = carService;
         this.employeeService = employeeService;
@@ -43,6 +41,8 @@ public class WorkUnitController {
         this.workUnitRepository = workUnitRepository;
     }
 
+
+    // Get List of Work Units
     @GetMapping("/")
     public String getWorkUnits(Model model) {
         var workUnits = workUnitService.getWorkUnits();
@@ -60,6 +60,7 @@ public class WorkUnitController {
         return "WorkUnitGet";
     }
 
+    // Create new Work Unit
     @GetMapping("/create")
     public String createWorkUnit(Model model) {
         model.addAttribute("workUnit", new WorkUnitDto());
@@ -72,15 +73,6 @@ public class WorkUnitController {
     public String createWorkUnit(@Valid @ModelAttribute("WorkUnit") WorkUnitDto wdto, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()) {
 //            return "WorkUnitForm";}
-
-//        for (WorkUnitPart wup : wdto.getWorkUnitParts()) {
-//            workUnitPartService.addWorkUnitPart(wu, wup.getId().getPartId());
-//        }
-//
-//        for (WorkUnitAction wua : wdto.getWorkUnitActions()) {
-//            workUnitActionService.addWorkUnitAction(wu, wua.getId().getActionId());
-//        }
-
         workUnitService.createWorkUnit(wdto);
         return "WorkUnitDisplay";
     }
@@ -111,7 +103,7 @@ public class WorkUnitController {
         return "redirect:/workUnit/";
     }
 
-    // Delete Customer
+    // Delete Work Unit
     @GetMapping("/delete/{id}")
     public String deleteWorkUnit(@PathVariable("id") Long id, Model model) {
         WorkUnit workUnit = workUnitRepository.findById(id)

@@ -1,7 +1,6 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.WorkUnitPartDto;
-import nl.lnijzink.autogarage.model.Part;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.model.WorkUnitPart;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
@@ -9,11 +8,7 @@ import nl.lnijzink.autogarage.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/workUnitParts")
@@ -33,7 +28,7 @@ public class WorkUnitPartController {
                                      PartService partService, ActionService actionService,
                                      WorkUnitActionService workUnitActionService,
                                      WorkUnitPartService workUnitPartService,
-                                     WorkUnitRepository workUnitRepository){
+                                     WorkUnitRepository workUnitRepository) {
             this.workunitService = service;
             this.carService = carService;
             this.employeeService = employeeService;
@@ -45,13 +40,13 @@ public class WorkUnitPartController {
     }
 
 
+    // Add Parts to Work Unit
     @GetMapping("/addWorkUnitPart/{id}")
     public String addPart(@PathVariable("id") Long id, Model model) {
         WorkUnitPart workUnitPart = new WorkUnitPart();
         WorkUnit workUnit = workUnitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid work unit Id:" + id));
         model.addAttribute("workUnit", workUnit);
-/*        model.addAttribute("workUnits", workunitService.getWorkUnits());*/
         model.addAttribute("workUnitPart", workUnitPart);
         model.addAttribute("listOfCars", carService.getCars());
         model.addAttribute("listOfEmployees", employeeService.getEmployees());

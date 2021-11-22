@@ -34,8 +34,6 @@ public class StockController {
     public String getStock(Model model) {
         var parts = partService.getParts();
         model.addAttribute("listOfParts", parts);
-        var actions = actionService.getActions();
-        model.addAttribute("listOfActions", actions);
         return "StockList";
     }
 

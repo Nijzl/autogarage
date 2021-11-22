@@ -1,11 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.ActionDto;
-import nl.lnijzink.autogarage.dto.CarDto;
-import nl.lnijzink.autogarage.dto.CustomerDto;
-import nl.lnijzink.autogarage.dto.EmployeeDto;
 import nl.lnijzink.autogarage.model.Action;
-import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.ActionRepository;
 import nl.lnijzink.autogarage.service.ActionService;
 import org.springframework.stereotype.Controller;
@@ -14,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/actions")
@@ -25,7 +20,8 @@ public class ActionController {
 
     protected ActionController(ActionService actionService, ActionRepository actionRepository){
         this.actionService = actionService;
-        this.actionRepository = actionRepository;}
+        this.actionRepository = actionRepository;
+    }
 
 
     // Get List of Actions

@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -26,7 +25,6 @@ public class WorkUnit {
     Type type;
     String mechanic;
 
-
     @ManyToOne
     @JoinColumn(name = "car_licencePlate", referencedColumnName = "licencePlate")
     private Car car;
@@ -38,7 +36,6 @@ public class WorkUnit {
 
     @OneToMany(mappedBy = "workUnit")
     @LazyCollection(LazyCollectionOption.FALSE)
-//    @JsonIgnore
     Collection<WorkUnitPart> workUnitParts;
 
     private CustomerStatus customerStatus;

@@ -1,6 +1,8 @@
 package nl.lnijzink.autogarage.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -8,8 +10,10 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
-//@Getter
-//@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Embeddable
 public class WorkUnitPartKey implements Serializable {
     
@@ -19,14 +23,14 @@ public class WorkUnitPartKey implements Serializable {
     @Column(name = "part_id")
     private Long partId;
 
-    public WorkUnitPartKey(Long workUnitId, Long partId) {
+/*    public WorkUnitPartKey(Long workUnitId, Long partId) {
         this.workUnitId = workUnitId;
         this.partId = partId;
     }
 
     public WorkUnitPartKey() {
 
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -40,7 +44,7 @@ public class WorkUnitPartKey implements Serializable {
     public int hashCode() {return Objects.hash(workUnitId, partId);}
 
 
-    public Long getWorkUnitId() {
+/*    public Long getWorkUnitId() {
         return workUnitId;
     }
 
@@ -54,5 +58,5 @@ public class WorkUnitPartKey implements Serializable {
 
     public void setPartId(Long partId) {
         this.partId = partId;
-    }
+    }*/
 }

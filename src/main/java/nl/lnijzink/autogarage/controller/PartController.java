@@ -24,7 +24,8 @@ public class PartController {
 
     protected PartController(PartService partService, PartRepository partRepository){
         this.partService = partService;
-        this.partRepository = partRepository;}
+        this.partRepository = partRepository;
+    }
 
 
     // Get List of Parts

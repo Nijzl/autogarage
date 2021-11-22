@@ -8,8 +8,6 @@ import lombok.Setter;
 import nl.lnijzink.autogarage.model.PaymentStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
 
-import javax.validation.constraints.DecimalMax;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

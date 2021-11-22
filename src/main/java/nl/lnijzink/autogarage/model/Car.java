@@ -30,7 +30,7 @@ public class Car {
     @JoinColumn(name = "customer_id")
     private Customer owner;
 
-    // relatie tussen 1 customer en 1 car
+    // relation between customer and car
     @OneToMany(mappedBy= "owner")
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();

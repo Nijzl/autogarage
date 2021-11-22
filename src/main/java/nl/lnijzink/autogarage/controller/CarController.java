@@ -3,20 +3,16 @@ package nl.lnijzink.autogarage.controller;
 import nl.lnijzink.autogarage.dto.CarDto;
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Car;
-import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.reposit.CustomerRepository;
 import nl.lnijzink.autogarage.service.CarService;
 import nl.lnijzink.autogarage.service.CustomerService;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/cars")
@@ -32,7 +28,9 @@ public class CarController {
         this.carService = carService;
         this.customerService = customerService;
         this.carRepository = carRepository;
-        this.customerRepository = customerRepository;}
+        this.customerRepository = customerRepository;
+    }
+
 
     // Get List of Cars
     @GetMapping("/")

@@ -2,9 +2,7 @@ package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.AppointmentDto;
 import nl.lnijzink.autogarage.dto.CarDto;
-import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Appointment;
-import nl.lnijzink.autogarage.model.Customer;
 import nl.lnijzink.autogarage.reposit.AppointmentRepository;
 import nl.lnijzink.autogarage.reposit.CarRepository;
 import nl.lnijzink.autogarage.service.AppointmentService;
@@ -32,7 +30,9 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
         this.appointmentRepository = appointmentRepository;
         this.carService = carService;
-        this.carRepository = carRepository;}
+        this.carRepository = carRepository;
+    }
+
 
     // Get List of Appointments
     @GetMapping("/")
