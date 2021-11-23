@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>WorkUnitForm</title>
+    <title> WorkUnitForm </title>
     <style type="text/css">
         label {
             display: inline-block;
@@ -24,171 +24,51 @@
             padding: 5px;
             margin: 10px;
         }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
     </style>
 </head>
 <body>
-<!--
-
- Navigation
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">Thymeleaf - Bootstrap Select Option</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <form method="post" th:object="${workUnit}">
-
-                <div class="form-group">
-                    <label for="workUnitPart">Choose parts</label>
-                    <select class="form-control selectpicker" th:field="*{workUnitPart}" id="workUnitPart">
-                        <option value="">Choose parts</option>
-                        <option th:each="part : ${listOfParts}"
-                                th:value="${part}"
-                                th:text="${part}">
-                        </option>
-
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="workUnitAction">Select actions</label>
-                    <select class="form-control selectpicker" th:field="*{workUnitAction}" id="workUnitAction" multiple>
-
-                        <option th:each="action : ${workUnitAction}"
-                                th:value="${action}"
-                                th:text="${action}">
-                        </option>
-
-                    </select>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Submit form</button>
-            </form>
-        </div>
-    </div>
-
-</div>
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{assets/bootstrap-select-1.13.9/dist/js/bootstrap-select.js}"></script>
--->
-
-
 <div align="center">
+
     <form action="#" th:action="@{/workUnit/create}" method="post" th:object="${workUnit}">
 
         <h2>New Work Unit</h2>
 
         <label>Select a type: </label>
-        <select id="type" name="type">
-            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
-            <option th:value="REPAIR" th:text="Repair"></option>
-        </select>
+            <select id="type" name="type">
+                <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
+                <option th:value="REPAIR" th:text="Repair"></option>
+            </select>
         <br>
         <br>
 
         <label>Select a car: </label>
-        <select id="car" name="car">
-<!--            <option th:value="">Select a car</option>-->
-            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
-        </select>
+            <select id="car" name="car">
+                <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+            </select>
         <br>
         <br>
 
         <label>Select a mechanic: </label>
-        <select id="mechanic" name="mechanic">
-<!--            <option th:value="">Select an employee</option>-->
-            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
-        </select>
+            <select id="mechanic" name="mechanic">
+                <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
+            </select>
         <br>
-
-
-
-<!--
-        <td>
-            <th:block th:each="p : ${listOfParts}" >
-                <input type="checkbox" th:field="*{workUnitParts}" name="p.name" th:value="p.name"/>
-                <label th:text="${p.name}"></label>
-            </th:block>
-        </td>
--->
-
-<!--        <form class="ui-form" th:action="${listOfParts}" method="post" th:object="${workUnitPart}">-->
-<!--            <input type="hidden" th:field="*{name}">-->
-<!--            <ui>-->
-<!--                <li th:each="part : ${listOfParts}">-->
-<!--                    <div class="ui checkbox">-->
-<!--                        <input type="checkbox" th:field="${listOfParts}" th:value="${part.name}">-->
-<!--                        <label th:text="part.name"></label>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--            </ui>-->
-
-
-<!--        </form>-->
-<!--        <p>-->
-<!--            <select id="workUnitParts" th:field="*{workUnitParts}" multiple="multiple">-->
-<!--                &lt;!&ndash;            <option th:value="">Select an employee</option>&ndash;&gt;-->
-<!--                <option th:each="p : ${listOfParts}" th:value="${p.name}" th:text="${p.name}"></option>-->
-<!--            </select>-->
-<!--        </p>-->
-
-        <br>
-
-<!--        <select id="workUnitActions" name="workUnitActions">-->
-<!--            &lt;!&ndash;            <option th:value="">Select an employee</option>&ndash;&gt;-->
-<!--            <option th:each="a : ${listOfActions}" th:value="${a.name}" th:text="${a.name}"></option>-->
-<!--        </select>-->
-<!--        <br>-->
-
         <br>
 
         <label> Customer Status </label>
-        <select id="customerStatus" name="customerStatus">
-            <option th:value="DISAGREE" selected="DISAGREE"> Disagree </option>
-            <option th:value="AGREE"> Agree </option>
-        </select>
+            <select id="customerStatus" name="customerStatus">
+                <option th:value="DISAGREE" selected="DISAGREE"> Disagree </option>
+                <option th:value="AGREE"> Agree </option>
+            </select>
         <br>
         <br>
 
         <label> Repair Status </label>
-        <select id="repairStatus" name="repairStatus">
-            <option th:value="NOTPERFORMED" selected="NOTPERFORMED"> Not performed yet </option>
-            <option th:value="PERFORMED"> Performed </option>
-            <option th:value="DONTPERFORM"> Don't perform </option>
-        </select>
+            <select id="repairStatus" name="repairStatus">
+                <option th:value="NOTPERFORMED" selected="NOTPERFORMED"> Not performed yet </option>
+                <option th:value="PERFORMED"> Performed </option>
+                <option th:value="DONTPERFORM"> Don't perform </option>
+            </select>
         <br>
         <br>
 

@@ -1,36 +1,14 @@
-<!--<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>WorkUnitUpdate</title>
-    <style type="text/css">
-        label {
-            display: inline-block;
-            width: 200px;
-            margin: 5px;
-            text-align: left;
-        }
-        input[type=text], input[type=password], select {
-            display: inline-block;
-            width: 200px;
-        }
-        input[type=radio] {
-            margin-left: 45px;
-        }
-        input[type=checkbox] {
-            margin-right: 190px;
-        }
-        button {
-            padding: 5px;
-            margin: 10px;
-        }
-        .hasErrors{
-            color: red;
-            font-weight : bold;
-        }
-    </style>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> WorkUnitPartUpdate </title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container">
 
     <form action="#"
           th:action="@{/workUnit/update/{id}(id=${workUnit.id})}"
@@ -40,114 +18,41 @@
         <h2> Update </h2>
 
         <label> Type: </label>
-        <select id="type" name="type">
-            <option th:value="CHECK" th:text="Check" selected="CHECK"></option>
-            <option th:value="REPAIR" th:text="Repair"></option>
-        </select>
+            <select id="type" name="type">
+                <option th:value="CHECK" th:text="Check"></option>
+                <option th:value="REPAIR" th:text="Repair"></option>
+            </select>
         <br>
         <br>
 
         <label> Car: </label>
-        <select id="car" name="car">
-            &lt;!&ndash;            <option th:value="">Select a car</option>&ndash;&gt;
-            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
-        </select>
+            <select id="car" name="car">
+                <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}" th:text="${u.licencePlate}"></option>
+            </select>
         <br>
         <br>
 
         <label> Mechanic: </label>
-        <select id="mechanic" name="mechanic">
-            &lt;!&ndash;            <option th:value="">Select an employee</option>&ndash;&gt;
-            <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
-        </select>
+            <select id="mechanic" name="mechanic">
+                <option th:each="e : ${listOfEmployees}" th:value="${e.name}" th:text="${e.name}"></option>
+            </select>
         <br>
         <br>
 
         <label> Check Status: </label>
-        <select id="checkAgree" name="checkAgree">
-            <option th:value="false" th:selected="false">Don't agree</option>
-            <option th:value="true">Agree</option>
-        </select>
+            <select id="customerStatus" name="customerStatus">
+                <option th:value="DISAGREE"> Disagree </option>
+                <option th:value="AGREE"> Agree </option>
+            </select>
         <br>
         <br>
 
         <label> Repair Status </label>
-        <select id="repairPerformed" name="repairPerformed">
-            <option th:value="false" th:selected="false">Not performed yet</option>
-            <option th:value="true">Performed</option>
-        </select>
-        <br>
-
-        <br>
-        <br>
-        <input type="submit" value="Update">
-
-    </form>
-
-
-</body>
-</html>-->
-
-
-<!doctype html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Thymeleaf Form handling Demo</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
-</head>
-<body class="container">
-
-<h1 class="py-5">Thymeleaf Form handling Demo</h1>
-
-    <form action="#"
-          th:action="@{/workUnit/update/{id}(id=${workUnit.id})}"
-          th:object="${workUnit}"
-          method="post">
-
-        <h2> Form 1 Update </h2>
-
-        <label> Type: </label>
-        <select id="type" name="type">
-            <option th:value="CHECK" th:text="Check"></option>
-            <option th:value="REPAIR" th:text="Repair"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Car: </label>
-        <select id="car" name="car">
-            <option th:each="u : ${listOfCars}" th:value="${u.licencePlate}"
-                    th:text="${u.licencePlate}"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Mechanic: </label>
-        <select id="mechanic" name="mechanic">
-            <option th:each="e : ${listOfEmployees}" th:value="${e.name}"
-                    th:text="${e.name}"></option>
-        </select>
-        <br>
-        <br>
-
-        <label> Check Status: </label>
-        <select id="customerStatus" name="customerStatus">
-            <option th:value="DISAGREE"> Disagree </option>
-            <option th:value="AGREE"> Agree </option>
-        </select>
-        <br>
-        <br>
-
-        <label> Repair Status </label>
-        <select id="repairStatus" name="repairStatus">
-            <option th:value="NOTPERFORMED" > Not performed yet </option>
-            <option th:value="PERFORMED"> Performed </option>
-            <option th:value="DONTPERFORM"> Don't perform </option>
-        </select>
+            <select id="repairStatus" name="repairStatus">
+                <option th:value="NOTPERFORMED" > Not performed yet </option>
+                <option th:value="PERFORMED"> Performed </option>
+                <option th:value="DONTPERFORM"> Don't perform </option>
+            </select>
         <br>
 
         <input type="submit" class="btn btn-primary" value=" Update">

@@ -36,28 +36,31 @@
           th:action="@{/actions/update/{id}(id=${action.id})}"
           th:object="${action}"
           method="post">
+
+        <h2> Update </h2>
+
         <label for="name"> Name: </label>
-        <input type="text" th:field="*{name}" id="name" placeholder="${name}">
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
-            Name Error</p>
+            <input type="text" th:field="*{name}" id="name" placeholder="${name}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('name')}" >
+                Name Error</p>
         <br>
 
         <label for="description"> Description: </label>
-        <input type="text" th:field="*{description}" id="description" placeholder="${description}">
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
-            Description Error</p>
+            <input type="text" th:field="*{description}" id="description" placeholder="${description}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('description')}" >
+                Description Error</p>
         <br>
 
         <label for="price"> Price: </label>
-        <input type="text" th:field="*{price}" id="price" placeholder="${price}">
-        <br/>
-        <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
-            Price Error</p>
+            <input type="text" th:field="*{price}" id="price" placeholder="${price}">
+            <br/>
+            <p class="hasErrors" th:if="${#fields.hasErrors('price')}" >
+                Price Error</p>
         <br>
 
-        <input type="submit" value="Update Action">
+        <input type="submit" value=" Update ">
 
     </form>
 </body>

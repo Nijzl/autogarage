@@ -8,7 +8,6 @@ import nl.lnijzink.autogarage.reposit.CustomerRepository;
 import nl.lnijzink.autogarage.storage.StorageException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     public CustomerServiceImpl(CustomerRepository customerRepository, CarRepository carRepository){
         this.customerRepository = customerRepository;
-        this.carRepository = carRepository;}
+        this.carRepository = carRepository;
+    }
 
 
     // Get List of Customers

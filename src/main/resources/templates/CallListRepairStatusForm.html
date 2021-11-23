@@ -35,21 +35,24 @@
 <body>
 
     <h2> Request Call List </h2>
+    <br>
 
-    <form action="#" th:action="@{/workUnit/callList/{repairStatus}(repairStatus=${workUnit.getRepairStatus()})}" method="post"
+    <form action="#" th:action="@{/workUnit/callList/}" method="post"
           th:object="${workUnit.repairStatus}">
 
     <label> For Which Repair Status? </label>
-        <select id="repairStatus" name="repairStatus">
-            <option th:value="NOTPERFORMED" > Not performed yet </option>
-            <option th:value="PERFORMED"> Performed </option>
-            <option th:value="DONTPERFORM"> Don't perform </option>
+        <select id="repairStatus" th:name="repairStatus">
+            <option value="NOTPERFORMED" > Not performed yet </option>
+            <option value="PERFORMED"> Performed </option>
+            <option value="DONTPERFORM"> Don't perform </option>
         </select>
     <br>
 
         <input type="submit" class="btn btn-primary" value="Request">
 
     </form>
+
+<br>
 
     <table>
         <thead>
@@ -74,6 +77,9 @@
         </tbody>
     </table>
 
+    <br>
+    <br>
+    <a href="/workUnit">Back to work units list</a>
     <br>
     <br>
     <a href="/home">Back to home page</a>

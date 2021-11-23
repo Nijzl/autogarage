@@ -11,7 +11,7 @@ import java.util.List;
 public interface WorkUnitService {
 
     public List<WorkUnitDto> getWorkUnits();
-/*    public Collection<WorkUnit> getAllByRepairStatus (String repairStatus);*/
+    public Collection<WorkUnit> getAllByRepairStatus (RepairStatus repairStatus);
     public WorkUnitDto getWorkUnit(Long id);
     public Long createWorkUnit(WorkUnitDto workUnitDto);
     public void deleteWorkUnit(Long id);

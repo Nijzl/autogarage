@@ -20,7 +20,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     public InvoiceServiceImpl(InvoiceRepository invoiceRepository, WorkUnitRepository workUnitRepository){
         this.invoiceRepository = invoiceRepository;
-        this.workUnitRepository = workUnitRepository;}
+        this.workUnitRepository = workUnitRepository;
+    }
 
 
     // Get List of Invoices
@@ -68,7 +69,9 @@ public class InvoiceServiceImpl implements InvoiceService {
         i.setPaymentStatus(invoiceDto.getPaymentStatus());
         i.setSubTotalCheck((double)45);
         i.setTax((double)0.21);
-        i.setTotal((double) Math.round((i.getSubTotalParts()+i.getSubTotalCheck()+i.getSubTotalActions()) + ((i.getSubTotalParts()+i.getSubTotalCheck()+i.getSubTotalActions()) * i.getTax())*100)/100);
+        var totalExcl = (i.getSubTotalParts()+i.getSubTotalCheck()+i.getSubTotalActions());
+        var tax = (totalExcl * i.getTax());
+        i.setTotal((double) Math.round( (totalExcl + tax) *100)/100);
         invoiceRepository.save(i);
         return i.getInvoiceId();
     }

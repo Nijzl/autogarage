@@ -36,16 +36,6 @@ public class WorkUnitPartServiceImpl implements WorkUnitPartService {
         return workUnitParts;
     }
 
-/*    @Override
-    public Collection<WorkUnit> getWorkUnitsByPartId(Long partId) {
-        Collection<WorkUnit> workUnits = new HashSet<>();
-        Collection<WorkUnitPart> workUnitParts = workUnitPartRepository.findAllByPartId(partId);
-        for(WorkUnitPart workUnitPart : workUnitParts) {
-            workUnits.add(workUnitPart.getWorkUnit());
-        }
-        return workUnits;
-    }*/
-
     @Override
     public Collection<WorkUnitPart> getWorkUnitPartsByWorkUnitId(Long workUnitId) {
         Collection<WorkUnitPart> partList = new HashSet<>();
@@ -55,11 +45,6 @@ public class WorkUnitPartServiceImpl implements WorkUnitPartService {
         }
         return partList;
     }
-
-/*    @Override
-    public WorkUnitPart getWorkUnitPartById(Long workUnitId, Long partId) {
-        return workUnitPartRepository.findById(new WorkUnitPartKey(workUnitId, partId)).orElse(null);
-    }*/
 
     @Override
     public WorkUnitPart addWorkUnitPart(WorkUnitPartDto workUnitPart) {

@@ -23,15 +23,6 @@ public class WorkUnitPartKey implements Serializable {
     @Column(name = "part_id")
     private Long partId;
 
-/*    public WorkUnitPartKey(Long workUnitId, Long partId) {
-        this.workUnitId = workUnitId;
-        this.partId = partId;
-    }
-
-    public WorkUnitPartKey() {
-
-    }*/
-
     @Override
     public boolean equals(Object o) {
         if(this == o) return true;
@@ -43,20 +34,4 @@ public class WorkUnitPartKey implements Serializable {
     @Override
     public int hashCode() {return Objects.hash(workUnitId, partId);}
 
-
-/*    public Long getWorkUnitId() {
-        return workUnitId;
-    }
-
-    public void setWorkUnitId(Long workUnitId) {
-        this.workUnitId = workUnitId;
-    }
-
-    public Long getPartId() {
-        return partId;
-    }
-
-    public void setPartId(Long partId) {
-        this.partId = partId;
-    }*/
 }

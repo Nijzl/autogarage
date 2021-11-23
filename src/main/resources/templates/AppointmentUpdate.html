@@ -37,6 +37,8 @@
           th:object="${appointment}"
           method="post">
 
+        <h2> Update </h2>
+
         <label for="date"> Date: </label>
             <input type="text" th:field="*{date}" id="date" placeholder="${date}">
             <br/>
@@ -64,13 +66,6 @@
         <br>
         <br>
 
-<!--        <label for="car"> Car: </label>
-            <input type="text" th:field="*{car}" id="car" placeholder="${car}">
-            <br/>
-            <p class="hasErrors" th:if="${#fields.hasErrors('car')}" >
-                Car Error</p>
-        <br>-->
-
         <label> Car: </label>
         <select id="car" name="car" placeholder="${car}">
             <option th:each="car : ${listOfCars}"
@@ -80,7 +75,7 @@
 
         <br>
         <br>
-        <input type="submit" value="Update">
+        <input type="submit" value=" Update ">
 
     </form>
 </body>

@@ -15,17 +15,27 @@
         <h1> Update </h1>
 
         <h2> Selected invoice </h2>
-        <th> Id: </th><th th:text="${invoice.invoiceId}"></th><br/>
-        <th> Work Unit: </th><th th:text="${invoice.workUnit.id}"></th><br/>
-        <th> Subtotal Check: </th><th th:text="${invoice.subTotalCheck}"></th><br/>
-        <th> Subtotal Parts: </th><th th:text="${invoice.subTotalParts}"></th><br/>
-        <th> Subtotal Actions: </th><th th:text="${invoice.subTotalActions}"></th><br/>
+        <th> Id: </th>
+            <input readonly th:value="${invoice.invoiceId}" id="invoiceId" name="invoiceId"></input><br/>
+        <th> Work Unit: </th>
+            <input readonly th:value="${invoice.workUnit.id}" id="workUnit.id" name="workUnit.id"></input><br/>
+        <th> Subtotal Check: </th>
+            <input readonly th:value="${invoice.subTotalCheck}" id="subTotalCheck" name="subTotalCheck"></input><br/>
+        <th> Subtotal Parts: </th>
+            <input readonly th:value="${invoice.subTotalParts}" id="subTotalParts" name="subTotalParts"></input><br/>
+        <th> Subtotal Actions: </th>
+            <input readonly th:value="${invoice.subTotalActions}" id="subTotalActions" name="subTotalActions"></input><br/>
         <th> Tax: </th>
-        <th
-                th:text="${(invoice.subTotalActions + invoice.subTotalParts + invoice.subTotalCheck) * invoice.tax}"></th><br/>
-        <th> Total: </th><th th:text="${invoice.total}"></th><br/>
-        <th> Payment Status: </th><th th:text="${invoice.paymentStatus}"></th><br/>
+            <input readonly
+               th:value="${(invoice.subTotalActions + invoice.subTotalParts + invoice.subTotalCheck) * invoice.tax}"
+                id="tax" name="tax"></input><br/>
+        <th> Total: </th>
+            <input readonly th:value="${invoice.total}" id="total" name="total"></input><br/>
+        <th> Payment Status: </th>
+            <th th:text="${invoice.paymentStatus}"></th><br/>
         <br>
+
+
 
         <label> Payment Status </label>
         <select id="paymentStatus" name="paymentStatus">
@@ -36,7 +46,7 @@
 
     <br>
     <br>
-    <input type="submit" value="Update">
+    <input type="submit" value=" Update ">
 
 </form>
 </body>

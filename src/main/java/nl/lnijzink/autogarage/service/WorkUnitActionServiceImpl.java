@@ -22,7 +22,7 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
 
     @Autowired
     public WorkUnitActionServiceImpl(WorkUnitRepository workUnitRepository, ActionRepository actionRepository,
-                                     WorkUnitActionRepository workUnitActionRepository){
+                                     WorkUnitActionRepository workUnitActionRepository) {
         this.workUnitRepository = workUnitRepository;
         this.actionRepository = actionRepository;
         this.workUnitActionRepository = workUnitActionRepository;
@@ -34,16 +34,6 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
         return workUnitActions;
     }
 
-/*    @Override
-    public Collection<WorkUnit> getWorkUnitsByActionId(Long actionId){
-        Collection<WorkUnit> workUnits = new HashSet<>();
-        Collection<WorkUnitAction> workUnitActions = workUnitActionRepository.findAllByActionId(actionId);
-        for(WorkUnitAction workUnitAction : workUnitActions){
-            workUnits.add(workUnitAction.getWorkUnit());
-        }
-        return workUnits;
-    }*/
-
     @Override
     public Collection<WorkUnitAction> getWorkUnitActionsByWorkUnitId(Long workUnitId) {
         Collection<WorkUnitAction> actionList = new HashSet<>();
@@ -53,11 +43,6 @@ public class WorkUnitActionServiceImpl implements WorkUnitActionService {
         }
         return actionList;
     }
-
-/*    @Override
-    public WorkUnitAction getWorkUnitActionById(Long workUnitId, Long actionId){
-        return workUnitActionRepository.findById(new WorkUnitActionKey(workUnitId, actionId)).orElse(null);
-    }*/
 
     @Override
     public WorkUnitAction addWorkUnitAction(WorkUnitActionDto workUnitAction) {

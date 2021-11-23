@@ -37,6 +37,8 @@
           th:object="${car}"
           method="post">
 
+        <h2> Update </h2>
+
         <label for="licencePlate"> Licence plate: </label>
             <input type="text" th:field="*{licencePlate}" id="licencePlate" placeholder="${licencePlate}">
             <br/>
@@ -71,12 +73,10 @@
             <p class="hasErrors" th:if="${#fields.hasErrors('owner')}" >
                 Owner Error</p>
         <br>
-        <br>
-
 
         <br>
         <br>
-        <input type="submit" value="Update">
+        <input type="submit" value=" Update ">
         <br>
 
     </form>

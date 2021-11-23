@@ -2,18 +2,12 @@ package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
-import nl.lnijzink.autogarage.model.Customer;
-import nl.lnijzink.autogarage.model.CustomerStatus;
-import nl.lnijzink.autogarage.model.RepairStatus;
-import nl.lnijzink.autogarage.model.WorkUnit;
+import nl.lnijzink.autogarage.model.*;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.storage.StorageException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static nl.lnijzink.autogarage.model.RepairStatus.PERFORMED;
 
@@ -31,8 +25,6 @@ public class WorkUnitServiceImpl implements WorkUnitService {
         ArrayList<WorkUnitDto> pList = new ArrayList<>();
         workUnitRepository.findAll().forEach((p) -> pList.add(new WorkUnitDto(p.getId(), p.getType(),
                 p.getCar(), p.getMechanic(), p.getCustomerStatus(), p.getRepairStatus()
-//                p.getWorkUnitParts(),
-//                p.getWorkUnitActions()
                 )));
         return pList;
     }
@@ -61,6 +53,31 @@ public class WorkUnitServiceImpl implements WorkUnitService {
         if(exists){
             workUnitRepository.deleteById(id);
         }
+    }
+
+/*    @Override
+    public Collection<WorkUnit> getAllByRepairStatus (String repairStatus){
+        WorkUnit workUnit = workUnitRepository.findAll();
+        if(workUnit.contains(performed)){
+
+        }*/
+
+/*        public Collection<WorkUnit> getAllByRepairStatus(String repairStatus, List<WorkUnit> workUnits) {
+            for (WorkUnit workUnit : workUnits) {
+                if (workUnit.getRepairStatus().equals(repairStatus)) {
+                }
+            }
+            return workUnits;
+        }*/
+
+    @Override
+    public Collection<WorkUnit> getAllByRepairStatus(RepairStatus repairStatus) {
+        Collection<WorkUnit> workUnitList = new HashSet<>();
+        Collection<WorkUnit> workUnits = workUnitRepository.findAllByRepairStatus(repairStatus);
+        for(WorkUnit workUnit : workUnits) {
+            workUnitList.add(workUnit);
+        }
+        return workUnitList;
     }
 
 }

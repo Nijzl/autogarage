@@ -23,13 +23,6 @@ public class WorkUnitActionKey implements Serializable {
     @Column(name = "action_id")
     private Long actionId;
 
-/*    public WorkUnitActionKey(){}
-
-    public WorkUnitActionKey(Long workUnitId, Long actionId){
-        this.workUnitId = workUnitId;
-        this.actionId = actionId;
-    }*/
-
     @Override
     public boolean equals(Object w){
         if(this == w) return true;

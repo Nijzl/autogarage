@@ -18,7 +18,8 @@ public class CarServiceImpl implements CarService {
 
     public CarServiceImpl(CarRepository carRepository, CustomerRepository customerRepository){
         this.carRepository = carRepository;
-        this.customerRepository = customerRepository;}
+        this.customerRepository = customerRepository;
+    }
 
 
     // Get List of Cars
@@ -67,7 +68,6 @@ public class CarServiceImpl implements CarService {
             car.setOwner(customer);
             carRepository.save(car);
         }
-        //exception op later moment toevoegen
         return ResponseEntity.ok("Car added to customer.");
     }
 

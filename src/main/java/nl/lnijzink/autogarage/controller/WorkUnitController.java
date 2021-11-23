@@ -1,6 +1,7 @@
 package nl.lnijzink.autogarage.controller;
 
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
+import nl.lnijzink.autogarage.model.RepairStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
 import nl.lnijzink.autogarage.service.*;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/workUnit")
@@ -112,52 +114,24 @@ public class WorkUnitController {
         return "redirect:/workUnit/";
     }
 
-    //Call List
-/*    @GetMapping("/callList/{requestStatus}")
-    public String getAllByRepairStatus(Model model){
+    // Get List of Work Units with a specific repairStatus
+    @RequestMapping("/callList/")
+    public String getAllByRepairStatus(@RequestParam(value = "repairStatus", required = false) RepairStatus repairStatus,
+                                       Model model){
         var workUnit = new WorkUnit();
         model.addAttribute("workUnit", workUnit);
-        return "CallListRepairStatusForm";
-    }
-
-    @PostMapping("/callList/{requestStatus}")
-    public String getAllByRepairStatus(@PathVariable(value = "repairStatus") String repairStatus, Model model){
-        var repairs = workUnitService.getAllByRepairStatus(repairStatus);
         model.addAttribute("repairStatus", repairStatus);
-        model.addAttribute("listOfWorkUnits", repairs);
-        return "CallListRepairStatusForm";
-    }*/
-
-
-    // Get List of Work Units where Repair Status is DONTPERFORM
-/*    @GetMapping("callList/repairStatus")
-        return "";
-    }*/
-
-
-/*    @Controller
-    @RequestMapping("/users")
-    public class UserController {
-
-        private final WorkUnitService workUnitService;
-
-        public UserController(WorkUnitService workUnitService) {
-            this.workUnitService = workUnitService;
-        }*/
-
-/*        @RequestMapping(value = "/test/{id}", method = RequestMethod.GET)
-        public String updateWorkUnit(Model model) {
-            List<WorkUnitDto> workUnits = workUnitService.getWorkUnits();
-            model.addAttribute("listOfWorkUnits", workUnits);
-            model.addAttribute("workUnit", new WorkUnit());
-            return "WorkUnitUpdate";
+        // if there is no workUnit with this particular repairStatus, return list with all workUnits
+        if (repairStatus == null) {
+            var repairs = workUnitService.getWorkUnits();
+            model.addAttribute("listOfWorkUnits", repairs);
+            return "CallListRepairStatusForm";
+        // else return list of workUnits with particular repairStatus
+        } else{
+            var repairs = workUnitService.getAllByRepairStatus(repairStatus);
+            model.addAttribute("listOfWorkUnits", repairs);
+            return "CallListRepairStatusForm";
         }
-
-        @RequestMapping(value = "/test", method = RequestMethod.POST)
-        public String updateWorkUnit(Model model, @ModelAttribute WorkUnitDto workUnitDto) {
-            workUnitService.createWorkUnit(workUnitDto);
-            return "redirect:/workUnit/";
-        }*/
-
+    }
 
 }

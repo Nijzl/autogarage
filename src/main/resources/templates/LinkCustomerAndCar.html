@@ -36,7 +36,6 @@
 
         <label>Select car:</label>
             <select id="licencePlate" name="licencePlate">
-                <option disabled> Please select </option>
                 <option th:each="car : ${listOfCars}"
                         th:value="${car.licencePlate}"
                         th:text="${car.licencePlate}"></option>
@@ -45,7 +44,6 @@
 
         <label>Select customer:</label>
             <select id="email" name="email">
-                <option disabled> Please select </option>
                 <option th:each="customer : ${listOfCustomers}"
                     th:value="${customer.email}"
                     th:text="${customer.email}"></option>

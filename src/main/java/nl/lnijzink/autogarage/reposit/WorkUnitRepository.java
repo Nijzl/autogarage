@@ -9,5 +9,5 @@ import java.util.Collection;
 
 @Repository
 public interface WorkUnitRepository extends JpaRepository<WorkUnit, Long> {
-    Collection<WorkUnit> findAllByRepairStatusEquals(String repairStatus);
+    Collection<WorkUnit> findAllByRepairStatus(RepairStatus repairStatus);
 }
