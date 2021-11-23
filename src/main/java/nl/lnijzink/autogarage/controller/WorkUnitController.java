@@ -73,8 +73,8 @@ public class WorkUnitController {
 
     @PostMapping("/create")
     public String createWorkUnit(@Valid @ModelAttribute("WorkUnit") WorkUnitDto wdto, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return "WorkUnitForm";}
+        if (bindingResult.hasErrors()) {
+            return "WorkUnitForm";}
         workUnitService.createWorkUnit(wdto);
         return "WorkUnitDisplay";
     }

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface WorkUnitPartRepository extends JpaRepository<WorkUnitPart, WorkUnitPartKey> {
-    Collection<WorkUnitPart> findAllByPartId(Long partId);
     Collection<WorkUnitPart> findAllByWorkUnitId(Long workUnitId);
 
 }

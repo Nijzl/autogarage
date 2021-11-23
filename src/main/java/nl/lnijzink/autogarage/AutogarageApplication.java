@@ -11,11 +11,9 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
-//@ComponentScan({"nl.lnijzink.autogarage", "controller"})
 public class AutogarageApplication {
 
 	public static void main(String[] args) {
-//		new File(FileUploadController.uploadDirectory).mkdir();
 		SpringApplication.run(AutogarageApplication.class, args);
 	}
 

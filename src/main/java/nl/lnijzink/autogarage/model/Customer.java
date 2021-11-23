@@ -26,12 +26,10 @@ public class Customer {
     String phoneNumber;
     String email;
 
-    // Relation between one car and one customer
     @OneToMany(mappedBy= "owner")
     @JsonIgnore
     private Collection<Car> cars = new ArrayList<Car>();
 
-    //Getters and setters
     public Collection<Car> getCars() {
         return cars;
     }
@@ -40,7 +38,6 @@ public class Customer {
         this.cars = cars;
     }
 
-    // Constructors
     public Customer(String fullName, String address, String phoneNumber, String email){
         this.fullName = fullName;
         this.address = address;

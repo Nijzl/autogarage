@@ -15,27 +15,4 @@ public class WorkUnitPartDto {
     Long partId;
     Long amount;
 
-/*    public Long getWorkUnitId() {
-        return workUnitId;
-    }
-
-    public void setWorkUnitId(Long workUnitId) {
-        this.workUnitId = workUnitId;
-    }
-
-    public Long getPartId() {
-        return partId;
-    }
-
-    public void setPartId(Long partId) {
-        this.partId = partId;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }*/
 }

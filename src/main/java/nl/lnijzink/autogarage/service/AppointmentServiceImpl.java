@@ -1,11 +1,9 @@
 package nl.lnijzink.autogarage.service;
 
 import nl.lnijzink.autogarage.dto.AppointmentDto;
-import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.model.Appointment;
 import nl.lnijzink.autogarage.reposit.AppointmentRepository;
 import nl.lnijzink.autogarage.reposit.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     public AppointmentServiceImpl(AppointmentRepository appointmentRepository, CarRepository carRepository){
         this.appointmentRepository = appointmentRepository;
-        this.carRepository = carRepository;}
+        this.carRepository = carRepository;
+    }
 
 
     //Get List of Appointments

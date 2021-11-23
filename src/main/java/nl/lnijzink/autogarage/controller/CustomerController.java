@@ -85,19 +85,4 @@ public class CustomerController {
         return "redirect:/customers/";
     }
 
-/*  // Get List of Cars by Customer ID
-    @GetMapping("/{id}/cars")
-    public String getListCarsByCustomerId(@PathVariable("id") Long customerId){
-        customerService.getListCarsByCustomerId(customerId);
-        return "CarsByCustomerId";
-    }
-
-    // Get Customer by Car licencePlate
-    @GetMapping("/car/{licencePlate}/customer")
-    public String getCustomerByCar(@PathVariable("licencePlate") String licencePlate, Model model){
-        var customer = customerService.getCustomerByCar(licencePlate);
-        model.addAttribute("customer", customer);
-        return "CustomerByCarId";
-    }*/
-
 }

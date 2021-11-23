@@ -8,8 +8,8 @@ public class RecordNotFoundException extends RuntimeException{
         super();
     }
 
-    public RecordNotFoundException(String message) {
+  /*  public RecordNotFoundException(String message) {
         super(message);
-    }
+    }*/
 
 }

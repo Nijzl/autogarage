@@ -61,21 +61,4 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
-    // Get Customer based on Licence Plate
-    @Override
-    public Customer getCustomerByCar(String licencePlate) {
-        var optionalCar = carRepository.findById(licencePlate);
-
-        if(optionalCar.isPresent() && optionalCar.get().getOwner() != null) {
-            return optionalCar.get().getOwner();
-        }
-        throw new StorageException("TODO");
-    }
-
-    // Get List of Cars by Customer Id
-    @Override
-    public List<Car> getListCarsByCustomerId(Long customerId) {
-        return null; //?
-    }
-
 }

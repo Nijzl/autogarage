@@ -24,12 +24,4 @@ public class WorkUnitDto {
 
     private RepairStatus repairStatus;
 
-    public WorkUnitDto(Type type, Car car, String mechanic, CustomerStatus customerStatus, RepairStatus repairStatus) {
-        this.type = type;
-        this.car = car;
-        this.mechanic = mechanic;
-        this.customerStatus = customerStatus;
-        this.repairStatus = repairStatus;
-    }
-
 }

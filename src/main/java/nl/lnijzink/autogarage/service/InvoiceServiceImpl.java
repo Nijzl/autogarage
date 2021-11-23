@@ -85,7 +85,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         }
     }
 
-
     // Assign Invoice to Work Unit
     @Override
     public ResponseEntity<Object> assignInvoiceToWorkUnit(Long id, Long invoiceId) {

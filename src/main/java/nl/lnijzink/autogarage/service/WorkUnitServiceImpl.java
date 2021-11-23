@@ -1,15 +1,11 @@
 package nl.lnijzink.autogarage.service;
 
-import nl.lnijzink.autogarage.dto.CustomerDto;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
 import nl.lnijzink.autogarage.model.*;
 import nl.lnijzink.autogarage.reposit.WorkUnitRepository;
-import nl.lnijzink.autogarage.storage.StorageException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
-import static nl.lnijzink.autogarage.model.RepairStatus.PERFORMED;
 
 @Service
 public class WorkUnitServiceImpl implements WorkUnitService {
@@ -55,21 +51,7 @@ public class WorkUnitServiceImpl implements WorkUnitService {
         }
     }
 
-/*    @Override
-    public Collection<WorkUnit> getAllByRepairStatus (String repairStatus){
-        WorkUnit workUnit = workUnitRepository.findAll();
-        if(workUnit.contains(performed)){
-
-        }*/
-
-/*        public Collection<WorkUnit> getAllByRepairStatus(String repairStatus, List<WorkUnit> workUnits) {
-            for (WorkUnit workUnit : workUnits) {
-                if (workUnit.getRepairStatus().equals(repairStatus)) {
-                }
-            }
-            return workUnits;
-        }*/
-
+    // Get List of Work Units by repairStatus
     @Override
     public Collection<WorkUnit> getAllByRepairStatus(RepairStatus repairStatus) {
         Collection<WorkUnit> workUnitList = new HashSet<>();

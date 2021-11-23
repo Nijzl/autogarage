@@ -8,10 +8,7 @@ import java.util.Collection;
 public interface WorkUnitActionService {
 
     Collection<WorkUnitAction> getAllWorkUnitActions();
-
-/*    Collection<WorkUnit> getWorkUnitsByActionId(Long actionId);*/
     Collection<WorkUnitAction> getWorkUnitActionsByWorkUnitId(Long workUnitId);
-/*    WorkUnitAction getWorkUnitActionById(Long workUnitId, Long actionId);*/
     WorkUnitAction addWorkUnitAction(WorkUnitActionDto workUnitAction);
 
 }

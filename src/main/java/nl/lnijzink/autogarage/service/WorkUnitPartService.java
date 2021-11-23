@@ -11,11 +11,7 @@ import java.util.Collection;
 public interface WorkUnitPartService {
 
     Collection<WorkUnitPart> getAllWorkUnitParts();
-
-//   Collection<WorkUnit> getWorkUnitsByPartId(Long partId);
-   Collection<WorkUnitPart> getWorkUnitPartsByWorkUnitId(Long workUnitId);
-   // WorkUnitPart getWorkUnitPartById(Long workUnitId, Long partId);
+    Collection<WorkUnitPart> getWorkUnitPartsByWorkUnitId(Long workUnitId);
     WorkUnitPart addWorkUnitPart(WorkUnitPartDto workUnitPart);
-
 
 }

@@ -3,7 +3,6 @@ package nl.lnijzink.autogarage.service;
 import nl.lnijzink.autogarage.dto.WorkUnitDto;
 import nl.lnijzink.autogarage.model.RepairStatus;
 import nl.lnijzink.autogarage.model.WorkUnit;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
